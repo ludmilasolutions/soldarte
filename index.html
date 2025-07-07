@@ -7,46 +7,40 @@
 
   <!-- Fuentes Google -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+
   <!-- Iconos -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-KwkZwx3fU0/tx+Ge5AjJ6NcWI4JxX0XdwL5B4qVvjGmcZi+X57n2y+9Ay0v6uxfFZN1MA4XEaz+gKgBq3+n/Vg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer" />
+
+  <!-- Lightbox2 -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet" />
+
   <style>
     :root {
-      --c-primary: #c26b35; /* tono óxido */
-      --c-dark: #0d1b24;  /* casi negro azulado */
-      --c-light: #e8d1b0; /* beige logo */
+      --c-primary: #c26b35;
+      --c-dark: #0d1b24;
+      --c-light: #e8d1b0;
       --c-white: #ffffff;
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Roboto', sans-serif;
       background: var(--c-dark);
       color: var(--c-light);
       line-height: 1.6;
     }
-
-    h1, h2, h3, h4 {
+    h1,h2,h3,h4 {
       font-family: 'Montserrat', sans-serif;
       color: var(--c-light);
       font-weight: 700;
     }
-
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
 
-    /* ---------- NAV ---------- */
     header {
-      background: rgba(13, 27, 36, 0.9);
+      background: rgba(13,27,36,.9);
       position: fixed;
       width: 100%;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       z-index: 100;
     }
     .nav-container {
@@ -64,14 +58,9 @@
       font-size: 1.25rem;
       font-weight: 700;
     }
-    nav ul {
-      display: flex;
-      gap: 1.5rem;
-      font-weight: 500;
-    }
+    nav ul { display: flex; gap: 1.5rem; font-weight: 500; }
     nav a:hover { color: var(--c-primary); }
 
-    /* ---------- HERO ---------- */
     .hero {
       background: url('assets/hero-bg.jpg') center/cover fixed;
       min-height: 100vh;
@@ -81,10 +70,7 @@
       text-align: center;
       padding: 0 1rem;
     }
-    .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      text-shadow: 0 4px 6px rgba(0,0,0,.7);
-    }
+    .hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); text-shadow: 0 4px 6px rgba(0,0,0,.7); }
     .hero p {
       max-width: 600px;
       margin: 1rem auto 2rem;
@@ -124,7 +110,6 @@
       border-radius: 2px;
     }
 
-    /* ---------- SERVICES ---------- */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -132,7 +117,7 @@
       text-align: center;
     }
     .service-card {
-      background: rgba(255,255,255,0.05);
+      background: rgba(255,255,255,.05);
       padding: 2rem 1rem;
       border-radius: 8px;
       transition: transform .3s ease, background .3s ease;
@@ -147,62 +132,23 @@
       background: rgba(255,255,255,0.07);
     }
 
-    /* ---------- GALLERY ---------- */
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1rem;
     }
-    .gallery-grid img {
+    .gallery-grid a img {
       width: 100%;
-      height: 230px;
-      object-fit: cover;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: transform .3s ease;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
     }
-    .gallery-grid img:hover {
+    .gallery-grid a:hover img {
       transform: scale(1.03);
     }
 
-    /* Lightbox */
-    .lightbox {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,.85);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity .3s ease;
-      z-index: 200;
-    }
-    .lightbox.show {
-      opacity: 1;
-      visibility: visible;
-    }
-    .lightbox img {
-      max-width: 90%;
-      max-height: 85%;
-      border-radius: 8px;
-    }
-    .lightbox .close-btn {
-      position: absolute;
-      top: 2rem;
-      right: 2rem;
-      font-size: 2rem;
-      color: var(--c-white);
-      cursor: pointer;
-    }
-
-    /* ---------- ABOUT ---------- */
     .about {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+      grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
       gap: 2rem;
       align-items: center;
     }
@@ -211,7 +157,6 @@
       border-radius: 8px;
     }
 
-    /* ---------- CONTACT ---------- */
     .contact-wrapper {
       display: grid;
       grid-template-columns: 2fr 1fr;
@@ -231,7 +176,6 @@
     }
     .contact-wrapper textarea { resize: vertical; min-height: 140px; }
 
-    /* ---------- FOOTER ---------- */
     footer {
       background: rgba(0,0,0,0.4);
       padding: 2rem 1rem;
@@ -250,7 +194,6 @@
     }
     .socials a:hover { color: var(--c-primary); }
 
-    /* ---------- WHATSAPP FLOAT ---------- */
     .whatsapp-fab {
       position: fixed;
       bottom: 25px;
@@ -270,14 +213,12 @@
     }
     .whatsapp-fab:hover { transform: scale(1.1); }
 
-    /* ---------- MEDIA ---------- */
     @media(max-width: 768px) {
       .contact-wrapper { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <!-- NAV -->
   <header>
     <div class="nav-container">
       <a class="logo" href="#inicio">
@@ -295,7 +236,6 @@
     </div>
   </header>
 
-  <!-- HERO -->
   <section id="inicio" class="hero">
     <div>
       <h1>“De la chispa al arte”</h1>
@@ -304,7 +244,6 @@
     </div>
   </section>
 
-  <!-- SERVICES -->
   <section id="servicios">
     <h2>Nuestros Servicios</h2>
     <div class="services-grid">
@@ -331,25 +270,31 @@
     </div>
   </section>
 
-  <!-- GALLERY -->
   <section id="galeria">
     <h2>Galería de Trabajos</h2>
     <div class="gallery-grid">
-      <!-- Reemplazá las imágenes con tus trabajos reales -->
-      <img src="assets/gallery/porton1.jpg" alt="Portón metálico" />
-      <img src="assets/gallery/reja1.jpg" alt="Reja artística" />
-      <img src="assets/gallery/mueble1.jpg" alt="Mueble industrial" />
-      <img src="assets/gallery/estructura1.jpg" alt="Estructura metálica" />
-      <img src="assets/gallery/deco1.jpg" alt="Decoración metálica" />
-      <img src="assets/gallery/escalera1.jpg" alt="Escalera metálica" />
+      <a href="assets/gallery/porton1.jpg" data-lightbox="galeria" data-title="Portón corredizo moderno">
+        <img src="assets/gallery/porton1.jpg" alt="Portón corredizo">
+      </a>
+      <a href="assets/gallery/porton2.jpg" data-lightbox="galeria" data-title="Portón batiente clásico">
+        <img src="assets/gallery/porton2.jpg" alt="Portón clásico">
+      </a>
+      <a href="assets/gallery/reja1.jpg" data-lightbox="galeria" data-title="Reja de hierro forjado">
+        <img src="assets/gallery/reja1.jpg" alt="Reja artística">
+      </a>
+      <a href="assets/gallery/mueble1.jpg" data-lightbox="galeria" data-title="Mueble estilo industrial">
+        <img src="assets/gallery/mueble1.jpg" alt="Mueble metálico">
+      </a>
+      <a href="assets/gallery/estructura1.jpg" data-lightbox="galeria" data-title="Estructura metálica para galpón">
+        <img src="assets/gallery/estructura1.jpg" alt="Estructura metálica">
+      </a>
     </div>
   </section>
 
-  <!-- ABOUT -->
   <section id="sobre">
     <h2>Sobre Soldarte</h2>
     <div class="about">
-      <img src="assets/about.jpg" alt="Taller Soldarte" />
+      <img src="assets/about.jpg" alt="Taller Soldarte">
       <div>
         <p>Somos un taller familiar con más de <strong>10 años</strong> de experiencia en la transformación del metal.</p>
         <p>Combinamos técnicas tradicionales de herrería con diseño moderno para lograr piezas que perduren en el tiempo y respondan a la identidad de cada cliente.</p>
@@ -358,7 +303,6 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contacto">
     <h2>Contacto</h2>
     <div class="contact-wrapper">
@@ -371,14 +315,12 @@
       <div>
         <p><i class="fas fa-location-dot"></i> Rosario, Santa Fe</p>
         <p><i class="fas fa-phone"></i> +54 9 341 XXX XXXX</p>
-        <p><i class="fas fa-phone"></i> +54 9 341 XXX XXXX</p>        
         <p><i class="fas fa-envelope"></i> contacto@soldarte.com</p>
         <p>Horarios: Lun–Vie 8–18 h / Sáb 8–13 h</p>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <div class="socials">
       <a href="https://wa.me/549341XXXXXXX" target="_blank"><i class="fab fa-whatsapp"></i></a>
@@ -388,34 +330,9 @@
     <p>&copy; 2025 Soldarte – Herrería & Diseño. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- WHATSAPP FLOATING BUTTON -->
   <a href="https://wa.me/549341XXXXXXX" class="whatsapp-fab" target="_blank" title="Chatear por WhatsApp"><i class="fab fa-whatsapp"></i></a>
 
-  <!-- LIGHTBOX SCRIPTS -->
-  <script>
-    const galleryImages = document.querySelectorAll('.gallery-grid img');
-    const lightbox = document.createElement('div');
-    lightbox.className = 'lightbox';
-    lightbox.innerHTML = `<span class='close-btn'>&times;</span><img src='' alt='Imagen ampliada'>`;
-    document.body.appendChild(lightbox);
-
-    const lightboxImg = lightbox.querySelector('img');
-    const closeBtn = lightbox.querySelector('.close-btn');
-
-    galleryImages.forEach(img => {
-      img.addEventListener('click', () => {
-        lightboxImg.src = img.src;
-        lightbox.classList.add('show');
-      });
-    });
-
-    closeBtn.addEventListener('click', () => {
-      lightbox.classList.remove('show');
-    });
-
-    lightbox.addEventListener('click', e => {
-      if (e.target === lightbox) lightbox.classList.remove('show');
-    });
-  </script>
+  <!-- Lightbox2 JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
 </body>
 </html>
