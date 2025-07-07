@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soldarte | Herrería & Diseño</title>
+
+  <!-- Fuentes Google -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+  <!-- Iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-KwkZwx3fU0/tx+Ge5AjJ6NcWI4JxX0XdwL5B4qVvjGmcZi+X57n2y+9Ay0v6uxfFZN1MA4XEaz+gKgBq3+n/Vg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <style>
+    :root {
+      --c-primary: #c26b35; /* tono óxido */
+      --c-dark: #0d1b24;  /* casi negro azulado */
+      --c-light: #e8d1b0; /* beige logo */
+      --c-white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: var(--c-dark);
+      color: var(--c-light);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--c-light);
+      font-weight: 700;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ---------- NAV ---------- */
+    header {
+      background: rgba(13, 27, 36, 0.9);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 100;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+    nav ul {
+      display: flex;
+      gap: 1.5rem;
+      font-weight: 500;
+    }
+    nav a:hover { color: var(--c-primary); }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      background: url('assets/hero-bg.jpg') center/cover fixed;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 1rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      text-shadow: 0 4px 6px rgba(0,0,0,.7);
+    }
+    .hero p {
+      max-width: 600px;
+      margin: 1rem auto 2rem;
+      font-size: 1.1rem;
+      color: var(--c-white);
+    }
+    .btn {
+      background: var(--c-primary);
+      color: var(--c-white);
+      padding: .9rem 2rem;
+      border-radius: 4px;
+      font-weight: 600;
+      transition: background .3s ease;
+    }
+    .btn:hover { background: #a9562a; }
+
+    section {
+      padding: 5rem 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    section h2 {
+      text-align: center;
+      margin-bottom: 3rem;
+      font-size: 2rem;
+      position: relative;
+    }
+    section h2::after {
+      content: '';
+      width: 60px;
+      height: 4px;
+      background: var(--c-primary);
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    /* ---------- SERVICES ---------- */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 2rem;
+      text-align: center;
+    }
+    .service-card {
+      background: rgba(255,255,255,0.05);
+      padding: 2rem 1rem;
+      border-radius: 8px;
+      transition: transform .3s ease, background .3s ease;
+    }
+    .service-card i {
+      font-size: 2.5rem;
+      color: var(--c-primary);
+      margin-bottom: 1rem;
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      background: rgba(255,255,255,0.07);
+    }
+
+    /* ---------- GALLERY ---------- */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+      gap: 1rem;
+    }
+    .gallery-grid img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform .3s ease;
+    }
+    .gallery-grid img:hover {
+      transform: scale(1.03);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .3s ease;
+      z-index: 200;
+    }
+    .lightbox.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 85%;
+      border-radius: 8px;
+    }
+    .lightbox .close-btn {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      font-size: 2rem;
+      color: var(--c-white);
+      cursor: pointer;
+    }
+
+    /* ---------- ABOUT ---------- */
+    .about {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+      gap: 2rem;
+      align-items: center;
+    }
+    .about img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    /* ---------- CONTACT ---------- */
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+    }
+    .contact-wrapper form {
+      display: grid;
+      gap: 1rem;
+    }
+    .contact-wrapper input,
+    .contact-wrapper textarea {
+      padding: .8rem 1rem;
+      border: none;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.1);
+      color: var(--c-white);
+    }
+    .contact-wrapper textarea { resize: vertical; min-height: 140px; }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      background: rgba(0,0,0,0.4);
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .socials a {
+      font-size: 1.3rem;
+      color: var(--c-light);
+      transition: color .3s ease;
+    }
+    .socials a:hover { color: var(--c-primary); }
+
+    /* ---------- WHATSAPP FLOAT ---------- */
+    .whatsapp-fab {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 300;
+      transition: transform .3s ease;
+    }
+    .whatsapp-fab:hover { transform: scale(1.1); }
+
+    /* ---------- MEDIA ---------- */
+    @media(max-width: 768px) {
+      .contact-wrapper { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <header>
+    <div class="nav-container">
+      <a class="logo" href="#inicio">
+        <img src="assets/logo-soldarte.png" alt="Soldarte Logo" style="height:40px"> SOLDARTE
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#sobre">Nosotros</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="inicio" class="hero">
+    <div>
+      <h1>“De la chispa al arte”</h1>
+      <p>Especialistas en herrería y diseño metálico a medida. Rejas, portones, muebles y estructuras fabricadas con pasión y precisión.</p>
+      <a href="#contacto" class="btn">Solicitar presupuesto</a>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="servicios">
+    <h2>Nuestros Servicios</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <i class="fas fa-door-open"></i>
+        <h3>Rejas y Portones</h3>
+        <p>Diseños seguros y estéticos para proteger tu hogar o negocio.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-industry"></i>
+        <h3>Estructuras Metálicas</h3>
+        <p>Soluciones robustas a medida para obras y proyectos industriales.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-couch"></i>
+        <h3>Muebles & Deco</h3>
+        <p>Piezas únicas que combinan funcionalidad y estilo.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-tools"></i>
+        <h3>Reparaciones</h3>
+        <p>Mantenimiento y soldaduras especializadas para prolongar la vida útil de tus estructuras.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="galeria">
+    <h2>Galería de Trabajos</h2>
+    <div class="gallery-grid">
+      <!-- Reemplazá las imágenes con tus trabajos reales -->
+      <img src="assets/gallery/porton1.jpg" alt="Portón metálico" />
+      <img src="assets/gallery/reja1.jpg" alt="Reja artística" />
+      <img src="assets/gallery/mueble1.jpg" alt="Mueble industrial" />
+      <img src="assets/gallery/estructura1.jpg" alt="Estructura metálica" />
+      <img src="assets/gallery/deco1.jpg" alt="Decoración metálica" />
+      <img src="assets/gallery/escalera1.jpg" alt="Escalera metálica" />
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="sobre">
+    <h2>Sobre Soldarte</h2>
+    <div class="about">
+      <img src="assets/about.jpg" alt="Taller Soldarte" />
+      <div>
+        <p>Somos un taller familiar con más de <strong>10 años</strong> de experiencia en la transformación del metal.</p>
+        <p>Combinamos técnicas tradicionales de herrería con diseño moderno para lograr piezas que perduren en el tiempo y respondan a la identidad de cada cliente.</p>
+        <p>Trabajamos con materiales de primera calidad, garantizando durabilidad, seguridad y estética.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <div class="contact-wrapper">
+      <form onsubmit="event.preventDefault(); this.reset(); alert('¡Gracias por tu mensaje! Te responderemos a la brevedad.');">
+        <input type="text" placeholder="Nombre" required />
+        <input type="tel" placeholder="Teléfono" required />
+        <textarea placeholder="Contanos tu proyecto..." required></textarea>
+        <button class="btn" type="submit">Enviar consulta</button>
+      </form>
+      <div>
+        <p><i class="fas fa-location-dot"></i> Rosario, Santa Fe</p>
+        <p><i class="fas fa-phone"></i> +54 9 341 XXX XXXX</p>
+        <p><i class="fas fa-phone"></i> +54 9 341 XXX XXXX</p>        
+        <p><i class="fas fa-envelope"></i> contacto@soldarte.com</p>
+        <p>Horarios: Lun–Vie 8–18 h / Sáb 8–13 h</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="socials">
+      <a href="https://wa.me/549341XXXXXXX" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://www.instagram.com/soldarte.hierros" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/soldarte.hierros" target="_blank"><i class="fab fa-facebook"></i></a>
+    </div>
+    <p>&copy; 2025 Soldarte – Herrería & Diseño. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- WHATSAPP FLOATING BUTTON -->
+  <a href="https://wa.me/549341XXXXXXX" class="whatsapp-fab" target="_blank" title="Chatear por WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+  <!-- LIGHTBOX SCRIPTS -->
+  <script>
+    const galleryImages = document.querySelectorAll('.gallery-grid img');
+    const lightbox = document.createElement('div');
+    lightbox.className = 'lightbox';
+    lightbox.innerHTML = `<span class='close-btn'>&times;</span><img src='' alt='Imagen ampliada'>`;
+    document.body.appendChild(lightbox);
+
+    const lightboxImg = lightbox.querySelector('img');
+    const closeBtn = lightbox.querySelector('.close-btn');
+
+    galleryImages.forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.classList.add('show');
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      lightbox.classList.remove('show');
+    });
+
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) lightbox.classList.remove('show');
+    });
+  </script>
+</body>
+</html>
