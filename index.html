@@ -20,7 +20,7 @@
   <style>
     :root {
       --c-primary: #c26b35;
-      --c-dark: #0d1b24;
+      --c-dark: #16212b;
       --c-light: #e8d1b0;
       --c-white: #ffffff;
     }
@@ -30,6 +30,8 @@
       background: var(--c-dark);
       color: var(--c-light);
       line-height: 1.6;
+      min-height: 100vh;
+      scroll-behavior: smooth;
     }
     h1,h2,h3,h4 {
       font-family: 'Montserrat', sans-serif;
@@ -39,12 +41,15 @@
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
 
+    /* 1. Navbar sticky con blur y sombra */
     header {
-      background: rgba(13,27,36,.9);
+      background: rgba(13,27,36,.88);
       position: fixed;
       width: 100%;
       top: 0; left: 0;
       z-index: 100;
+      backdrop-filter: blur(7px);
+      box-shadow: 0 2px 12px 0 rgba(0,0,0,0.11);
     }
     .nav-container {
       max-width: 1200px;
@@ -54,49 +59,92 @@
       justify-content: space-between;
       align-items: center;
     }
+
+    /* LOGO ANIMADO */
     .logo {
       display: flex;
       align-items: center;
       gap: .5rem;
       font-size: 1.25rem;
       font-weight: 700;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(-25px) scale(0.93);
+      animation: logoIn .9s cubic-bezier(.43,.18,.24,.92) .3s forwards;
     }
+    .logo img {
+      height:40px;
+      transition: box-shadow .3s, filter .4s;
+    }
+    .logo:hover img {
+      box-shadow: 0 6px 32px 0 #c26b3555;
+      filter: brightness(1.1) saturate(1.1);
+    }
+    .logo:hover, .logo:hover img {
+      animation: logoBounce .6s;
+    }
+    @keyframes logoIn {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+    @keyframes logoBounce {
+      0%   { transform: scale(1) rotate(0deg);}
+      25%  { transform: scale(1.12) rotate(-6deg);}
+      50%  { transform: scale(0.95) rotate(4deg);}
+      75%  { transform: scale(1.06) rotate(-2deg);}
+      100% { transform: scale(1) rotate(0deg);}
+    }
+
     nav ul { display: flex; gap: 1.5rem; font-weight: 500; }
     nav a:hover { color: var(--c-primary); }
 
-    .hero {
-      background: url('assets/hero-bg.jpg') center/cover fixed;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 0 1rem;
-    }
-    .hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); text-shadow: 0 4px 6px rgba(0,0,0,.7); }
-    .hero p {
-      max-width: 600px;
-      margin: 1rem auto 2rem;
-      font-size: 1.1rem;
-      color: var(--c-white);
-    }
+    /* 2. Botón CTA animado */
     .btn {
       background: var(--c-primary);
       color: var(--c-white);
       padding: .9rem 2rem;
       border-radius: 4px;
       font-weight: 600;
-      transition: background .3s ease;
+      transition: background .3s, transform .2s, box-shadow .2s;
+      box-shadow: 0 2px 16px rgba(194,107,53,0.08);
       border: none;
       cursor: pointer;
     }
-    .btn:hover { background: #a9562a; }
+    .btn:hover {
+      background: #a9562a;
+      transform: scale(1.04) translateY(-2px);
+      box-shadow: 0 4px 24px rgba(194,107,53,0.16);
+    }
 
+    /* 3. Fotos: más grandes y con efecto hover */
+    .swiper { width: 100%; padding-bottom: 2rem; }
+    .swiper-slide img {
+      width: 100%;
+      border-radius: 8px;
+      transition: transform .5s cubic-bezier(.28,.84,.42,1), box-shadow .3s;
+    }
+    .swiper-slide img:hover {
+      transform: scale(1.07) rotate(-1deg);
+      box-shadow: 0 8px 32px rgba(0,0,0,.12);
+    }
+    .swiper-button-prev, .swiper-button-next { color: var(--c-primary); }
+    .lb-hide { display: none; }
+
+    /* 4. Separadores visuales modernos */
     section {
       padding: 5rem 1rem;
       max-width: 1200px;
       margin: 0 auto;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 2.5rem;
+      padding-bottom: 4.5rem;
     }
+    section:last-of-type {
+      border-bottom: none;
+    }
+    /* 5. Detalles de color y transición */
     section h2 {
       text-align: center;
       margin-bottom: 3rem;
@@ -107,7 +155,7 @@
       content: '';
       width: 60px;
       height: 4px;
-      background: var(--c-primary);
+      background: linear-gradient(90deg, #c26b35 60%, #e8d1b0 100%);
       position: absolute;
       bottom: -10px;
       left: 50%;
@@ -115,6 +163,7 @@
       border-radius: 2px;
     }
 
+    /* 6. Iconos con círculo de fondo */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -128,20 +177,22 @@
       transition: transform .3s ease, background .3s ease;
     }
     .service-card i {
-      font-size: 2.5rem;
+      background: rgba(194,107,53,0.10);
+      border-radius: 50%;
+      padding: 16px;
+      margin-bottom: 1.3rem;
+      font-size: 2.2rem;
+      display: inline-block;
+      transition: background .3s;
       color: var(--c-primary);
-      margin-bottom: 1rem;
     }
     .service-card:hover {
       transform: translateY(-8px);
       background: rgba(255,255,255,0.07);
     }
-
-    .swiper { width: 100%; padding-bottom: 2rem; }
-    .swiper-slide img { width: 100%; border-radius: 8px; transition: transform 0.3s ease; }
-    .swiper-slide img:hover { transform: scale(1.03); }
-    .swiper-button-prev, .swiper-button-next { color: var(--c-primary); }
-    .lb-hide { display: none; }
+    .service-card:hover i {
+      background: rgba(194,107,53,0.18);
+    }
 
     .about {
       display: grid;
@@ -181,20 +232,38 @@
       font-size: 1rem;
     }
     .contact-wrapper textarea { resize: vertical; min-height: 140px; }
-    @media(max-width: 900px) {
+
+    /* 8. Animación sutil al entrar */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeInUp 1s forwards;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* 9. Responsive más cómodo */
+    @media (max-width:900px) {
       .contact-wrapper { grid-template-columns: 1fr; }
     }
-    @media(max-width: 600px) {
+    @media (max-width:600px) {
       .nav-container { flex-direction: column; gap: 1rem; padding: 1rem; }
       .hero { min-height: 70vh; padding-top: 3rem; }
       .contact-wrapper { padding: 1rem 0; }
       .about { grid-template-columns: 1fr; }
+      body, section, footer { padding-left: 0.6rem; padding-right: 0.6rem; }
     }
 
+    /* 7. Pie de página elegante */
     footer {
       background: rgba(0,0,0,0.4);
-      padding: 2rem 1rem 0.5rem 1rem;
+      padding: 2rem 1rem;
       text-align: center;
+      box-shadow: 0 -2px 16px rgba(0,0,0,0.15);
     }
     .socials {
       display: flex;
@@ -205,16 +274,11 @@
     .socials a {
       font-size: 1.3rem;
       color: var(--c-light);
-      transition: color .3s ease;
+      transition: transform .2s, color .3s;
     }
-    .socials a:hover { color: var(--c-primary); }
-
-    .visitas-contador {
-      font-size: 0.90rem;
-      color: #e8d1b0bb;
-      margin-top: 0.5rem;
-      opacity: 0.65;
-      letter-spacing: 0.5px;
+    .socials a:hover {
+      color: var(--c-primary);
+      transform: scale(1.2) rotate(-4deg);
     }
 
     .whatsapp-fab {
@@ -241,7 +305,7 @@
   <header>
     <div class="nav-container">
       <a class="logo" href="#inicio">
-        <img src="assets/logo-soldarte.png" alt="Soldarte Logo" style="height:40px"> SOLDARTE
+        <img src="assets/logo-soldarte.png" alt="Soldarte Logo"> SOLDARTE
       </a>
       <nav>
         <ul>
@@ -255,7 +319,7 @@
     </div>
   </header>
 
-  <section id="inicio" class="hero">
+  <section id="inicio" class="hero fade-in">
     <div>
       <h1>“De la chispa al arte”</h1>
       <p>Especialistas en herrería y diseño metálico a medida. Rejas, portones, muebles y estructuras fabricadas con pasión y precisión.</p>
@@ -263,7 +327,7 @@
     </div>
   </section>
 
-  <section id="servicios">
+  <section id="servicios" class="fade-in">
     <h2>Nuestros Servicios</h2>
     <div class="services-grid">
       <div class="service-card">
@@ -290,64 +354,57 @@
   </section>
 
   <!-- GALERÍA con Swiper y Lightbox2 -->
-  <section id="galeria">
-  <h2>Galería de Trabajos</h2>
-  <div class="swiper">
-    <div class="swiper-wrapper">
-
-      <!-- Puertas/Portones -->
-      <div class="swiper-slide">
-        <a href="assets/gallery/puertas/porton1.jpg" data-lightbox="puertas" data-title="Portón 1">
-          <img src="assets/gallery/puertas/porton1.jpg" alt="Portón 1">
-        </a>
-        <a href="assets/gallery/puertas/porton2.jpg" data-lightbox="puertas" data-title="Portón 2" class="lb-hide"></a>
+  <section id="galeria" class="fade-in">
+    <h2>Galería de Trabajos</h2>
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <!-- Puertas/Portones -->
+        <div class="swiper-slide">
+          <a href="assets/gallery/puertas/porton1.jpg" data-lightbox="puertas" data-title="Portón 1">
+            <img src="assets/gallery/puertas/porton1.jpg" alt="Portón 1">
+          </a>
+          <a href="assets/gallery/puertas/porton2.jpg" data-lightbox="puertas" data-title="Portón 2" class="lb-hide"></a>
+        </div>
+        <!-- Escaleras -->
+        <div class="swiper-slide">
+          <a href="assets/gallery/escaleras/escalera1.jpg" data-lightbox="escaleras" data-title="Escalera">
+            <img src="assets/gallery/escaleras/escalera1.jpg" alt="Escalera">
+          </a>
+        </div>
+        <!-- Muebles -->
+        <div class="swiper-slide">
+          <a href="assets/gallery/muebles/mueble1.jpg" data-lightbox="muebles" data-title="Mueble 1">
+            <img src="assets/gallery/muebles/mueble1.jpg" alt="Mueble 1">
+          </a>
+          <a href="assets/gallery/muebles/mueble2.jpg" data-lightbox="muebles" data-title="Mueble 2" class="lb-hide"></a>
+          <a href="assets/gallery/muebles/mueble3.jpg" data-lightbox="muebles" data-title="Mueble 3" class="lb-hide"></a>
+          <a href="assets/gallery/muebles/mueble4.jpg" data-lightbox="muebles" data-title="Mueble 4" class="lb-hide"></a>
+          <a href="assets/gallery/muebles/mueble5.jpg" data-lightbox="muebles" data-title="Mueble 5" class="lb-hide"></a>
+          <a href="assets/gallery/muebles/mueble6.jpg" data-lightbox="muebles" data-title="Mueble 6" class="lb-hide"></a>
+          <a href="assets/gallery/muebles/mueble7.jpg" data-lightbox="muebles" data-title="Mueble 7" class="lb-hide"></a>
+          <a href="assets/gallery/muebles/mueble8.jpg" data-lightbox="muebles" data-title="Mueble 8" class="lb-hide"></a>
+          <a href="assets/gallery/muebles/mueble9.jpg" data-lightbox="muebles" data-title="Mueble 9" class="lb-hide"></a>
+        </div>
+        <!-- Mesas -->
+        <div class="swiper-slide">
+          <a href="assets/gallery/mesas/mesa1.jpg" data-lightbox="mesas" data-title="Mesa 1">
+            <img src="assets/gallery/mesas/mesa1.jpg" alt="Mesa 1">
+          </a>
+          <a href="assets/gallery/mesas/mesa2.jpg" data-lightbox="mesas" data-title="Mesa 2" class="lb-hide"></a>
+          <a href="assets/gallery/mesas/mesa3.jpg" data-lightbox="mesas" data-title="Mesa 3" class="lb-hide"></a>
+          <a href="assets/gallery/mesas/mesa4.jpg" data-lightbox="mesas" data-title="Mesa 4" class="lb-hide"></a>
+          <a href="assets/gallery/mesas/mesa5.jpg" data-lightbox="mesas" data-title="Mesa 5" class="lb-hide"></a>
+          <a href="assets/gallery/mesas/mesa6.jpg" data-lightbox="mesas" data-title="Mesa 6" class="lb-hide"></a>
+          <a href="assets/gallery/mesas/mesa7.jpg" data-lightbox="mesas" data-title="Mesa 7" class="lb-hide"></a>
+          <a href="assets/gallery/mesas/mesa8.jpg" data-lightbox="mesas" data-title="Mesa 8" class="lb-hide"></a>
+        </div>
       </div>
-
-      <!-- Escaleras -->
-      <div class="swiper-slide">
-        <a href="assets/gallery/escaleras/escalera1.jpg" data-lightbox="escaleras" data-title="Escalera">
-          <img src="assets/gallery/escaleras/escalera1.jpg" alt="Escalera">
-        </a>
-      </div>
-
-      <!-- Muebles -->
-      <div class="swiper-slide">
-        <a href="assets/gallery/muebles/mueble1.jpg" data-lightbox="muebles" data-title="Mueble 1">
-          <img src="assets/gallery/muebles/mueble1.jpg" alt="Mueble 1">
-        </a>
-        <a href="assets/gallery/muebles/mueble2.jpg" data-lightbox="muebles" data-title="Mueble 2" class="lb-hide"></a>
-        <a href="assets/gallery/muebles/mueble3.jpg" data-lightbox="muebles" data-title="Mueble 3" class="lb-hide"></a>
-        <a href="assets/gallery/muebles/mueble4.jpg" data-lightbox="muebles" data-title="Mueble 4" class="lb-hide"></a>
-        <a href="assets/gallery/muebles/mueble5.jpg" data-lightbox="muebles" data-title="Mueble 5" class="lb-hide"></a>
-        <a href="assets/gallery/muebles/mueble6.jpg" data-lightbox="muebles" data-title="Mueble 6" class="lb-hide"></a>
-        <a href="assets/gallery/muebles/mueble7.jpg" data-lightbox="muebles" data-title="Mueble 7" class="lb-hide"></a>
-        <a href="assets/gallery/muebles/mueble8.jpg" data-lightbox="muebles" data-title="Mueble 8" class="lb-hide"></a>
-        <a href="assets/gallery/muebles/mueble9.jpg" data-lightbox="muebles" data-title="Mueble 9" class="lb-hide"></a>
-      </div>
-
-      <!-- Mesas -->
-      <div class="swiper-slide">
-        <a href="assets/gallery/mesas/mesa1.jpg" data-lightbox="mesas" data-title="Mesa 1">
-          <img src="assets/gallery/mesas/mesa1.jpg" alt="Mesa 1">
-        </a>
-        <a href="assets/gallery/mesas/mesa2.jpg" data-lightbox="mesas" data-title="Mesa 2" class="lb-hide"></a>
-        <a href="assets/gallery/mesas/mesa3.jpg" data-lightbox="mesas" data-title="Mesa 3" class="lb-hide"></a>
-        <a href="assets/gallery/mesas/mesa4.jpg" data-lightbox="mesas" data-title="Mesa 4" class="lb-hide"></a>
-        <a href="assets/gallery/mesas/mesa5.jpg" data-lightbox="mesas" data-title="Mesa 5" class="lb-hide"></a>
-        <a href="assets/gallery/mesas/mesa6.jpg" data-lightbox="mesas" data-title="Mesa 6" class="lb-hide"></a>
-        <a href="assets/gallery/mesas/mesa7.jpg" data-lightbox="mesas" data-title="Mesa 7" class="lb-hide"></a>
-        <a href="assets/gallery/mesas/mesa8.jpg" data-lightbox="mesas" data-title="Mesa 8" class="lb-hide"></a>
-      </div>
-
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
     </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-  </div>
-</section>
+  </section>
 
-
-
-  <section id="sobre">
+  <section id="sobre" class="fade-in">
     <h2>Sobre Soldarte</h2>
     <div class="about">
       <img src="assets/about.jpg" alt="Taller Soldarte">
@@ -359,7 +416,7 @@
     </div>
   </section>
 
-  <section id="contacto">
+  <section id="contacto" class="fade-in">
     <h2>Contacto</h2>
     <div class="contact-wrapper">
       <form action="https://formsubmit.co/soldartedesing@gmail.com" method="POST">
@@ -370,7 +427,6 @@
         <input type="text" name="_honey" style="display:none">
         <button class="btn" type="submit">Enviar consulta</button>
       </form>
-
       <div>
         <p><i class="fas fa-location-dot"></i> Rosario, Santa Fe</p>
         <p><i class="fas fa-phone"></i> +54 9 341 278 4558 Alejandro</p>
@@ -389,10 +445,6 @@
       <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
     </div>
     <p>&copy; 2025 Soldarte – Herrería & Diseño. Todos los derechos reservados.</p>
-    <div class="visitas-contador">
-      <span>Visitas: </span>
-        <img src="https://freecounterstat.com/count/02tl1as4b5/sw3d" alt="Contador de visitas" style="height:1.3em;vertical-align:middle;opacity:.82;">
-    </div>
   </footer>
 
   <a href="https://wa.me/5493412784558" class="whatsapp-fab" target="_blank" title="Chatear por WhatsApp"><i class="fab fa-whatsapp"></i></a>
@@ -411,7 +463,19 @@
         1024: { slidesPerView: 3 }
       }
     });
+    // Fade in para las secciones al hacer scroll (opcional, animación progresiva)
+    document.querySelectorAll('.fade-in').forEach(el => {
+      el.style.opacity = 0;
+      el.style.transform = "translateY(24px)";
+    });
+    window.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll('.fade-in').forEach((el, i) => {
+        setTimeout(() => {
+          el.style.opacity = 1;
+          el.style.transform = "none";
+        }, 250 + i * 100);
+      });
+    });
   </script>
 </body>
 </html>
-
