@@ -193,7 +193,7 @@
 
     footer {
       background: rgba(0,0,0,0.4);
-      padding: 2rem 1rem;
+      padding: 2rem 1rem 0.5rem 1rem;
       text-align: center;
     }
     .socials {
@@ -208,6 +208,14 @@
       transition: color .3s ease;
     }
     .socials a:hover { color: var(--c-primary); }
+
+    .visitas-contador {
+      font-size: 0.90rem;
+      color: #e8d1b0bb;
+      margin-top: 0.5rem;
+      opacity: 0.65;
+      letter-spacing: 0.5px;
+    }
 
     .whatsapp-fab {
       position: fixed;
@@ -381,6 +389,10 @@
       <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
     </div>
     <p>&copy; 2025 Soldarte – Herrería & Diseño. Todos los derechos reservados.</p>
+    <div class="visitas-contador">
+      <span>Visitas: </span>
+      <img src="https://counterapi.com/api/visits/soldarte?style=simple&digits=6" alt="contador de visitas" style="height:1.15em;vertical-align:middle;opacity:.82;">
+    </div>
   </footer>
 
   <a href="https://wa.me/5493412784558" class="whatsapp-fab" target="_blank" title="Chatear por WhatsApp"><i class="fab fa-whatsapp"></i></a>
