@@ -11,328 +11,195 @@
   <!-- Iconos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
+  <!-- Swiper -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css" />
+
   <!-- Lightbox2 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" />
 
   <style>
-    :root {
-      --c-primary: #c26b35;
-      --c-dark: #16212b;
-      --c-light: #e8d1b0;
-      --c-white: #ffffff;
+    :root{
+      --c-primary:#c26b35;
+      --c-dark:#16212b;
+      --c-light:#e8d1b0;
+      --c-white:#ffffff;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Roboto', sans-serif;
-      background: var(--c-dark);
-      color: var(--c-light);
-      line-height: 1.6;
-      min-height: 100vh;
-      scroll-behavior: smooth;
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{
+      font-family:'Roboto',sans-serif;
+      background:var(--c-dark);
+      color:var(--c-light);
+      line-height:1.6;
+      scroll-behavior:smooth;
+      min-height:100vh;
     }
-    h1,h2,h3,h4 {
-      font-family: 'Montserrat', sans-serif;
-      color: var(--c-light);
-      font-weight: 700;
+    h1,h2,h3,h4{
+      font-family:'Montserrat',sans-serif;
+      font-weight:700;
+      color:var(--c-light);
     }
-    a { text-decoration: none; color: inherit; }
-    ul { list-style: none; }
+    a{text-decoration:none;color:inherit;}
+    ul{list-style:none;}
 
-    /* Header fijo con blur y sombra */
-    header {
-      background: rgba(13,27,36,.88);
-      position: fixed;
-      width: 100%;
-      top: 0; left: 0;
-      z-index: 100;
-      backdrop-filter: blur(7px);
-      box-shadow: 0 2px 12px 0 rgba(0,0,0,0.11);
+    /* Header fijo */
+    header{
+      position:fixed;top:0;left:0;width:100%;
+      background:rgba(13,27,36,.88);
+      backdrop-filter:blur(7px);
+      box-shadow:0 2px 12px rgba(0,0,0,.11);
+      z-index:100;
     }
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .nav-container{
+      max-width:1200px;margin:0 auto;
+      padding:1rem 2rem;
+      display:flex;justify-content:space-between;align-items:center;
     }
-
-    /* Logo animado */
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-      font-size: 1.25rem;
-      font-weight: 700;
-      cursor: pointer;
-      opacity: 0;
-      transform: translateY(-25px) scale(0.93);
-      animation: logoIn .9s cubic-bezier(.43,.18,.24,.92) .3s forwards;
+    /* Logo */
+    .logo{
+      display:flex;align-items:center;gap:.5rem;
+      font-size:1.25rem;font-weight:700;cursor:pointer;
+      opacity:0;transform:translateY(-25px) scale(.93);
+      animation:logoIn .9s cubic-bezier(.43,.18,.24,.92) .3s forwards;
     }
-    .logo img {
-      height:40px;
-      transition: box-shadow .3s, filter .4s;
-    }
-    .logo:hover img {
-      box-shadow: 0 6px 32px 0 #c26b3555;
-      filter: brightness(1.1) saturate(1.1);
-    }
-    .logo:hover, .logo:hover img { animation: logoBounce .6s; }
-    @keyframes logoIn {
-      to { opacity: 1; transform: none; }
-    }
-    @keyframes logoBounce {
+    .logo img{height:40px;transition:box-shadow .3s,filter .4s;}
+    .logo:hover img{box-shadow:0 6px 32px #c26b3555;filter:brightness(1.1) saturate(1.1);}
+    .logo:hover,.logo:hover img{animation:logoBounce .6s;}
+    @keyframes logoIn{to{opacity:1;transform:none;}}
+    @keyframes logoBounce{
       0%{transform:scale(1) rotate(0deg);}
       25%{transform:scale(1.12) rotate(-6deg);}
-      50%{transform:scale(0.95) rotate(4deg);}
+      50%{transform:scale(.95) rotate(4deg);}
       75%{transform:scale(1.06) rotate(-2deg);}
       100%{transform:scale(1) rotate(0deg);}
     }
-
-    nav ul { display: flex; gap: 1.5rem; font-weight: 500; }
-    nav a:hover { color: var(--c-primary); }
+    nav ul{display:flex;gap:1.5rem;font-weight:500;}
+    nav a:hover{color:var(--c-primary);}
 
     /* HERO */
-    .hero {
-      background: url('assets/hero-bg.jpg') center/cover fixed;
-      min-height: 70vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: left;
-      padding: 0 1rem;
-      padding-top: 110px;
-      margin-bottom: 2rem;
+    .hero{
+      background:url('assets/hero-bg.jpg') center/cover fixed;
+      min-height:70vh;
+      display:flex;align-items:center;justify-content:center;
+      padding:0 1rem;padding-top:110px;margin-bottom:2rem;
     }
-    .hero > div { max-width: 700px; width: 100%; }
-    .hero h1 {
-      font-size: clamp(2.3rem, 6vw, 3.5rem);
-      text-shadow: 0 4px 6px rgba(0,0,0,.7);
-      margin-bottom: 0.4em;
+    .hero>div{max-width:700px;width:100%;}
+    .hero h1{font-size:clamp(2.3rem,6vw,3.5rem);text-shadow:0 4px 6px rgba(0,0,0,.7);margin-bottom:.4em;}
+    .hero p{max-width:700px;font-size:1.15rem;color:var(--c-white);margin:1rem 0 2rem;}
+    .btn{
+      background:var(--c-primary);color:var(--c-white);
+      padding:.9rem 2rem;border:none;border-radius:4px;
+      font-size:1.1rem;font-weight:600;cursor:pointer;
+      transition:background .3s,transform .2s,box-shadow .2s;
+      box-shadow:0 2px 16px rgba(194,107,53,.08);
     }
-    .hero p {
-      max-width: 700px;
-      margin: 1rem 0 2rem 0;
-      font-size: 1.15rem;
-      color: var(--c-white);
-    }
-    .btn {
-      background: var(--c-primary);
-      color: var(--c-white);
-      padding: .9rem 2rem;
-      border-radius: 4px;
-      font-weight: 600;
-      transition: background .3s, transform .2s, box-shadow .2s;
-      box-shadow: 0 2px 16px rgba(194,107,53,0.08);
-      border: none;
-      cursor: pointer;
-      font-size: 1.1rem;
-      display: inline-block;
-      margin-top: .6rem;
-    }
-    .btn:hover {
-      background: #a9562a;
-      transform: scale(1.04) translateY(-2px);
-      box-shadow: 0 4px 24px rgba(194,107,53,0.16);
-    }
+    .btn:hover{background:#a9562a;transform:scale(1.04) translateY(-2px);box-shadow:0 4px 24px rgba(194,107,53,.16);}
 
-    /* —— GALERÍA Masonry —— */
-    .gallery-grid{
-      column-count:1;
-      column-gap:1rem;
+    /* Servicios */
+    section{
+      max-width:1200px;margin:0 auto;padding:5rem 1rem;
+      border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:2.5rem;padding-bottom:4.5rem;
     }
-    @media(min-width:600px){ .gallery-grid{ column-count:2; } }
-    @media(min-width:900px){ .gallery-grid{ column-count:3; } }
-
-    .gallery-item{
-      display:inline-block;
-      width:100%;
-      margin:0 0 1rem;
-      position:relative;
-      break-inside:avoid;
-    }
-    .gallery-item img{
-      width:100%;
-      border-radius:8px;
-      transition:transform .5s cubic-bezier(.28,.84,.42,1), box-shadow .3s;
-    }
-    .gallery-item:hover img{
-      transform:scale(1.05);
-      box-shadow:0 8px 32px rgba(0,0,0,.15);
-    }
-    .cat-tag{
-      position:absolute;
-      top:8px; left:8px;
-      background:rgba(22,33,43,.78);
-      padding:2px 8px;
-      border-radius:4px;
-      font-size:.75rem;
-      text-transform:uppercase;
-      letter-spacing:.5px;
-      color:var(--c-white);
-      pointer-events:none;
-    }
-
-    /* Separadores visuales */
-    section {
-      padding: 5rem 1rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      margin-bottom: 2.5rem;
-      padding-bottom: 4.5rem;
-    }
-    section:last-of-type { border-bottom:none; }
-    section h2 {
-      text-align:center;
-      margin-bottom:3rem;
-      font-size:2rem;
-      position:relative;
+    section:last-of-type{border-bottom:none;}
+    section h2{
+      text-align:center;margin-bottom:3rem;font-size:2rem;position:relative;
     }
     section h2::after{
-      content:'';
-      width:60px;height:4px;
+      content:'';width:60px;height:4px;border-radius:2px;
       background:linear-gradient(90deg,#c26b35 60%,#e8d1b0 100%);
-      position:absolute;bottom:-10px;left:50%;
-      transform:translateX(-50%);
-      border-radius:2px;
+      position:absolute;left:50%;bottom:-10px;transform:translateX(-50%);
     }
-
     .services-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-      gap:2rem;
-      text-align:center;
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:2rem;text-align:center;
     }
     .service-card{
-      background:rgba(255,255,255,.05);
-      padding:2rem 1rem;
-      border-radius:8px;
+      background:rgba(255,255,255,.05);padding:2rem 1rem;border-radius:8px;
       transition:transform .3s,background .3s;
     }
     .service-card i{
-      background:rgba(194,107,53,.10);
-      border-radius:50%;
-      padding:16px;
-      margin-bottom:1.3rem;
-      font-size:2.2rem;
-      color:var(--c-primary);
-      transition:background .3s;
+      background:rgba(194,107,53,.10);padding:16px;border-radius:50%;
+      font-size:2.2rem;color:var(--c-primary);margin-bottom:1.3rem;transition:background .3s;
     }
-    .service-card:hover{
-      transform:translateY(-8px);
-      background:rgba(255,255,255,.07);
-    }
-    .service-card:hover i{ background:rgba(194,107,53,.18); }
+    .service-card:hover{transform:translateY(-8px);background:rgba(255,255,255,.07);}
+    .service-card:hover i{background:rgba(194,107,53,.18);}
 
+    /* —— Galería por carrusel —— */
+    .cat-title{
+      margin:2.5rem 0 1rem;font-size:1.4rem;text-align:left;
+      color:var(--c-light);text-transform:uppercase;letter-spacing:.8px;
+    }
+    .swiper{width:100%;padding-bottom:2rem;}
+    .swiper-slide img{
+      width:100%;border-radius:8px;
+      transition:transform .5s cubic-bezier(.28,.84,.42,1),box-shadow .3s;
+    }
+    .swiper-slide img:hover{transform:scale(1.07) rotate(-1deg);box-shadow:0 8px 32px rgba(0,0,0,.12);}
+    .swiper-button-next,.swiper-button-prev{color:var(--c-primary);}
+    .lb-hide{display:none;}
+
+    /* Sobre */
     .about{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-      gap:2rem;
-      align-items:center;
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:2rem;align-items:center;
     }
     .about-img{
-      max-height:400px;
-      border-radius:8px;
-      display:block;
-      margin:0 auto;
-      width:100%;
-      object-fit:cover;
+      max-height:400px;object-fit:cover;border-radius:8px;width:100%;
     }
 
+    /* Contacto */
     .contact-wrapper{
-      display:grid;
-      grid-template-columns:2fr 1fr;
-      gap:2rem;
-      margin-top:2rem;
+      display:grid;grid-template-columns:2fr 1fr;gap:2rem;margin-top:2rem;
     }
     .contact-wrapper form{
-      display:flex;
-      flex-direction:column;
-      gap:1rem;
-      max-width:500px;
-      width:100%;
+      display:flex;flex-direction:column;gap:1rem;max-width:500px;width:100%;
     }
-    .contact-wrapper input,
-    .contact-wrapper textarea{
-      width:100%;
-      padding:.8rem 1rem;
-      border:none;
-      border-radius:4px;
-      background:rgba(255,255,255,.1);
-      color:var(--c-white);
-      font-size:1rem;
+    .contact-wrapper input,.contact-wrapper textarea{
+      background:rgba(255,255,255,.1);border:none;border-radius:4px;
+      padding:.8rem 1rem;color:var(--c-white);font-size:1rem;width:100%;
     }
-    .contact-wrapper textarea{ resize:vertical; min-height:140px; }
+    .contact-wrapper textarea{resize:vertical;min-height:140px;}
 
     /* Animación fade-in */
-    .fade-in{
-      opacity:0;
-      transform:translateY(24px);
-      animation:fadeInUp 1s forwards;
-    }
-    @keyframes fadeInUp{
-      to{ opacity:1; transform:none; }
-    }
-
-    @media(max-width:900px){ .contact-wrapper{ grid-template-columns:1fr; } }
-    @media(max-width:600px){
-      .nav-container{ flex-direction:column; gap:1rem; padding:1rem; }
-      .hero{ min-height:60vh; padding-top:90px; }
-      .contact-wrapper{ padding:1rem 0; }
-      .about{ grid-template-columns:1fr; }
-      body,section,footer{ padding-left:0.6rem; padding-right:0.6rem; }
-      .hero h1{ font-size:2rem; }
-      .btn{ font-size:1rem; padding:.8rem 1.2rem; }
-    }
+    .fade-in{opacity:0;transform:translateY(24px);animation:fadeInUp 1s forwards;}
+    @keyframes fadeInUp{to{opacity:1;transform:none;}}
 
     /* Footer */
     footer{
-      background:rgba(0,0,0,.4);
-      padding:2rem 1rem;
-      text-align:center;
+      background:rgba(0,0,0,.4);padding:2rem 1rem;text-align:center;
       box-shadow:0 -2px 16px rgba(0,0,0,.15);
     }
-    .socials{
-      display:flex;
-      justify-content:center;
-      gap:1.2rem;
-      margin-bottom:1rem;
-    }
-    .socials a{
-      font-size:1.3rem;
-      color:var(--c-light);
-      transition:transform .2s,color .3s;
-    }
-    .socials a:hover{
-      color:var(--c-primary);
-      transform:scale(1.2) rotate(-4deg);
-    }
+    .socials{display:flex;justify-content:center;gap:1.2rem;margin-bottom:1rem;}
+    .socials a{font-size:1.3rem;color:var(--c-light);transition:transform .2s,color .3s;}
+    .socials a:hover{color:var(--c-primary);transform:scale(1.2) rotate(-4deg);}
 
+    /* WhatsApp FAB */
     .whatsapp-fab{
-      position:fixed;
-      bottom:25px; right:25px;
-      background:#25D366;
-      color:#fff;
-      width:60px;height:60px;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:2rem;
-      box-shadow:0 4px 10px rgba(0,0,0,.3);
-      z-index:300;
+      position:fixed;bottom:25px;right:25px;
+      width:60px;height:60px;border-radius:50%;
+      background:#25D366;color:#fff;font-size:2rem;
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 4px 10px rgba(0,0,0,.3);z-index:300;
       transition:transform .3s;
     }
-    .whatsapp-fab:hover{ transform:scale(1.1); }
+    .whatsapp-fab:hover{transform:scale(1.1);}
+
+    /* Responsive ajustes */
+    @media(max-width:900px){.contact-wrapper{grid-template-columns:1fr;}}
+    @media(max-width:600px){
+      .nav-container{flex-direction:column;gap:1rem;padding:1rem;}
+      .hero{min-height:60vh;padding-top:90px;}
+      .about{grid-template-columns:1fr;}
+      body,section,footer{padding-left:.6rem;padding-right:.6rem;}
+      .hero h1{font-size:2rem;}
+      .btn{font-size:1rem;padding:.8rem 1.2rem;}
+    }
   </style>
 </head>
 <body>
+  <!-- Header -->
   <header>
     <div class="nav-container">
-      <a class="logo" href="#inicio">
-        <img src="assets/logo-soldarte.png" alt="Soldarte Logo"> SOLDARTE
-      </a>
+      <a class="logo" href="#inicio"><img src="assets/logo-soldarte.png" alt="Soldarte Logo"> SOLDARTE</a>
       <nav>
         <ul>
           <li><a href="#inicio">Inicio</a></li>
@@ -345,6 +212,7 @@
     </div>
   </header>
 
+  <!-- HERO -->
   <section id="inicio" class="hero fade-in">
     <div>
       <h1>“De la chispa al arte”</h1>
@@ -353,78 +221,82 @@
     </div>
   </section>
 
+  <!-- SERVICIOS -->
   <section id="servicios" class="fade-in">
     <h2>Nuestros Servicios</h2>
     <div class="services-grid">
-      <div class="service-card">
-        <i class="fas fa-door-open"></i>
-        <h3>Rejas y Portones</h3>
-        <p>Diseños seguros y estéticos para proteger tu hogar o negocio.</p>
-      </div>
-      <div class="service-card">
-        <i class="fas fa-industry"></i>
-        <h3>Estructuras Metálicas</h3>
-        <p>Soluciones robustas a medida para obras y proyectos industriales.</p>
-      </div>
-      <div class="service-card">
-        <i class="fas fa-couch"></i>
-        <h3>Muebles & Deco</h3>
-        <p>Piezas únicas que combinan funcionalidad y estilo.</p>
-      </div>
-      <div class="service-card">
-        <i class="fas fa-tools"></i>
-        <h3>Reparaciones</h3>
-        <p>Mantenimiento y soldaduras especializadas para prolongar la vida útil de tus estructuras.</p>
-      </div>
+      <div class="service-card"><i class="fas fa-door-open"></i><h3>Rejas y Portones</h3><p>Diseños seguros y estéticos para proteger tu hogar o negocio.</p></div>
+      <div class="service-card"><i class="fas fa-industry"></i><h3>Estructuras Metálicas</h3><p>Soluciones robustas a medida para obras y proyectos industriales.</p></div>
+      <div class="service-card"><i class="fas fa-couch"></i><h3>Muebles & Deco</h3><p>Piezas únicas que combinan funcionalidad y estilo.</p></div>
+      <div class="service-card"><i class="fas fa-tools"></i><h3>Reparaciones</h3><p>Mantenimiento y soldaduras especializadas para prolongar la vida útil de tus estructuras.</p></div>
     </div>
   </section>
 
-  <!-- —— GALERÍA Masonry + Lightbox —— -->
+  <!-- GALERÍA -->
   <section id="galeria" class="fade-in">
     <h2>Galería de Trabajos</h2>
-    <div class="gallery-grid">
-      <!-- PORTONES -->
-      <a href="assets/gallery/puertas/porton1.jpg" data-lightbox="portones" data-title="Portón 1" class="gallery-item">
-        <span class="cat-tag">Portones</span>
-        <img src="assets/gallery/puertas/porton1.jpg" alt="Portón 1">
-      </a>
-      <a href="assets/gallery/puertas/porton2.jpg" data-lightbox="portones" data-title="Portón 2" class="gallery-item">
-        <span class="cat-tag">Portones</span>
-        <img src="assets/gallery/puertas/porton2.jpg" alt="Portón 2">
-      </a>
 
-      <!-- ESCALERAS -->
-      <a href="assets/gallery/escaleras/escalera1.jpg" data-lightbox="escaleras" data-title="Escalera" class="gallery-item">
-        <span class="cat-tag">Escaleras</span>
-        <img src="assets/gallery/escaleras/escalera1.jpg" alt="Escalera">
-      </a>
+    <!-- Portones -->
+    <h3 class="cat-title">Portones</h3>
+    <div class="swiper portones-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <a href="assets/gallery/puertas/porton1.jpg" data-lightbox="portones" data-title="Portón 1"><img src="assets/gallery/puertas/porton1.jpg" alt="Portón 1"></a>
+          <a href="assets/gallery/puertas/porton2.jpg" data-lightbox="portones" data-title="Portón 2" class="lb-hide"></a>
+        </div>
+        <div class="swiper-slide">
+          <a href="assets/gallery/puertas/porton2.jpg" data-lightbox="portones" data-title="Portón 2"><img src="assets/gallery/puertas/porton2.jpg" alt="Portón 2"></a>
+        </div>
+      </div>
+      <div class="swiper-button-next"></div><div class="swiper-button-prev"></div>
+    </div>
 
-      <!-- MUEBLES -->
-      <a href="assets/gallery/muebles/mueble1.jpg" data-lightbox="muebles" data-title="Mueble 1" class="gallery-item">
-        <span class="cat-tag">Muebles</span>
-        <img src="assets/gallery/muebles/mueble1.jpg" alt="Mueble 1">
-      </a>
-      <a href="assets/gallery/muebles/mueble2.jpg" data-lightbox="muebles" data-title="Mueble 2" class="gallery-item">
-        <span class="cat-tag">Muebles</span>
-        <img src="assets/gallery/muebles/mueble2.jpg" alt="Mueble 2">
-      </a>
-      <a href="assets/gallery/muebles/mueble3.jpg" data-lightbox="muebles" data-title="Mueble 3" class="gallery-item">
-        <span class="cat-tag">Muebles</span>
-        <img src="assets/gallery/muebles/mueble3.jpg" alt="Mueble 3">
-      </a>
+    <!-- Escaleras -->
+    <h3 class="cat-title">Escaleras</h3>
+    <div class="swiper escaleras-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <a href="assets/gallery/escaleras/escalera1.jpg" data-lightbox="escaleras" data-title="Escalera"><img src="assets/gallery/escaleras/escalera1.jpg" alt="Escalera"></a>
+        </div>
+      </div>
+      <div class="swiper-button-next"></div><div class="swiper-button-prev"></div>
+    </div>
 
-      <!-- MESAS -->
-      <a href="assets/gallery/mesas/mesa1.jpg" data-lightbox="mesas" data-title="Mesa 1" class="gallery-item">
-        <span class="cat-tag">Mesas</span>
-        <img src="assets/gallery/mesas/mesa1.jpg" alt="Mesa 1">
-      </a>
-      <a href="assets/gallery/mesas/mesa2.jpg" data-lightbox="mesas" data-title="Mesa 2" class="gallery-item">
-        <span class="cat-tag">Mesas</span>
-        <img src="assets/gallery/mesas/mesa2.jpg" alt="Mesa 2">
-      </a>
+    <!-- Muebles -->
+    <h3 class="cat-title">Muebles</h3>
+    <div class="swiper muebles-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <a href="assets/gallery/muebles/mueble1.jpg" data-lightbox="muebles" data-title="Mueble 1"><img src="assets/gallery/muebles/mueble1.jpg" alt="Mueble 1"></a>
+          <a href="assets/gallery/muebles/mueble2.jpg" data-lightbox="muebles" data-title="Mueble 2" class="lb-hide"></a>
+        </div>
+        <div class="swiper-slide">
+          <a href="assets/gallery/muebles/mueble2.jpg" data-lightbox="muebles" data-title="Mueble 2"><img src="assets/gallery/muebles/mueble2.jpg" alt="Mueble 2"></a>
+        </div>
+        <div class="swiper-slide">
+          <a href="assets/gallery/muebles/mueble3.jpg" data-lightbox="muebles" data-title="Mueble 3"><img src="assets/gallery/muebles/mueble3.jpg" alt="Mueble 3"></a>
+        </div>
+      </div>
+      <div class="swiper-button-next"></div><div class="swiper-button-prev"></div>
+    </div>
+
+    <!-- Mesas -->
+    <h3 class="cat-title">Mesas</h3>
+    <div class="swiper mesas-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <a href="assets/gallery/mesas/mesa1.jpg" data-lightbox="mesas" data-title="Mesa 1"><img src="assets/gallery/mesas/mesa1.jpg" alt="Mesa 1"></a>
+          <a href="assets/gallery/mesas/mesa2.jpg" data-lightbox="mesas" data-title="Mesa 2" class="lb-hide"></a>
+        </div>
+        <div class="swiper-slide">
+          <a href="assets/gallery/mesas/mesa2.jpg" data-lightbox="mesas" data-title="Mesa 2"><img src="assets/gallery/mesas/mesa2.jpg" alt="Mesa 2"></a>
+        </div>
+      </div>
+      <div class="swiper-button-next"></div><div class="swiper-button-prev"></div>
     </div>
   </section>
 
+  <!-- SOBRE -->
   <section id="sobre" class="fade-in">
     <h2>Sobre Soldarte</h2>
     <div class="about">
@@ -437,13 +309,14 @@
     </div>
   </section>
 
+  <!-- CONTACTO -->
   <section id="contacto" class="fade-in">
     <h2>Contacto</h2>
     <div class="contact-wrapper">
       <form action="https://formsubmit.co/soldartedesing@gmail.com" method="POST">
         <input type="hidden" name="_next" value="https://soldarte.vercel.app/gracias.html">
-        <input type="text" name="nombre" placeholder="Nombre" required />
-        <input type="tel" name="telefono" placeholder="Teléfono" required />
+        <input type="text" name="nombre" placeholder="Nombre" required>
+        <input type="tel" name="telefono" placeholder="Teléfono" required>
         <textarea name="mensaje" placeholder="Contanos tu proyecto..." required></textarea>
         <input type="text" name="_honey" style="display:none">
         <button class="btn" type="submit">Enviar consulta</button>
@@ -458,6 +331,7 @@
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     <div class="socials">
       <a href="https://wa.me/5493417558966" target="_blank"><i class="fab fa-whatsapp"></i></a>
@@ -468,25 +342,34 @@
     <p>&copy; 2025 Soldarte – Herrería & Diseño. Todos los derechos reservados.</p>
   </footer>
 
+  <!-- WhatsApp FAB -->
   <a href="https://wa.me/5493417558966" class="whatsapp-fab" target="_blank" title="Chatear por WhatsApp"><i class="fab fa-whatsapp"></i></a>
 
-  <!-- Lightbox2 JS -->
+  <!-- JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
   <script>
-    /* Animación fade-in progresiva */
+    /* Instanciar cada Swiper */
+    document.querySelectorAll('.swiper').forEach(swiperEl=>{
+      new Swiper(swiperEl,{
+        loop:true,
+        navigation:{nextEl:swiperEl.querySelector('.swiper-button-next'),prevEl:swiperEl.querySelector('.swiper-button-prev')},
+        slidesPerView:1,spaceBetween:20,
+        breakpoints:{768:{slidesPerView:2},1024:{slidesPerView:3}}
+      });
+    });
+
+    /* Fade-in progresivo */
     document.querySelectorAll('.fade-in').forEach(el=>{
-      el.style.opacity=0;
-      el.style.transform="translateY(24px)";
+      el.style.opacity=0;el.style.transform='translateY(24px)';
     });
     window.addEventListener('DOMContentLoaded',()=>{
       document.querySelectorAll('.fade-in').forEach((el,i)=>{
-        setTimeout(()=>{
-          el.style.opacity=1;
-          el.style.transform='none';
-        },250+i*100);
+        setTimeout(()=>{el.style.opacity=1;el.style.transform='none';},250+i*100);
       });
     });
   </script>
 </body>
 </html>
+
 
