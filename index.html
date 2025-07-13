@@ -5,16 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="assets/logo-soldarte.png" type="image/png">
   <title>Soldarte | Herrería & Diseño</title>
-
-  <!-- Fuentes Google -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
-
-  <!-- Iconos -->
+  <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
   <!-- Swiper -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css" />
-
   <!-- Lightbox2 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" />
 
@@ -43,20 +39,20 @@
       transition:color .3s;
     }
     a{text-decoration:none;color:inherit;}
-    ul{list-style:none;}
-
+    ul{list-style:none;margin:0;padding:0;}
     /* Header fijo */
     header{
       position:fixed;top:0;left:0;width:100%;
       background:rgba(13,27,36,.88);
       backdrop-filter:blur(7px);
       box-shadow:0 2px 12px rgba(0,0,0,.11);
-      z-index:100;
+      z-index:200;
     }
     .nav-container{
       max-width:1200px;margin:0 auto;
       padding:1rem 2rem;
       display:flex;justify-content:space-between;align-items:center;
+      position:relative;
     }
     .logo{
       display:flex;align-items:center;gap:.5rem;
@@ -75,7 +71,14 @@
       75%{transform:scale(1.06) rotate(-2deg);}
       100%{transform:scale(1) rotate(0deg);}
     }
-    nav ul{display:flex;gap:1.5rem;font-weight:500;}
+    /* Menú horizontal desktop */
+    nav {
+      display: flex;
+      align-items: center;
+    }
+    .nav-list{
+      display:flex;gap:1.5rem;font-weight:500;
+    }
     nav a:hover{color:var(--c-primary);}
     /* Botón de modo claro/oscuro */
     .theme-btn {
@@ -94,6 +97,7 @@
       box-shadow: 0 1px 7px #0002;
       transition: background 0.2s, color 0.2s, transform 0.18s;
       margin-left: 1.2rem;
+      z-index:201;
     }
     .theme-btn:hover {
       background: #a9562a;
@@ -108,38 +112,122 @@
       background: #ffe4ba;
       color: #a9562a;
     }
-    body.light{
-      background:var(--c-white);
-      color:#4d3827;
+    /* Hamburguesa */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      z-index:202;
+      background: none;
+      border: none;
+      margin-left: 1rem;
     }
-    body.light h1,body.light h2,body.light h3,body.light h4{
-      color:#6d3f1e;
+    .hamburger span {
+      width: 26px;
+      height: 3px;
+      margin: 3px 0;
+      background: var(--c-light);
+      border-radius: 2px;
+      display: block;
+      transition: .29s cubic-bezier(.7,.2,.26,.97);
     }
-    body.light header, body.light footer{
-      background:rgba(255,255,255,0.91)!important;
-      color:#4d3827;
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
     }
-    body.light .btn{background:#c26b35;color:var(--c-white);}
-    body.light .btn:hover{background:#6d3f1e;}
-    body.light .service-card{background:rgba(194,107,53,.06);}
-    body.light .service-card:hover{background:rgba(194,107,53,.15);}
-    body.light .contact-wrapper input,body.light .contact-wrapper textarea{
-      background:rgba(194,107,53,0.08);color:#6d3f1e;
+    .hamburger.open span:nth-child(2) {
+      opacity:0;
     }
-    body.light .faq-item{background:rgba(194,107,53,0.09);}
-    body.light .faq-question{background:rgba(255,255,255,0.75);}
-    body.light .faq-item.active{background:rgba(194,107,53,0.17);}
-    body.light .socials a{color:#c26b35;}
-    body.light .socials a:hover{color:#6d3f1e;}
-    body.light .whatsapp-fab{box-shadow:0 4px 10px rgba(0,0,0,.14);}
-    body.light section{border-bottom:1px solid #f5e4cf;}
-    body.light .swiper-slide img{box-shadow:0 4px 16px #c26b3530;}
-    body.light .cat-title{color:#8a4a22;}
-    body.light .about-img{box-shadow:0 2px 18px #c26b3522;}
-    body.light .faq-question{color:#8a4a22;}
-    body.light .faq-answer{color:#4d3827;}
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+    /* Menú lateral mobile */
+    .nav-mobile-bg {
+      display: none;
+      position: fixed;
+      z-index:200;
+      inset: 0;
+      background: rgba(20,20,20,0.4);
+      backdrop-filter: blur(1px);
+      transition: opacity .2s;
+    }
+    .nav-mobile {
+      display: none;
+      flex-direction: column;
+      position: fixed;
+      top:0; right:0; bottom:0;
+      width: 70vw; max-width: 330px; min-width:220px;
+      background: var(--c-dark);
+      padding: 4.5rem 2rem 2rem 2rem;
+      box-shadow: -6px 0 22px rgba(0,0,0,0.18);
+      z-index: 210;
+      transition: transform .28s cubic-bezier(.84,.2,.3,1),opacity .22s;
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    .nav-mobile.open {
+      display: flex;
+      transform: translateX(0%);
+      opacity: 1;
+      animation: slideIn .2s;
+    }
+    .nav-mobile-bg.open {
+      display: block;
+      opacity: 1;
+    }
+    @keyframes slideIn {
+      from{transform:translateX(120%);}
+      to{transform:translateX(0);}
+    }
+    .nav-mobile ul {
+      display:flex;
+      flex-direction:column;
+      gap:2rem;
+      font-size:1.2rem;
+      margin-top:2rem;
+    }
+    .nav-mobile a {color:var(--c-light);}
+    .nav-mobile a:hover{color:var(--c-primary);}
+    .nav-mobile .theme-btn {
+      margin: 1.8rem 0 0 0;
+      align-self: flex-start;
+    }
+    /* Hide horizontal nav on mobile */
+    @media (max-width: 850px) {
+      .nav-list {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .theme-btn {
+        margin-left:0.6rem;
+      }
+      nav {
+        align-items: center;
+      }
+    }
+    @media (max-width: 850px) {
+      .nav-mobile {
+        display: flex;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .nav-mobile.open {
+        pointer-events: auto;
+      }
+    }
+    body.no-scroll {
+      overflow: hidden !important;
+    }
+    body.light .nav-mobile {background: #fff;}
+    body.light .nav-mobile a {color: #6d3f1e;}
+    body.light .nav-mobile a:hover {color: #c26b35;}
 
-    /* HERO */
+    /* --- resto de estilos igual --- */
     .hero{
       background:url('assets/hero-bg.jpg') center/cover fixed;
       min-height:70vh;
@@ -158,8 +246,6 @@
     }
     .btn:hover{background:#a9562a;transform:scale(1.04) translateY(-2px);box-shadow:0 4px 24px rgba(194,107,53,.16);}
     body.light .hero p{color:#4d3827;text-shadow:none;}
-
-    /* Servicios */
     section{
       max-width:1200px;margin:0 auto;padding:5rem 1rem;
       border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:2.5rem;padding-bottom:4.5rem;
@@ -187,7 +273,6 @@
     }
     .service-card:hover{transform:translateY(-8px);background:rgba(255,255,255,.07);}
     .service-card:hover i{background:rgba(194,107,53,.18);}
-    /* —— Galería —— */
     .cat-title{
       margin:2.5rem 0 1rem;font-size:1.4rem;text-align:left;
       color:var(--c-light);text-transform:uppercase;letter-spacing:.8px;
@@ -200,8 +285,6 @@
     .swiper-slide img:hover{transform:scale(1.07) rotate(-1deg);box-shadow:0 8px 32px rgba(0,0,0,.12);}
     .swiper-button-next,.swiper-button-prev{color:var(--c-primary);}
     .lb-hide{display:none;}
-
-    /* Sobre */
     .about{
       display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
       gap:2rem;align-items:center;
@@ -209,8 +292,6 @@
     .about-img{
       max-height:600px;object-fit:cover;border-radius:8px;width:100%;
     }
-
-    /* Contacto */
     .contact-wrapper{
       display:grid;grid-template-columns:2fr 1fr;gap:2rem;margin-top:2rem;
     }
@@ -222,8 +303,6 @@
       padding:.8rem 1rem;color:var(--c-white);font-size:1rem;width:100%;
     }
     .contact-wrapper textarea{resize:vertical;min-height:140px;}
-
-    /* FAQ */
     .faq-section{
       max-width:900px;margin:0 auto;padding:4rem 0 3rem;
       background:none;border-radius:10px;
@@ -260,11 +339,8 @@
       color:var(--c-primary);
     }
     .faq-item.active .faq-icon{transform:rotate(90deg);}
-    /* Animación fade-in */
     .fade-in{opacity:0;transform:translateY(24px);animation:fadeInUp 1s forwards;}
     @keyframes fadeInUp{to{opacity:1;transform:none;}}
-
-    /* Footer */
     footer{
       background:rgba(0,0,0,.4);padding:2rem 1rem;text-align:center;
       box-shadow:0 -2px 16px rgba(0,0,0,.15);
@@ -272,8 +348,6 @@
     .socials{display:flex;justify-content:center;gap:1.2rem;margin-bottom:1rem;}
     .socials a{font-size:1.3rem;color:var(--c-light);transition:transform .2s,color .3s;}
     .socials a:hover{color:var(--c-primary);transform:scale(1.2) rotate(-4deg);}
-
-    /* WhatsApp FAB */
     .whatsapp-fab{
       position:fixed;bottom:25px;right:25px;
       width:60px;height:60px;border-radius:50%;
@@ -283,38 +357,7 @@
       transition:transform .3s;
     }
     .whatsapp-fab:hover{transform:scale(1.1);}
-    /* Responsive ajustes */
     @media(max-width:900px){.contact-wrapper{grid-template-columns:1fr;}}
-
-    /* CAMBIOS RESPONSIVE PARA NAV Y THEME-BTN */
-    @media (max-width: 750px) {
-      .nav-container {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.7rem;
-        padding: 0.6rem 0.3rem 0.6rem 0.7rem;
-      }
-      nav ul {
-        overflow-x: auto;
-        flex-wrap: nowrap;
-        gap: 1.1rem;
-        padding-bottom: 0.25rem;
-        margin-bottom: 0;
-        scrollbar-width: none;
-      }
-      nav ul::-webkit-scrollbar {display:none;}
-      nav {
-        width: 100%;
-      }
-      .theme-btn {
-        margin: 0.7rem auto 0.2rem auto;
-        display: block;
-        position: relative;
-        right: 0;
-        left: 0;
-        box-shadow: 0 1px 5px #0002;
-      }
-    }
     @media(max-width:600px){
       .nav-container{flex-direction:column;gap:0.4rem;padding:0.7rem 0.2rem;}
       .hero{min-height:60vh;padding-top:92px;}
@@ -323,12 +366,14 @@
   </style>
 </head>
 <body>
+  <!-- Fondo blur menú mobile -->
+  <div class="nav-mobile-bg" id="navMobileBg"></div>
   <!-- Header -->
   <header>
     <div class="nav-container">
       <a class="logo" href="#inicio"><img src="assets/logo-soldarte.png" alt="Soldarte Logo"> SOLDARTE</a>
       <nav>
-        <ul>
+        <ul class="nav-list">
           <li><a href="#inicio">Inicio</a></li>
           <li><a href="#servicios">Servicios</a></li>
           <li><a href="#galeria">Galería</a></li>
@@ -336,12 +381,30 @@
           <li><a href="#contacto">Contacto</a></li>
           <li><a href="#faq">FAQ</a></li>
         </ul>
+        <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMobile">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <button id="themeBtn" class="theme-btn" title="Cambiar modo">
+          <i class="fa-regular fa-moon"></i>
+        </button>
       </nav>
-      <!-- Botón Modo Claro/Oscuro -->
-      <button id="themeBtn" class="theme-btn" title="Cambiar modo">
+    </div>
+    <!-- Menú lateral mobile -->
+    <nav class="nav-mobile" id="navMobile" aria-label="Menú principal">
+      <ul>
+        <li><a href="#inicio" tabindex="0">Inicio</a></li>
+        <li><a href="#servicios" tabindex="0">Servicios</a></li>
+        <li><a href="#galeria" tabindex="0">Galería</a></li>
+        <li><a href="#sobre" tabindex="0">Nosotros</a></li>
+        <li><a href="#contacto" tabindex="0">Contacto</a></li>
+        <li><a href="#faq" tabindex="0">FAQ</a></li>
+      </ul>
+      <button id="themeBtnMobile" class="theme-btn" title="Cambiar modo">
         <i class="fa-regular fa-moon"></i>
       </button>
-    </div>
+    </nav>
   </header>
 
   <!-- HERO -->
@@ -576,7 +639,6 @@
       </div>
     </div>
   </section>
-
   <!-- PREGUNTAS FRECUENTES -->
   <section id="faq" class="faq-section fade-in">
     <h2>Preguntas Frecuentes</h2>
@@ -625,7 +687,6 @@
       </div>
     </div>
   </section>
-
   <!-- FOOTER -->
   <footer>
     <div class="socials">
@@ -635,14 +696,70 @@
     </div>
     <p>&copy; 2025 Soldarte – Herrería & Diseño. Todos los derechos reservados.</p>
   </footer>
-
   <!-- WhatsApp FAB -->
   <a href="https://wa.me/5493417558966" class="whatsapp-fab" target="_blank" title="Chatear por WhatsApp"><i class="fab fa-whatsapp"></i></a>
-
   <!-- JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
   <script>
+    // --- MENÚ HAMBURGUESA ---
+    const hamburger = document.getElementById('hamburger');
+    const navMobile = document.getElementById('navMobile');
+    const navMobileBg = document.getElementById('navMobileBg');
+    // Doble switch de tema
+    const themeBtn = document.getElementById('themeBtn');
+    const themeBtnMobile = document.getElementById('themeBtnMobile');
+    const body = document.body;
+
+    function openMenu() {
+      hamburger.classList.add('open');
+      navMobile.classList.add('open');
+      navMobileBg.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+      body.classList.add('no-scroll');
+    }
+    function closeMenu() {
+      hamburger.classList.remove('open');
+      navMobile.classList.remove('open');
+      navMobileBg.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      body.classList.remove('no-scroll');
+    }
+    hamburger.addEventListener('click', () => {
+      if(navMobile.classList.contains('open')) closeMenu();
+      else openMenu();
+    });
+    navMobileBg.addEventListener('click', closeMenu);
+    navMobile.querySelectorAll('a').forEach(link=>{
+      link.addEventListener('click',closeMenu);
+    });
+    document.addEventListener('keydown', e=>{
+      if(e.key==="Escape") closeMenu();
+    });
+
+    // --- Switch Modo Claro/Oscuro (Desktop y Mobile) ---
+    function updateIcon(btn) {
+      btn.innerHTML = body.classList.contains('light')
+        ? '<i class="fa-regular fa-sun"></i>'
+        : '<i class="fa-regular fa-moon"></i>';
+    }
+    function setTheme(light) {
+      if(light) body.classList.add('light');
+      else body.classList.remove('light');
+      localStorage.setItem('soldarte-theme', light ? 'light':'dark');
+      updateIcon(themeBtn);
+      updateIcon(themeBtnMobile);
+    }
+    if(localStorage.getItem('soldarte-theme')==='light'){body.classList.add('light');}
+    updateIcon(themeBtn); updateIcon(themeBtnMobile);
+
+    themeBtn.addEventListener('click',()=>{
+      setTheme(!body.classList.contains('light'));
+    });
+    themeBtnMobile.addEventListener('click',()=>{
+      setTheme(!body.classList.contains('light'));
+    });
+
     // Swipers
     document.querySelectorAll('.swiper').forEach(swiperEl=>{
       new Swiper(swiperEl,{
@@ -660,25 +777,6 @@
     window.addEventListener('DOMContentLoaded',()=>{
       document.querySelectorAll('.fade-in').forEach((el,i)=>{
         setTimeout(()=>{el.style.opacity=1;el.style.transform='none';},250+i*100);
-      });
-
-      // Botón modo claro/oscuro
-      const themeBtn = document.getElementById('themeBtn');
-      const body = document.body;
-      // Set icono inicial
-      function updateIcon() {
-        themeBtn.innerHTML = body.classList.contains('light') ?
-          '<i class="fa-regular fa-sun"></i>' :
-          '<i class="fa-regular fa-moon"></i>';
-      }
-      if(localStorage.getItem('soldarte-theme')==='light'){
-        body.classList.add('light');
-      }
-      updateIcon();
-      themeBtn.addEventListener('click',function(){
-        body.classList.toggle('light');
-        localStorage.setItem('soldarte-theme', body.classList.contains('light') ? 'light':'dark');
-        updateIcon();
       });
     });
 
