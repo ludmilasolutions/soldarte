@@ -27,6 +27,8 @@
       --c-faq-bg:rgba(255,255,255,0.04);
       --c-faq-active:rgba(194,107,53,0.12);
     }
+    /* ——— Base ——— */
+    *{box-sizing:border-box;margin:0;padding:0}
     body{
       font-family:'Roboto',sans-serif;
       background:var(--c-dark);
@@ -45,7 +47,7 @@
     a{text-decoration:none;color:inherit;}
     ul{list-style:none;}
 
-    /* Header fijo */
+    /* ——— Header fijo ——— */
     header{
       position:fixed;top:0;left:0;width:100%;
       background:rgba(13,27,36,.88);
@@ -77,78 +79,44 @@
     }
     nav ul{display:flex;gap:1.5rem;font-weight:500;}
     nav a:hover{color:var(--c-primary);}
-    /* Botón de modo claro/oscuro */
-    .theme-btn {
-      background: var(--c-primary);
-      border: none;
-      outline: none;
-      color: #fff;
-      font-size: 1.3rem;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 1px 7px #0002;
-      transition: background 0.2s, color 0.2s, transform 0.18s;
-      margin-left: 1.2rem;
-    }
-    .theme-btn:hover {
-      background: #a9562a;
-      color: #ffe4ba;
-      transform: scale(1.09) rotate(-9deg);
-    }
-    body.light .theme-btn {
-      background: #e8d1b0;
-      color: #c26b35;
-    }
-    body.light .theme-btn:hover {
-      background: #ffe4ba;
-      color: #a9562a;
-    }
-    body.light{
-      background:var(--c-white);
-      color:#4d3827;
-    }
-    body.light h1,body.light h2,body.light h3,body.light h4{
-      color:#6d3f1e;
-    }
-    body.light header, body.light footer{
-      background:rgba(255,255,255,0.91)!important;
-      color:#4d3827;
-    }
-    body.light .btn{background:#c26b35;color:var(--c-white);}
-    body.light .btn:hover{background:#6d3f1e;}
-    body.light .service-card{background:rgba(194,107,53,.06);}
-    body.light .service-card:hover{background:rgba(194,107,53,.15);}
-    body.light .contact-wrapper input,body.light .contact-wrapper textarea{
-      background:rgba(194,107,53,0.08);color:#6d3f1e;
-    }
-    body.light .faq-item{background:rgba(194,107,53,0.09);}
-    body.light .faq-question{background:rgba(255,255,255,0.75);}
-    body.light .faq-item.active{background:rgba(194,107,53,0.17);}
-    body.light .socials a{color:#c26b35;}
-    body.light .socials a:hover{color:#6d3f1e;}
-    body.light .whatsapp-fab{box-shadow:0 4px 10px rgba(0,0,0,.14);}
-    body.light section{border-bottom:1px solid #f5e4cf;}
-    body.light .swiper-slide img{box-shadow:0 4px 16px #c26b3530;}
-    body.light .cat-title{color:#8a4a22;}
-    body.light .about-img{box-shadow:0 2px 18px #c26b3522;}
-    body.light .faq-question{color:#8a4a22;}
-    body.light .faq-answer{color:#4d3827;}
 
-    /* HERO */
+    /* ——— Botón de modo claro/oscuro ——— */
+    .theme-btn{
+      background: var(--c-primary);
+      border:none;outline:none;
+      color:#fff;font-size:1.3rem;border-radius:50%;
+      width:40px;height:40px;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 1px 7px #0002;
+      transition:background .2s,color .2s,transform .18s;
+      margin-left:1.2rem;
+    }
+    .theme-btn:hover{background:#a9562a;color:#ffe4ba;transform:scale(1.09) rotate(-9deg);}
+    .theme-btn i{transition:transform .5s;}
+    .theme-btn:active i{transform:rotate(360deg) scale(1.1);}
+    body.light .theme-btn{background:#e8d1b0;color:#c26b35;}
+    body.light .theme-btn:hover{background:#ffe4ba;color:#a9562a;}
+
+    /* ——— Hero ——— */
     .hero{
-      background:url('assets/hero-bg.jpg') center/cover fixed;
+      position:relative;
       min-height:70vh;
       display:flex;align-items:center;justify-content:center;
       padding:0 1rem;padding-top:110px;margin-bottom:2rem;
+      overflow:hidden;
     }
-    .hero>div{max-width:700px;width:100%;}
+    .hero video{
+      position:absolute;top:0;left:0;width:100%;height:100%;
+      object-fit:cover;z-index:-2;
+    }
+    .hero::before{
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(circle at center,rgba(0,0,0,.1) 0%,rgba(0,0,0,.65) 100%);
+      z-index:-1;
+    }
+    .hero-content{max-width:700px;width:100%;text-align:center;position:relative;}
     .hero h1{font-size:clamp(2.3rem,6vw,3.5rem);text-shadow:0 4px 6px rgba(0,0,0,.7);margin-bottom:.4em;}
-    .hero p{max-width:700px;font-size:1.15rem;color:var(--c-white);margin:1rem 0 2rem;}
+    .hero p{max-width:700px;font-size:1.15rem;color:var(--c-white);margin:1rem auto 2rem;}
     .btn{
       background:var(--c-primary);color:var(--c-white);
       padding:.9rem 2rem;border:none;border-radius:4px;
@@ -156,10 +124,19 @@
       transition:background .3s,transform .2s,box-shadow .2s;
       box-shadow:0 2px 16px rgba(194,107,53,.08);
     }
-    .btn:hover{background:#a9562a;transform:scale(1.04) translateY(-2px);box-shadow:0 4px 24px rgba(194,107,53,.16);}
+    .btn:hover{background:#a9562a;transform:scale(1.06) translateY(-2px);box-shadow:0 4px 24px rgba(194,107,53,.16);}
     body.light .hero p{color:#4d3827;text-shadow:none;}
 
-    /* Servicios */
+    /* ——— Separador industrial ——— */
+    .industrial-separator{
+      width:100%;height:28px;
+      background-image:repeating-linear-gradient(-45deg,var(--c-primary) 0 14px,var(--c-dark) 14px 28px);
+    }
+    body.light .industrial-separator{
+      background-image:repeating-linear-gradient(-45deg,var(--c-primary) 0 14px,#ffe4ba 14px 28px);
+    }
+
+    /* ——— Sections ——— */
     section{
       max-width:1200px;margin:0 auto;padding:5rem 1rem;
       border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:2.5rem;padding-bottom:4.5rem;
@@ -173,98 +150,86 @@
       background:linear-gradient(90deg,#c26b35 60%,#e8d1b0 100%);
       position:absolute;left:50%;bottom:-10px;transform:translateX(-50%);
     }
+
+    /* ——— Servicios ——— */
     .services-grid{
       display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
       gap:2rem;text-align:center;
     }
     .service-card{
       background:rgba(255,255,255,.05);padding:2rem 1rem;border-radius:8px;
-      transition:transform .3s,background .3s;
+      transition:transform .3s,background .3s;transform-style:preserve-3d;
     }
     .service-card i{
       background:rgba(194,107,53,.10);padding:16px;border-radius:50%;
       font-size:2.2rem;color:var(--c-primary);margin-bottom:1.3rem;transition:background .3s;
     }
-    .service-card:hover{transform:translateY(-8px);background:rgba(255,255,255,.07);}
+    .service-card:hover{
+      transform:perspective(800px) rotateY(6deg) translateY(-8px);
+      background:rgba(255,255,255,.07);
+    }
     .service-card:hover i{background:rgba(194,107,53,.18);}
-    /* —— Galería —— */
+
+    /* ——— Galería ——— */
     .cat-title{
       margin:2.5rem 0 1rem;font-size:1.4rem;text-align:left;
       color:var(--c-light);text-transform:uppercase;letter-spacing:.8px;
     }
     .swiper{width:100%;padding-bottom:2rem;}
-    .swiper-slide img{
-      width:100%;border-radius:8px;
-      transition:transform .5s cubic-bezier(.28,.84,.42,1),box-shadow .3s;
-    }
+    .swiper-slide img{width:100%;border-radius:8px;transition:transform .5s,box-shadow .3s;}
     .swiper-slide img:hover{transform:scale(1.07) rotate(-1deg);box-shadow:0 8px 32px rgba(0,0,0,.12);}
     .swiper-button-next,.swiper-button-prev{color:var(--c-primary);}
-    .lb-hide{display:none;}
+    /* overlay + lupa */
+    .swiper-slide a{position:relative;display:block;border-radius:8px;overflow:hidden;}
+    .swiper-slide a::before{
+      content:'';position:absolute;inset:0;background:rgba(0,0,0,.4);opacity:0;transition:opacity .3s;
+    }
+    .swiper-slide a::after{
+      content:'\f002';font-family:"Font Awesome 6 Free";font-weight:900;
+      position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.3);
+      color:#fff;font-size:1.8rem;opacity:0;transition:opacity .3s,transform .3s;
+    }
+    .swiper-slide a:hover::before{opacity:.7;}
+    .swiper-slide a:hover::after{opacity:1;transform:translate(-50%,-50%) scale(1);}
 
-    /* Sobre */
+    /* ——— Sobre ——— */
     .about{
       display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
       gap:2rem;align-items:center;
     }
-    .about-img{
-      max-height:700px;object-fit:cover;border-radius:8px;width:100%;
-    }
+    .about-img{max-height:700px;object-fit:cover;border-radius:8px;width:100%;}
 
-    /* Contacto */
-    .contact-wrapper{
-      display:grid;grid-template-columns:2fr 1fr;gap:2rem;margin-top:2rem;
-    }
-    .contact-wrapper form{
-      display:flex;flex-direction:column;gap:1rem;max-width:500px;width:100%;
-    }
+    /* ——— Contacto ——— */
+    .contact-wrapper{display:grid;grid-template-columns:2fr 1fr;gap:2rem;margin-top:2rem;}
+    .contact-wrapper form{display:flex;flex-direction:column;gap:1rem;max-width:500px;width:100%;}
     .contact-wrapper input,.contact-wrapper textarea{
       background:rgba(255,255,255,.1);border:none;border-radius:4px;
       padding:.8rem 1rem;color:var(--c-white);font-size:1rem;width:100%;
     }
     .contact-wrapper textarea{resize:vertical;min-height:140px;}
 
-    /* FAQ */
-    .faq-section{
-      max-width:900px;margin:0 auto;padding:4rem 0 3rem;
-      background:none;border-radius:10px;
-    }
-    .faq-section h2{text-align:center;}
+    /* ——— FAQ ——— */
+    .faq-section{max-width:900px;margin:0 auto;padding:4rem 0 3rem;}
     .faq-list{margin:2.5rem 0 1.5rem;}
     .faq-item{
-      background:var(--c-faq-bg);
-      margin-bottom:1.1rem;
-      border-radius:8px;
-      overflow:hidden;
-      transition:background .2s;
-      box-shadow:0 2px 8px rgba(0,0,0,.06);
+      background:var(--c-faq-bg);margin-bottom:1.1rem;border-radius:8px;
+      overflow:hidden;transition:background .2s;box-shadow:0 2px 8px rgba(0,0,0,.06);
     }
     .faq-item.active{background:var(--c-faq-active);}
     .faq-question{
-      cursor:pointer;
-      padding:1.2rem 1.7rem;
-      font-weight:600;font-size:1.13rem;
-      display:flex;align-items:center;justify-content:space-between;
-      transition:background .2s;
+      cursor:pointer;padding:1.2rem 1.7rem;font-weight:600;font-size:1.13rem;
+      display:flex;align-items:center;justify-content:space-between;transition:background .2s;
     }
-    .faq-answer{
-      max-height:0;overflow:hidden;transition:max-height .36s cubic-bezier(.66,.03,.28,1),padding .24s;
-      padding:0 1.7rem;
-      color:var(--c-light);
-    }
-    .faq-item.active .faq-answer{
-      max-height:300px;
-      padding:1rem 1.7rem 1.4rem;
-    }
-    .faq-icon{
-      margin-left:1.1rem;font-size:1.18rem;transition:transform .2s;
-      color:var(--c-primary);
-    }
+    .faq-answer{max-height:0;overflow:hidden;transition:max-height .36s,padding .24s;padding:0 1.7rem;color:var(--c-light);}
+    .faq-item.active .faq-answer{max-height:300px;padding:1rem 1.7rem 1.4rem;}
+    .faq-icon{margin-left:1.1rem;font-size:1.18rem;transition:transform .2s;color:var(--c-primary);}
     .faq-item.active .faq-icon{transform:rotate(90deg);}
-    /* Animación fade-in */
+
+    /* ——— Animación fade‑in ——— */
     .fade-in{opacity:0;transform:translateY(24px);animation:fadeInUp 1s forwards;}
     @keyframes fadeInUp{to{opacity:1;transform:none;}}
 
-    /* Footer */
+    /* ——— Footer & FAB ——— */
     footer{
       background:rgba(0,0,0,.4);padding:2rem 1rem;text-align:center;
       box-shadow:0 -2px 16px rgba(0,0,0,.15);
@@ -272,18 +237,33 @@
     .socials{display:flex;justify-content:center;gap:1.2rem;margin-bottom:1rem;}
     .socials a{font-size:1.3rem;color:var(--c-light);transition:transform .2s,color .3s;}
     .socials a:hover{color:var(--c-primary);transform:scale(1.2) rotate(-4deg);}
-
-    /* WhatsApp FAB */
     .whatsapp-fab{
-      position:fixed;bottom:25px;right:25px;
-      width:60px;height:60px;border-radius:50%;
+      position:fixed;bottom:25px;right:25px;width:60px;height:60px;border-radius:50%;
       background:#25D366;color:#fff;font-size:2rem;
       display:flex;align-items:center;justify-content:center;
-      box-shadow:0 4px 10px rgba(0,0,0,.3);z-index:300;
-      transition:transform .3s;
+      box-shadow:0 4px 10px rgba(0,0,0,.3);z-index:300;transition:transform .3s;
     }
     .whatsapp-fab:hover{transform:scale(1.1);}
-    /* Responsive ajustes */
+
+    /* ——— Light mode overrides ——— */
+    body.light{
+      background:var(--c-white);color:#4d3827;
+    }
+    body.light h1,body.light h2,body.light h3,body.light h4{color:#6d3f1e;}
+    body.light header,body.light footer{background:rgba(255,255,255,0.91)!important;color:#4d3827;}
+    body.light .btn{background:#c26b35;color:var(--c-white);}
+    body.light .btn:hover{background:#6d3f1e;}
+    body.light .service-card{background:rgba(194,107,53,.06);}
+    body.light .service-card:hover{background:rgba(194,107,53,.15);}
+    body.light .contact-wrapper input,body.light .contact-wrapper textarea{background:rgba(194,107,53,0.08);color:#6d3f1e;}
+    body.light .faq-item{background:rgba(194,107,53,0.09);}
+    body.light .faq-question{background:rgba(255,255,255,0.75);color:#8a4a22;}
+    body.light .faq-answer{color:#4d3827;}
+    body.light section{border-bottom:1px solid #f5e4cf;}
+    body.light .swiper-slide img{box-shadow:0 4px 16px #c26b3530;}
+    body.light .cat-title{color:#8a4a22;}
+    body.light .about-img{box-shadow:0 2px 18px #c26b3522;}
+    body.light .swiper-slide a::before{background:rgba(0,0,0,.25);}
     @media(max-width:900px){.contact-wrapper{grid-template-columns:1fr;}}
     @media(max-width:600px){
       .nav-container{flex-direction:column;gap:1rem;padding:1rem;}
@@ -321,12 +301,19 @@
 
   <!-- HERO -->
   <section id="inicio" class="hero fade-in">
-    <div>
+    <video autoplay muted loop playsinline poster="assets/hero-thumb.jpg">
+      <source src="assets/video.mp4" type="video/mp4">
+      <!-- fallback -->
+      <img src="assets/hero-thumb.jpg" alt="Chispas de soldadura">
+    </video>
+    <div class="hero-content">
       <h1>“De la chispa al arte”</h1>
       <p>Especialistas en herrería y diseño metálico a medida. Rejas, portones, muebles y estructuras fabricadas con pasión y precisión.</p>
       <a href="#contacto" class="btn">Solicitar presupuesto</a>
     </div>
   </section>
+
+  <div class="industrial-separator"></div>
 
   <!-- SERVICIOS -->
   <section id="servicios" class="fade-in">
@@ -338,6 +325,8 @@
       <div class="service-card"><i class="fas fa-tools"></i><h3>Reparaciones</h3><p>Mantenimiento y soldaduras especializadas para prolongar la vida útil de tus estructuras.</p></div>
     </div>
   </section>
+
+  <div class="industrial-separator"></div>
 
   <!-- GALERÍA -->
   <section id="galeria" class="fade-in">
@@ -442,6 +431,8 @@
       <div class="swiper-button-next"></div><div class="swiper-button-prev"></div>
     </div>
   </section>
+
+  <div class="industrial-separator"></div>
 
   <!-- SOBRE -->
   <section id="sobre" class="fade-in">
@@ -565,10 +556,10 @@
       document.getElementById('contactForm').addEventListener('submit',e=>{
         e.preventDefault();
         const fd=new FormData(e.target);
-        const nombre = fd.get('nombre').trim();
-        const tel    = fd.get('telefono').trim();
-        const msg    = fd.get('mensaje').trim();
-        const text   = encodeURIComponent(`Hola Soldarte! Soy ${nombre} (${tel}). ${msg}`);
+        const nombre=fd.get('nombre').trim();
+        const tel=fd.get('telefono').trim();
+        const msg=fd.get('mensaje').trim();
+        const text=encodeURIComponent(`Hola Soldarte! Soy ${nombre} (${tel}). ${msg}`);
         window.open(`https://wa.me/5493417558966?text=${text}`,'_blank');
       });
     });
