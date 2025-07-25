@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://soldarte.vercel.app/sitemap.xml
+Sitemap: https://soldarte.vercel.app/sitemap-index.xml
