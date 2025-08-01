@@ -18,7 +18,10 @@
   <!-- Lightbox2 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" />
 
-  <!-- Vercel Web Analytics -->
+  <!-- Netlify Identity (login para panel /admin) -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <!-- Vercel Web Analytics -->
   <script>
     window.va = window.va || function () {
       (window.vaq = window.vaq || []).push(arguments);
@@ -87,6 +90,8 @@
     }
     nav ul{display:flex;gap:1.5rem;font-weight:500;}
     nav a:hover{color:var(--c-primary);}
+    /* Enlace Panel oculto hasta que haya sesión (Netlify Identity) */
+    #adminLink{display:none;}
 
     /* ——— Botón de modo claro/oscuro ——— */
     .theme-btn{
@@ -233,7 +238,7 @@
     .faq-icon{margin-left:1.1rem;font-size:1.18rem;transition:transform .2s;color:var(--c-primary);}
     .faq-item.active .faq-icon{transform:rotate(90deg);}
 
-    /* ——— Animación fade‑in ——— */
+    /* ——— Animación fade-in ——— */
     .fade-in{opacity:0;transform:translateY(24px);animation:fadeInUp 1s forwards;}
     @keyframes fadeInUp{to{opacity:1;transform:none;}}
 
@@ -301,6 +306,8 @@
           <li><a href="#sobre">Nosotros</a></li>
           <li><a href="#contacto">Contacto</a></li>
           <li><a href="#faq">FAQ</a></li>
+          <!-- Enlace al panel de Netlify CMS (visible solo si hay sesión) -->
+          <li><a href="/admin/" id="adminLink" title="Panel de administración">Panel</a></li>
         </ul>
       </nav>
       <!-- Botón Modo Claro/Oscuro -->
@@ -471,10 +478,10 @@
       </form>
       <div>
         <p><i class="fas fa-location-dot"></i> Rosario, Santa Fe</p>
-        <p><i class="fas fa-phone"></i> +54 9 341 278 4558 Alejandro</p>
-        <p><i class="fas fa-phone"></i> +54 9 341 755 8966 Sebastián</p>
+        <p><i class="fas fa-phone"></i> +54 9 341 278 4558 Alejandro</p>
+        <p><i class="fas fa-phone"></i> +54 9 341 755 8966 Sebastián</p>
         <p><i class="fas fa-envelope"></i> soldartedesign@gmail.com</p>
-        <p>Horarios: Lun–Vie 8–18 h / Sáb 8–13 h</p>
+        <p>Horarios: Lun–Vie 8–18 h / Sáb 8–13 h</p>
       </div>
     </div>
   </section>
@@ -521,7 +528,7 @@
       <a href="https://www.instagram.com/soldarte2025" target="_blank"><i class="fab fa-instagram"></i></a>
       <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
     </div>
-    <p>&copy; 2025 Soldarte – Herrería & Diseño. Todos los derechos reservados.</p>
+    <p>&copy; 2025 Soldarte – Herrería & Diseño. Todos los derechos reservados.</p>
   </footer>
 
   <!-- WhatsApp FAB -->
@@ -541,7 +548,7 @@
       });
     });
 
-    // Fade‑in progresivo + tema claro/oscuro + envío WhatsApp
+    // Fade-in progresivo + tema claro/oscuro + envío WhatsApp
     window.addEventListener('DOMContentLoaded',()=>{
       // animación fade
       document.querySelectorAll('.fade-in').forEach((el,i)=>{
@@ -583,6 +590,21 @@
         item.classList.toggle('active');
       });
     });
+
+    /* ====== Netlify Identity: mostrar enlace Panel y redirigir a /admin al iniciar sesión ====== */
+    function toggleAdminLink(user){
+      const link=document.getElementById('adminLink');
+      if(!link) return;
+      link.style.display = user ? 'inline-block' : 'none';
+    }
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init', user => { toggleAdminLink(user); });
+      window.netlifyIdentity.on('login', user => {
+        toggleAdminLink(user);
+        document.location.href = '/admin/';
+      });
+      window.netlifyIdentity.on('logout', () => { toggleAdminLink(null); });
+    }
   </script>
 </body>
 </html>
