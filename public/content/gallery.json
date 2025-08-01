@@ -1,0 +1,17 @@
+{
+  "items": [
+    { "titulo": "Mueble 1", "categoria": "muebles", "imagen": "/assets/gallery/muebles/mueble1.jpg", "thumb": "/assets/gallery/muebles/mueble1.jpg" },
+    { "titulo": "Mueble 2", "categoria": "muebles", "imagen": "/assets/gallery/muebles/mueble2.jpg", "thumb": "/assets/gallery/muebles/mueble2.jpg" },
+    { "titulo": "Mueble 3", "categoria": "muebles", "imagen": "/assets/gallery/muebles/mueble3.jpg" },
+
+    { "titulo": "Mesa 1", "categoria": "mesas", "imagen": "/assets/gallery/mesas/mesa1.jpg", "thumb": "/assets/gallery/mesas/mesa1.jpg" },
+    { "titulo": "Mesa 2", "categoria": "mesas", "imagen": "/assets/gallery/mesas/mesa2.jpg" },
+    { "titulo": "Mesa 3", "categoria": "mesas", "imagen": "/assets/gallery/mesas/mesa3.jpg" },
+
+    { "titulo": "Escalera 1", "categoria": "escaleras", "imagen": "/assets/gallery/escaleras/escalera1.jpg" },
+    { "titulo": "Escalera 2", "categoria": "escaleras", "imagen": "/assets/gallery/escaleras/escalera2.jpg" },
+
+    { "titulo": "Portón 1", "categoria": "portones", "imagen": "/assets/gallery/puertas/porton1.jpg" },
+    { "titulo": "Portón 2", "categoria": "portones", "imagen": "/assets/gallery/puertas/porton2.jpg" }
+  ]
+}

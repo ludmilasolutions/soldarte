@@ -1,0 +1,41 @@
+backend:
+  name: git-gateway
+  branch: main   # cambiá si tu rama es otra
+
+media_folder: "assets/uploads"   # a dónde sube imágenes el CMS dentro del repo
+public_folder: "/assets/uploads" # cómo se referencian públicamente
+
+local_backend: true  # permite probar en local con npx netlify-cms-proxy-server
+
+collections:
+  # ===== Contenido del sitio en JSON =====
+  - name: "datos"
+    label: "Datos del sitio"
+    files:
+      - file: "content/faqs.json"
+        label: "FAQs"
+        name: "faqs"
+        format: json
+        fields:
+          - label: "Preguntas"
+            name: "items"
+            widget: list
+            summary: "{{fields.pregunta}}"
+            fields:
+              - { label: "Pregunta", name: "pregunta", widget: "string" }
+              - { label: "Respuesta", name: "respuesta", widget: "text" }
+
+      - file: "content/gallery.json"
+        label: "Galería"
+        name: "galeria"
+        format: json
+        fields:
+          - label: "Trabajos"
+            name: "items"
+            widget: list
+            summary: "{{fields.categoria}} — {{fields.titulo}}"
+            fields:
+              - { label: "Título", name: "titulo", widget: "string" }
+              - { label: "Categoría", name: "categoria", widget: "select", options: ["muebles", "mesas", "escaleras", "portones"] }
+              - { label: "Imagen", name: "imagen", widget: "image" }
+              - { label: "Miniatura", name: "thumb", widget: "image", required: false }

@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "pregunta": "¿Realizan trabajos a medida?",
+      "respuesta": "Sí, todos nuestros trabajos son 100% personalizados. Nos adaptamos a tus necesidades, ideas y el espacio disponible."
+    },
+    {
+      "pregunta": "¿Trabajan con materiales propios o del cliente?",
+      "respuesta": "Normalmente trabajamos con materiales de primera calidad seleccionados por nosotros, pero podemos realizar trabajos usando materiales provistos por el cliente si así lo desean."
+    },
+    {
+      "pregunta": "¿Cómo solicito un presupuesto?",
+      "respuesta": "Podés completar el formulario de contacto, escribirnos por WhatsApp o Instagram, o llamarnos directamente. Respondemos en el día."
+    },
+    {
+      "pregunta": "¿Hacen entregas e instalaciones?",
+      "respuesta": "Sí, realizamos la entrega y la instalación en Rosario y alrededores para asegurar que cada trabajo quede perfecto."
+    },
+    {
+      "pregunta": "¿Cuánto demora un trabajo?",
+      "respuesta": "Depende del tipo de trabajo. Los plazos estimados se informan al momento del presupuesto y los cumplimos en tiempo y forma."
+    },
+    {
+      "pregunta": "¿Qué formas de pago aceptan?",
+      "respuesta": "Aceptamos transferencias, efectivo, Mercado Pago y tarjetas de débito/crédito."
+    },
+    {
+      "pregunta": "¿Puedo ver trabajos realizados antes de decidir?",
+      "respuesta": "Sí, en la galería de la web y en nuestras redes podés ver muchos ejemplos de trabajos reales hechos por Soldarte."
+    }
+  ]
+}

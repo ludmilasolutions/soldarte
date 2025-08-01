@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Panel | Soldarte</title>
+    <!-- Netlify Identity + Netlify CMS -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script src="https://unpkg.com/netlify-cms@^2/dist/netlify-cms.js"></script>
+    <style>
+      html,body{height:100%;margin:0;background:#0f1820;color:#e8d1b0;font-family:system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, sans-serif}
+      .brand{position:fixed;left:16px;top:14px;display:flex;align-items:center;gap:10px;opacity:.9}
+      .brand img{height:28px}
+      .brand b{letter-spacing:.5px}
+    </style>
+  </head>
+  <body>
+    <div class="brand"><img src="/assets/logo-soldarte.png" alt="Soldarte" /><b>Soldarte</b></div>
+    <script>
+      // Redirige a /admin/ tras login
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on('init', user => {
+          if (!user) {
+            window.netlifyIdentity.on('login', () => {
+              document.location.href = '/admin/';
+            });
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
