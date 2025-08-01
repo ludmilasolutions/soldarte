@@ -1,0 +1,23 @@
+backend:
+  name: git-gateway
+  branch: main        # o la rama que uses
+media_folder: "assets/gallery"   # donde sube las fotos
+public_folder: "/assets/gallery"
+
+collections:
+  - name: "gallery"
+    label: "Galería"
+    folder: "content/gallery"
+    create: true
+    fields:
+      - {name: "titulo", label: "Título"}
+      - {name: "categoria", label: "Categoría", widget: "select", options: ["muebles", "mesas", "escaleras", "portones"]}
+      - {name: "imagen", label: "Imagen", widget: "image"}
+      - {name: "thumb", label: "Miniatura", widget: "image", required: false}
+  - name: "faq"
+    label: "FAQs"
+    folder: "content/faqs"
+    create: true
+    fields:
+      - {name: "pregunta", label: "Pregunta"}
+      - {name: "respuesta", label: "Respuesta", widget: "markdown"}
