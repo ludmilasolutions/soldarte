@@ -1,17 +1,160 @@
 {
   "items": [
-    { "titulo": "Mueble 1", "categoria": "muebles", "imagen": "/assets/gallery/muebles/mueble1.jpg", "thumb": "/assets/gallery/muebles/mueble1.jpg" },
-    { "titulo": "Mueble 2", "categoria": "muebles", "imagen": "/assets/gallery/muebles/mueble2.jpg", "thumb": "/assets/gallery/muebles/mueble2.jpg" },
-    { "titulo": "Mueble 3", "categoria": "muebles", "imagen": "/assets/gallery/muebles/mueble3.jpg" },
-
-    { "titulo": "Mesa 1", "categoria": "mesas", "imagen": "/assets/gallery/mesas/mesa1.jpg", "thumb": "/assets/gallery/mesas/mesa1.jpg" },
-    { "titulo": "Mesa 2", "categoria": "mesas", "imagen": "/assets/gallery/mesas/mesa2.jpg" },
-    { "titulo": "Mesa 3", "categoria": "mesas", "imagen": "/assets/gallery/mesas/mesa3.jpg" },
-
-    { "titulo": "Escalera 1", "categoria": "escaleras", "imagen": "/assets/gallery/escaleras/escalera1.jpg" },
-    { "titulo": "Escalera 2", "categoria": "escaleras", "imagen": "/assets/gallery/escaleras/escalera2.jpg" },
-
-    { "titulo": "Portón 1", "categoria": "portones", "imagen": "/assets/gallery/puertas/porton1.jpg" },
-    { "titulo": "Portón 2", "categoria": "portones", "imagen": "/assets/gallery/puertas/porton2.jpg" }
+    {
+      "categoria": "muebles",
+      "titulo": "Mueble 1",
+      "imagen": "/assets/gallery/muebles/mueble1.jpg",
+      "thumb": "/assets/gallery/muebles/mueble1.jpg"
+    },
+    {
+      "categoria": "muebles",
+      "titulo": "Mueble 2",
+      "imagen": "/assets/gallery/muebles/mueble2.jpg",
+      "thumb": "/assets/gallery/muebles/mueble2.jpg"
+    },
+    {
+      "categoria": "muebles",
+      "titulo": "Mueble 3",
+      "imagen": "/assets/gallery/muebles/mueble3.jpg",
+      "thumb": "/assets/gallery/muebles/mueble3.jpg"
+    },
+    {
+      "categoria": "muebles",
+      "titulo": "Mueble 4",
+      "imagen": "/assets/gallery/muebles/mueble4.jpg",
+      "thumb": "/assets/gallery/muebles/mueble4.jpg"
+    },
+    {
+      "categoria": "muebles",
+      "titulo": "Mueble 5",
+      "imagen": "/assets/gallery/muebles/mueble5.jpg",
+      "thumb": "/assets/gallery/muebles/mueble5.jpg"
+    },
+    {
+      "categoria": "muebles",
+      "titulo": "Mueble 6",
+      "imagen": "/assets/gallery/muebles/mueble6.jpg",
+      "thumb": "/assets/gallery/muebles/mueble6.jpg"
+    },
+    {
+      "categoria": "muebles",
+      "titulo": "Mueble 7",
+      "imagen": "/assets/gallery/muebles/mueble7.jpg",
+      "thumb": "/assets/gallery/muebles/mueble7.jpg"
+    },
+    {
+      "categoria": "muebles",
+      "titulo": "Mueble 8",
+      "imagen": "/assets/gallery/muebles/mueble8.jpg",
+      "thumb": "/assets/gallery/muebles/mueble8.jpg"
+    },
+    {
+      "categoria": "muebles",
+      "titulo": "Mueble 9",
+      "imagen": "/assets/gallery/muebles/mueble9.jpg",
+      "thumb": "/assets/gallery/muebles/mueble9.jpg"
+    },
+    {
+      "categoria": "muebles",
+      "titulo": "Mueble 10",
+      "imagen": "/assets/gallery/muebles/mueble10.jpg",
+      "thumb": "/assets/gallery/muebles/mueble10.jpg"
+    },
+    {
+      "categoria": "mesas",
+      "titulo": "Mesa 1",
+      "imagen": "/assets/gallery/mesas/mesa1.jpg",
+      "thumb": "/assets/gallery/mesas/mesa1.jpg"
+    },
+    {
+      "categoria": "mesas",
+      "titulo": "Mesa 2",
+      "imagen": "/assets/gallery/mesas/mesa2.jpg",
+      "thumb": "/assets/gallery/mesas/mesa2.jpg"
+    },
+    {
+      "categoria": "mesas",
+      "titulo": "Mesa 3",
+      "imagen": "/assets/gallery/mesas/mesa3.jpg",
+      "thumb": "/assets/gallery/mesas/mesa3.jpg"
+    },
+    {
+      "categoria": "mesas",
+      "titulo": "Mesa 4",
+      "imagen": "/assets/gallery/mesas/mesa4.jpg",
+      "thumb": "/assets/gallery/mesas/mesa4.jpg"
+    },
+    {
+      "categoria": "mesas",
+      "titulo": "Mesa 5",
+      "imagen": "/assets/gallery/mesas/mesa5.jpg",
+      "thumb": "/assets/gallery/mesas/mesa5.jpg"
+    },
+    {
+      "categoria": "mesas",
+      "titulo": "Mesa 6",
+      "imagen": "/assets/gallery/mesas/mesa6.jpg",
+      "thumb": "/assets/gallery/mesas/mesa6.jpg"
+    },
+    {
+      "categoria": "mesas",
+      "titulo": "Mesa 7",
+      "imagen": "/assets/gallery/mesas/mesa7.jpg",
+      "thumb": "/assets/gallery/mesas/mesa7.jpg"
+    },
+    {
+      "categoria": "mesas",
+      "titulo": "Mesa 8",
+      "imagen": "/assets/gallery/mesas/mesa8.jpg",
+      "thumb": "/assets/gallery/mesas/mesa8.jpg"
+    },
+    {
+      "categoria": "mesas",
+      "titulo": "Mesa 9",
+      "imagen": "/assets/gallery/mesas/mesa9.jpg",
+      "thumb": "/assets/gallery/mesas/mesa9.jpg"
+    },
+    {
+      "categoria": "mesas",
+      "titulo": "Mesa 10",
+      "imagen": "/assets/gallery/mesas/mesa10.jpg",
+      "thumb": "/assets/gallery/mesas/mesa10.jpg"
+    },
+    {
+      "categoria": "escaleras",
+      "titulo": "Escalera 1",
+      "imagen": "/assets/gallery/escaleras/escalera1.jpg",
+      "thumb": "/assets/gallery/escaleras/escalera1.jpg"
+    },
+    {
+      "categoria": "escaleras",
+      "titulo": "Escalera 2",
+      "imagen": "/assets/gallery/escaleras/escalera2.jpg",
+      "thumb": "/assets/gallery/escaleras/escalera2.jpg"
+    },
+    {
+      "categoria": "escaleras",
+      "titulo": "Escalera 3",
+      "imagen": "/assets/gallery/escaleras/escalera3.jpg",
+      "thumb": "/assets/gallery/escaleras/escalera3.jpg"
+    },
+    {
+      "categoria": "escaleras",
+      "titulo": "Escalera 4",
+      "imagen": "/assets/gallery/escaleras/escalera4.jpg",
+      "thumb": "/assets/gallery/escaleras/escalera4.jpg"
+    },
+    {
+      "categoria": "portones",
+      "titulo": "Portón 1",
+      "imagen": "/assets/gallery/puertas/porton1.jpg",
+      "thumb": "/assets/gallery/puertas/porton1.jpg"
+    },
+    {
+      "categoria": "portones",
+      "titulo": "Portón 2",
+      "imagen": "/assets/gallery/puertas/porton2.jpg",
+      "thumb": "/assets/gallery/puertas/porton2.jpg"
+    }
   ]
 }
