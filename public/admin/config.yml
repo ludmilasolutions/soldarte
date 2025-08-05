@@ -6,26 +6,32 @@ media_folder: "public/assets"
 public_folder: "/assets"
 
 collections:
+
+  # 1) File-based collection para FAQs
   - label: "Preguntas Frecuentes"
     name: "faqs"
-    file: "public/content/faqs.json"
-    fields:
-      - label: "items"
-        name: "items"
-        widget: list
+    files:
+      - label: "Listado de FAQs"
+        name: "faqs_json"
+        file: "public/content/faqs.json"
         fields:
-          - label: "Pregunta"
-            name: "pregunta"
-            widget: string
-          - label: "Respuesta"
-            name: "respuesta"
-            widget: text
+          - label: "items"
+            name: "items"
+            widget: list
+            fields:
+              - label: "Pregunta"
+                name: "pregunta"
+                widget: string
+              - label: "Respuesta"
+                name: "respuesta"
+                widget: text
 
+  # 2) Folder-based collection para Galería
   - label: "Galería"
     name: "gallery"
     folder: "public/content/gallery"
     create: true
-    slug: "{{slug}}"        # genera el nombre de archivo a partir del título
+    slug: "{{slug}}"
     extension: "json"
     fields:
       - label: "Título"
