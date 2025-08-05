@@ -6,27 +6,45 @@ media_folder: "public/assets"
 public_folder: "/assets"
 
 collections:
-  - label: "Galería"
-    name: "gallery"
-    files:
-      - label: "Galería Items"
-        name: "items"
-        file: "public/content/gallery.json"
-        fields:
-          - label: "items"
-            name: "items"
-            widget: list
-            summary: "{{fields.titulo}}"
-            fields:
-              - { label: "Título",    name: "titulo",    widget: string }
-              - { label: "Categoría", name: "categoria", widget: select, options: ["muebles","mesas","escaleras","portones"] }
-              - { label: "Imagen",    name: "imagen",    widget: image }
-              - { label: "Thumbnail", name: "thumb",     widget: image }
   - label: "Preguntas Frecuentes"
     name: "faqs"
     file: "public/content/faqs.json"
     fields:
-      - { label: "items", name: "items", widget: list, fields:
-          - { label: "Pregunta",  name: "pregunta", widget: string }
-          - { label: "Respuesta", name: "respuesta", widget: text   }
-        }
+      - label: "items"
+        name: "items"
+        widget: list
+        fields:
+          - label: "Pregunta"
+            name: "pregunta"
+            widget: string
+          - label: "Respuesta"
+            name: "respuesta"
+            widget: text
+
+  - label: "Galería"
+    name: "gallery"
+    folder: "public/content/gallery"
+    create: true
+    slug: "{{slug}}"        # genera el nombre de archivo a partir del título
+    extension: "json"
+    fields:
+      - label: "Título"
+        name: "titulo"
+        widget: string
+
+      - label: "Categoría"
+        name: "categoria"
+        widget: select
+        options:
+          - "muebles"
+          - "mesas"
+          - "escaleras"
+          - "portones"
+
+      - label: "Imagen"
+        name: "imagen"
+        widget: image
+
+      - label: "Thumbnail"
+        name: "thumb"
+        widget: image
