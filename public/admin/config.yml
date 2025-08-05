@@ -1,5 +1,6 @@
 collections:
-  # ——— Galería en un solo fichero ———
+
+  # ——— Galería en un único fichero ———
   - name: "gallery"
     label: "Galería"
     files:
@@ -7,15 +8,30 @@ collections:
         name: "gallery"
         label: "Galería completa"
         fields:
-          - { label: "Items", name: "items", widget: "list", 
-              fields:
-                - { label: "Título",   name: "titulo",    widget: "string" }
-                - { label: "Categoría",name: "categoria", widget: "select", options: ["muebles","mesas","escaleras","portones"] }
-                - { label: "Imagen",    name: "imagen",    widget: "image" }
-                - { label: "Thumb",     name: "thumb",     widget: "image", required: false }
-            }
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            fields:
+              - label: "Título"
+                name: "titulo"
+                widget: "string"
+              - label: "Categoría"
+                name: "categoria"
+                widget: "select"
+                options:
+                  - "muebles"
+                  - "mesas"
+                  - "escaleras"
+                  - "portones"
+              - label: "Imagen"
+                name: "imagen"
+                widget: "image"
+              - label: "Thumb"
+                name: "thumb"
+                widget: "image"
+                required: false
 
-  # ——— FAQs en un solo fichero ———
+  # ——— FAQs en un único fichero ———
   - name: "faqs"
     label: "Preguntas Frecuentes"
     files:
@@ -23,8 +39,13 @@ collections:
         name: "faqs"
         label: "FAQs completas"
         fields:
-          - { label: "Items", name: "items", widget: "list",
-              fields:
-                - { label: "Pregunta", name: "pregunta", widget: "string" }
-                - { label: "Respuesta",name: "respuesta",widget: "text" }
-            }
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            fields:
+              - label: "Pregunta"
+                name: "pregunta"
+                widget: "string"
+              - label: "Respuesta"
+                name: "respuesta"
+                widget: "text"
