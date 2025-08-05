@@ -187,17 +187,17 @@
       color:var(--c-light);text-transform:uppercase;letter-spacing:.8px;
     }
     .swiper{width:100%;padding-bottom:2rem;}
-    .swiper-slide img{width:100%;border-radius:8px;transition:transform .5s,box-shadow .3s;}
-    .swiper-slide img:hover{transform:scale(1.07) rotate(-1deg);box-shadow:0 8px 32px rgba(0,0,0,.12);}
-    .swiper-button-next,.swiper-button-prev{color:var(--c-primary);}
-    .swiper-slide a{position:relative;display:block;border-radius:8px;overflow:hidden;}
-    .swiper-slide a::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.4);opacity:0;transition:opacity .3s;}
-    .swiper-slide a::after{
-      content:'\f002';font-family:"Font Awesome 6 Free";font-weight:900;
-      position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.3);
-      color:#fff;font-size:1.8rem;opacity:0;transition:opacity .3s,transform .3s;
-    }
-    .swiper-slide a:hover::before{opacity:.7;}
+    .swiper-slide img{width:100%;border-radius:8px;transition:transform .5s,box-shadow .3s;}  
+    .swiper-slide img:hover{transform:scale(1.07) rotate(-1deg);box-shadow:0 8px 32px rgba(0,0,0,.12);}  
+    .swiper-button-next,.swiper-button-prev{color:var(--c-primary);}  
+    .swiper-slide a{position:relative;display:block;border-radius:8px;overflow:hidden;}  
+    .swiper-slide a::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.4);opacity:0;transition:opacity .3s;}  
+    .swiper-slide a::after{  
+      content:'\f002';font-family:"Font Awesome 6 Free";font-weight:900;  
+      position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.3);  
+      color:#fff;font-size:1.8rem;opacity:0;transition:opacity .3s,transform .3s;  
+    }  
+    .swiper-slide a:hover::before{opacity:.7;}  
     .swiper-slide a:hover::after{opacity:1;transform:translate(-50%,-50%) scale(1);}
 
     /* ——— Sobre ——— */
@@ -295,11 +295,9 @@
           <li><a href="#sobre">Nosotros</a></li>
           <li><a href="#contacto">Contacto</a></li>
           <li><a href="#faq">FAQ</a></li>
-          <!-- Enlace al panel de Netlify CMS -->
           <li><a href="/admin/" id="adminLink" title="Panel de administración">Panel</a></li>
         </ul>
       </nav>
-      <!-- Botón Modo Claro/Oscuro -->
       <button id="themeBtn" class="theme-btn" title="Cambiar modo">
         <i class="fa-regular fa-moon"></i>
       </button>
@@ -337,35 +335,18 @@
   <!-- GALERÍA -->
   <section id="galeria" class="fade-in">
     <h2>Galería de Trabajos</h2>
-    <!-- Muebles -->
+
     <h3 class="cat-title">Muebles</h3>
-    <div class="swiper muebles-swiper">
-      <div class="swiper-wrapper">
-        <!-- contenido dinámico o estático -->
-      </div>
-      <div class="swiper-button-next"></div><div class="swiper-button-prev"></div>
-    </div>
+    <div class="swiper muebles-swiper"><div class="swiper-wrapper"></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div></div>
 
-    <!-- Mesas -->
     <h3 class="cat-title">Mesas</h3>
-    <div class="swiper mesas-swiper">
-      <div class="swiper-wrapper"></div>
-      <div class="swiper-button-next"></div><div class="swiper-button-prev"></div>
-    </div>
+    <div class="swiper mesas-swiper"><div class="swiper-wrapper"></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div></div>
 
-    <!-- Escaleras -->
     <h3 class="cat-title">Escaleras</h3>
-    <div class="swiper escaleras-swiper">
-      <div class="swiper-wrapper"></div>
-      <div class="swiper-button-next"></div><div class="swiper-button-prev"></div>
-    </div>
+    <div class="swiper escaleras-swiper"><div class="swiper-wrapper"></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div></div>
 
-    <!-- Portones -->
     <h3 class="cat-title">Puertas y Portones</h3>
-    <div class="swiper portones-swiper">
-      <div class="swiper-wrapper"></div>
-      <div class="swiper-button-next"></div><div class="swiper-button-prev"></div>
-    </div>
+    <div class="swiper portones-swiper"><div class="swiper-wrapper"></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div></div>
   </section>
 
   <div class="industrial-separator"></div>
@@ -382,6 +363,8 @@
       </div>
     </div>
   </section>
+
+  <div class="industrial-separator"></div>
 
   <!-- CONTACTO -->
   <section id="contacto" class="fade-in">
@@ -403,12 +386,12 @@
     </div>
   </section>
 
+  <div class="industrial-separator"></div>
+
   <!-- PREGUNTAS FRECUENTES -->
   <section id="faq" class="faq-section fade-in">
     <h2>Preguntas Frecuentes</h2>
-    <div class="faq-list">
-      <!-- dinámico o estático -->
-    </div>
+    <div class="faq-list"></div>
   </section>
 
   <!-- FOOTER -->
@@ -428,53 +411,56 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
   <script>
-    /* ===== Helpers ===== */
     function initSwipersOnce() {
-      document.querySelectorAll('.swiper').forEach(swiperEl=>{
+      document.querySelectorAll('.swiper').forEach(swiperEl => {
         if (swiperEl.dataset.swiperInitialized) return;
-        new Swiper(swiperEl,{
-          loop:true,
-          navigation:{
-            nextEl:swiperEl.querySelector('.swiper-button-next'),
-            prevEl:swiperEl.querySelector('.swiper-button-prev')
+        new Swiper(swiperEl, {
+          loop: true,
+          navigation: {
+            nextEl: swiperEl.querySelector('.swiper-button-next'),
+            prevEl: swiperEl.querySelector('.swiper-button-prev')
           },
-          slidesPerView:1,spaceBetween:20,
-          breakpoints:{768:{slidesPerView:2},1024:{slidesPerView:3}}
+          slidesPerView: 1,
+          spaceBetween: 20,
+          breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
         });
         swiperEl.dataset.swiperInitialized = 'true';
       });
     }
 
     async function cargarDesdeCMS(){
-      try{
+      try {
         const [gal, faqs] = await Promise.all([
-          fetch('/content/gallery.json', {cache:'no-store'}).then(r=>r.ok?r.json():null),
-          fetch('/content/faqs.json', {cache:'no-store'}).then(r=>r.ok?r.json():null)
+          fetch('/content/gallery.json', { cache: 'no-store' }).then(r => r.ok ? r.json() : null),
+          fetch('/content/faqs.json',    { cache: 'no-store' }).then(r => r.ok ? r.json() : null)
         ]);
 
-        if(gal && gal.items){
+        if (gal?.items) {
           const wraps = {
-            muebles: document.querySelector('.muebles-swiper .swiper-wrapper'),
-            mesas: document.querySelector('.mesas-swiper .swiper-wrapper'),
-            escaleras: document.querySelector('.escaleras-swiper .swiper-wrapper'),
-            portones: document.querySelector('.portones-swiper .swiper-wrapper')
+            muebles:    document.querySelector('.muebles-swiper .swiper-wrapper'),
+            mesas:      document.querySelector('.mesas-swiper .swiper-wrapper'),
+            escaleras:  document.querySelector('.escaleras-swiper .swiper-wrapper'),
+            portones:   document.querySelector('.portones-swiper .swiper-wrapper')
           };
-          Object.values(wraps).forEach(w=>{ if(w) w.innerHTML=''; });
-          gal.items.forEach(it=>{
+          Object.values(wraps).forEach(w => w && (w.innerHTML = ''));
+          gal.items.forEach(it => {
             const wrap = wraps[it.categoria];
-            if(!wrap) return;
+            if (!wrap) return;
             const slide = document.createElement('div');
             slide.className = 'swiper-slide';
             const img = it.thumb || it.imagen;
-            slide.innerHTML = `<a href="${it.imagen}" data-lightbox="${it.categoria}" data-title="${it.titulo}"><img src="${img}" alt="${it.titulo}"></a>`;
+            slide.innerHTML = `
+              <a href="${it.imagen}" data-lightbox="${it.categoria}" data-title="${it.titulo}">
+                <img src="${img}" alt="${it.titulo}">
+              </a>`;
             wrap.appendChild(slide);
           });
         }
 
-        if(faqs && faqs.items){
+        if (faqs?.items) {
           const lista = document.querySelector('.faq-list');
           lista.innerHTML = '';
-          faqs.items.forEach(({pregunta,respuesta})=>{
+          faqs.items.forEach(({ pregunta, respuesta }) => {
             const item = document.createElement('div');
             item.className = 'faq-item';
             item.innerHTML = `
@@ -483,67 +469,69 @@
             lista.appendChild(item);
           });
         }
-      }catch(e){
+      } catch(e) {
         console.warn('No pude cargar contenido del CMS, uso estático.', e);
-      }finally{
-        document.querySelectorAll('.faq-question').forEach(q=>{
+      } finally {
+        document.querySelectorAll('.faq-question').forEach(q => {
           q.onclick = function(){
-            const item=this.parentElement;
-            document.querySelectorAll('.faq-item').forEach(i=>{ if(i!==item) i.classList.remove('active'); });
-            item.classList.toggle('active');
+            const it = this.parentElement;
+            document.querySelectorAll('.faq-item').forEach(i => i !== it && i.classList.remove('active'));
+            it.classList.toggle('active');
           };
         });
         initSwipersOnce();
       }
     }
 
-    window.addEventListener('DOMContentLoaded',()=>{
+    window.addEventListener('DOMContentLoaded', () => {
       // Fade-in
-      document.querySelectorAll('.fade-in').forEach((el,i)=>{
-        el.style.opacity=0; el.style.transform='translateY(24px)';
-        setTimeout(()=>{ el.style.opacity=1; el.style.transform='none'; },250+i*100);
+      document.querySelectorAll('.fade-in').forEach((el,i) => {
+        el.style.opacity = 0;
+        el.style.transform = 'translateY(24px)';
+        setTimeout(() => { el.style.opacity = 1; el.style.transform = 'none'; }, 250 + i*100);
       });
-      // Tema
-      const themeBtn=document.getElementById('themeBtn'), body=document.body;
-      const updateIcon=()=> themeBtn.innerHTML= body.classList.contains('light')
-        ?'<i class="fa-regular fa-sun"></i>'
-        :'<i class="fa-regular fa-moon"></i>';
-      if(localStorage.getItem('soldarte-theme')==='light') body.classList.add('light');
+
+      // Tema claro/oscuro
+      const themeBtn = document.getElementById('themeBtn'), body = document.body;
+      const updateIcon = () => themeBtn.innerHTML = body.classList.contains('light')
+        ? '<i class="fa-regular fa-sun"></i>'
+        : '<i class="fa-regular fa-moon"></i>';
+      if (localStorage.getItem('soldarte-theme') === 'light') body.classList.add('light');
       updateIcon();
-      themeBtn.addEventListener('click',()=>{
+      themeBtn.addEventListener('click', () => {
         body.classList.toggle('light');
-        localStorage.setItem('soldarte-theme', body.classList.contains('light')?'light':'dark');
+        localStorage.setItem('soldarte-theme', body.classList.contains('light') ? 'light' : 'dark');
         updateIcon();
       });
-      // WhatsApp form
-      const form=document.getElementById('contactForm');
-      if(form){
-        form.addEventListener('submit',e=>{
-          e.preventDefault();
-          const fd=new FormData(e.target),
-                nombre=fd.get('nombre').trim(),
-                tel=fd.get('telefono').trim(),
-                msg=fd.get('mensaje').trim(),
-                text=encodeURIComponent(`Hola Soldarte! Soy ${nombre} (${tel}). ${msg}`);
-          window.open(`https://wa.me/5493417558966?text=${text}`,'_blank');
-        });
-      }
+
+      // Formulario WhatsApp
+      document.getElementById('contactForm')?.addEventListener('submit', e => {
+        e.preventDefault();
+        const fd = new FormData(e.target),
+              nombre = fd.get('nombre').trim(),
+              tel    = fd.get('telefono').trim(),
+              msg    = fd.get('mensaje').trim(),
+              text   = encodeURIComponent(`Hola Soldarte! Soy ${nombre} (${tel}). ${msg}`);
+        window.open(`https://wa.me/5493417558966?text=${text}`, '_blank');
+      });
+
+      // Carga dinámica CMS
       cargarDesdeCMS();
     });
 
-    // Netlify Identity
+    // Netlify Identity: panel /admin
     function toggleAdminLink(user){
-      const link=document.getElementById('adminLink');
-      if(!link) return;
+      const link = document.getElementById('adminLink');
+      if (!link) return;
       link.style.display = user ? 'inline-block' : 'none';
     }
-    if(window.netlifyIdentity){
-      window.netlifyIdentity.on('init', user=>{ toggleAdminLink(user); });
-      window.netlifyIdentity.on('login', user=>{
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init',  user => toggleAdminLink(user));
+      window.netlifyIdentity.on('login', user => {
         toggleAdminLink(user);
-        location.href='/admin/';
+        location.href = '/admin/';
       });
-      window.netlifyIdentity.on('logout', ()=>{ toggleAdminLink(null); });
+      window.netlifyIdentity.on('logout', () => toggleAdminLink(null));
     }
   </script>
 </body>
