@@ -1,68 +1,49 @@
-# ─── Backend ────────────────────────────────────────────────────────────────
 backend:
-  name: git-gateway     # usa Netlify Identity + Git Gateway
-  branch: main          # tu rama principal
+  name: github
+  repo: ludmilasolutions/soldarte
 
-# ─── Media (imágenes) ───────────────────────────────────────────────────────
-media_folder: "assets/uploads"   # ruta en tu repo donde se guardan las subidas
-public_folder: "/assets/uploads" # ruta pública desde el navegador
+media_folder: "public/assets"
+public_folder: "/assets"
 
-media_library:                   # plugin de Uploadcare con demo key
-  name: uploadcare
-  config:
-    publicKey: "demopublickey"
-
-# ─── Colecciones ────────────────────────────────────────────────────────────
 collections:
-
-  # ——— Galería: un solo JSON con todos los items ———
   - name: "gallery"
     label: "Galería"
     files:
-      - file: "public/content/gallery.json"
+      - label: "Galería de Trabajos"
         name: "gallery"
-        label: "Galería completa"
+        file: "public/content/gallery.json"
         fields:
-          - label: "Items"
+          # Aquí declaramos el list de items
+          - 
+            label: "Entradas"
             name: "items"
             widget: "list"
             summary: "{{fields.titulo}} ({{fields.categoria}})"
             fields:
-              - label: "Título"
-                name: "titulo"
-                widget: "string"
+              - { label: "Título",      name: "titulo", widget: "string" }
+              - { label: "Imagen",      name: "imagen", widget: "image" }
+              - { label: "Miniatura",   name: "thumb",  widget: "image", required: false }
               - label: "Categoría"
                 name: "categoria"
                 widget: "select"
                 options:
-                  - "muebles"
-                  - "mesas"
-                  - "escaleras"
-                  - "portones"
-              - label: "Imagen"
-                name: "imagen"
-                widget: "image"
-              - label: "Thumb (opcional)"
-                name: "thumb"
-                widget: "image"
-                required: false
+                  - { label: "Muebles",     value: "muebles" }
+                  - { label: "Mesas",       value: "mesas" }
+                  - { label: "Escaleras",   value: "escaleras" }
+                  - { label: "Portones",    value: "portones" }
 
-  # ——— FAQs: un solo JSON con todas las preguntas ———
   - name: "faqs"
-    label: "Preguntas frecuentes"
+    label: "FAQs"
     files:
-      - file: "public/content/faqs.json"
+      - label: "Preguntas Frecuentes"
         name: "faqs"
-        label: "FAQs completas"
+        file: "public/content/faqs.json"
         fields:
-          - label: "Items"
+          - 
+            label: "Entradas"
             name: "items"
             widget: "list"
             summary: "{{fields.pregunta}}"
             fields:
-              - label: "Pregunta"
-                name: "pregunta"
-                widget: "string"
-              - label: "Respuesta"
-                name: "respuesta"
-                widget: "text"
+              - { label: "Pregunta",   name: "pregunta", widget: "string" }
+              - { label: "Respuesta",  name: "respuesta", widget: "text" }
