@@ -1,6 +1,21 @@
+# ─── Backend ────────────────────────────────────────────────────────────────
+backend:
+  name: git-gateway     # usa Netlify Identity + Git Gateway
+  branch: main          # tu rama principal
+
+# ─── Media (imágenes) ───────────────────────────────────────────────────────
+media_folder: "assets/uploads"   # ruta en tu repo donde se guardan las subidas
+public_folder: "/assets/uploads" # ruta pública desde el navegador
+
+media_library:                   # plugin de Uploadcare con demo key
+  name: uploadcare
+  config:
+    publicKey: "demopublickey"
+
+# ─── Colecciones ────────────────────────────────────────────────────────────
 collections:
 
-  # ——— Galería en un único fichero ———
+  # ——— Galería: un solo JSON con todos los items ———
   - name: "gallery"
     label: "Galería"
     files:
@@ -11,6 +26,7 @@ collections:
           - label: "Items"
             name: "items"
             widget: "list"
+            summary: "{{fields.titulo}} ({{fields.categoria}})"
             fields:
               - label: "Título"
                 name: "titulo"
@@ -26,14 +42,14 @@ collections:
               - label: "Imagen"
                 name: "imagen"
                 widget: "image"
-              - label: "Thumb"
+              - label: "Thumb (opcional)"
                 name: "thumb"
                 widget: "image"
                 required: false
 
-  # ——— FAQs en un único fichero ———
+  # ——— FAQs: un solo JSON con todas las preguntas ———
   - name: "faqs"
-    label: "Preguntas Frecuentes"
+    label: "Preguntas frecuentes"
     files:
       - file: "public/content/faqs.json"
         name: "faqs"
@@ -42,6 +58,7 @@ collections:
           - label: "Items"
             name: "items"
             widget: "list"
+            summary: "{{fields.pregunta}}"
             fields:
               - label: "Pregunta"
                 name: "pregunta"
