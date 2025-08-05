@@ -7,7 +7,7 @@ public_folder: "/assets"
 
 collections:
 
-  # 1) File-based collection para FAQs
+  # FAQs (ya te funciona)
   - label: "Preguntas Frecuentes"
     name: "faqs"
     files:
@@ -19,38 +19,29 @@ collections:
             name: "items"
             widget: list
             fields:
-              - label: "Pregunta"
-                name: "pregunta"
-                widget: string
-              - label: "Respuesta"
-                name: "respuesta"
-                widget: text
+              - { label: "Pregunta", name: "pregunta", widget: string }
+              - { label: "Respuesta", name: "respuesta", widget: text }
 
-  # 2) Folder-based collection para Galería
+  # Galería como un único fichero con lista
   - label: "Galería"
     name: "gallery"
-    folder: "public/content/gallery"
-    create: true
-    slug: "{{slug}}"
-    extension: "json"
-    fields:
-      - label: "Título"
-        name: "titulo"
-        widget: string
-
-      - label: "Categoría"
-        name: "categoria"
-        widget: select
-        options:
-          - "muebles"
-          - "mesas"
-          - "escaleras"
-          - "portones"
-
-      - label: "Imagen"
-        name: "imagen"
-        widget: image
-
-      - label: "Thumbnail"
-        name: "thumb"
-        widget: image
+    files:
+      - label: "Listado de imágenes"
+        name: "gallery_json"
+        file: "public/content/gallery.json"
+        fields:
+          - label: "items"
+            name: "items"
+            widget: list
+            fields:
+              - { label: "Título",     name: "titulo",   widget: string }
+              - label: "Categoría"
+                name: "categoria"
+                widget: select
+                options:
+                  - "muebles"
+                  - "mesas"
+                  - "escaleras"
+                  - "portones"
+              - { label: "Imagen",     name: "imagen",   widget: image }
+              - { label: "Thumbnail",  name: "thumb",    widget: image }
