@@ -1,49 +1,40 @@
+# === Netlify CMS configuration ===
+
+# 1) Backend: usa Git Gateway (Identity + GitHub)
 backend:
-  name: github
-  repo: ludmilasolutions/soldarte
+  name: git-gateway
+  branch: main      # o el nombre de tu rama principal
 
-media_folder: "public/assets"
-public_folder: "/assets"
+# 2) Carpeta de medios (dónde se guardan las imágenes subidas)
+media_folder: "public/assets/uploads"
+public_folder: "/assets/uploads"
 
+# 3) (Opcional) Configuración de biblioteca de medios si quieres usar Uploadcare
+# media_library:
+#   name: uploadcare
+#   config:
+#     publicKey: "TU_UPLOADCARE_PUBLIC_KEY"
+
+# 4) Tus colecciones
 collections:
+  # 4.1) Galería de trabajos
   - name: "gallery"
     label: "Galería"
-    files:
-      - label: "Galería de Trabajos"
-        name: "gallery"
-        file: "public/content/gallery.json"
-        fields:
-          # Aquí declaramos el list de items
-          - 
-            label: "Entradas"
-            name: "items"
-            widget: "list"
-            summary: "{{fields.titulo}} ({{fields.categoria}})"
-            fields:
-              - { label: "Título",      name: "titulo", widget: "string" }
-              - { label: "Imagen",      name: "imagen", widget: "image" }
-              - { label: "Miniatura",   name: "thumb",  widget: "image", required: false }
-              - label: "Categoría"
-                name: "categoria"
-                widget: "select"
-                options:
-                  - { label: "Muebles",     value: "muebles" }
-                  - { label: "Mesas",       value: "mesas" }
-                  - { label: "Escaleras",   value: "escaleras" }
-                  - { label: "Portones",    value: "portones" }
+    folder: "public/content/gallery"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Título",      name: "titulo",    widget: "string" }
+      - { label: "Categoría",   name: "categoria", widget: "select", options: ["muebles","mesas","escaleras","portones"] }
+      - { label: "Imagen",      name: "imagen",    widget: "image" }
+      - { label: "Thumbnail",   name: "thumb",     widget: "image", required: false }
 
+  # 4.2) FAQs
   - name: "faqs"
-    label: "FAQs"
-    files:
-      - label: "Preguntas Frecuentes"
-        name: "faqs"
-        file: "public/content/faqs.json"
-        fields:
-          - 
-            label: "Entradas"
-            name: "items"
-            widget: "list"
-            summary: "{{fields.pregunta}}"
-            fields:
-              - { label: "Pregunta",   name: "pregunta", widget: "string" }
-              - { label: "Respuesta",  name: "respuesta", widget: "text" }
+    label: "Preguntas Frecuentes"
+    folder: "public/content/faqs"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Pregunta",   name: "pregunta", widget: "string" }
+      - { label: "Respuesta",  name: "respuesta", widget: "text" }
