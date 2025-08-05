@@ -1,40 +1,32 @@
-# === Netlify CMS configuration ===
-
-# 1) Backend: usa Git Gateway (Identity + GitHub)
 backend:
   name: git-gateway
-  branch: main      # o el nombre de tu rama principal
+  branch: main
 
-# 2) Carpeta de medios (dónde se guardan las imágenes subidas)
-media_folder: "public/assets/uploads"
-public_folder: "/assets/uploads"
+media_folder: "public/assets"
+public_folder: "/assets"
 
-# 3) (Opcional) Configuración de biblioteca de medios si quieres usar Uploadcare
-# media_library:
-#   name: uploadcare
-#   config:
-#     publicKey: "TU_UPLOADCARE_PUBLIC_KEY"
-
-# 4) Tus colecciones
 collections:
-  # 4.1) Galería de trabajos
-  - name: "gallery"
-    label: "Galería"
-    folder: "public/content/gallery"
-    create: true
-    slug: "{{slug}}"
+  - label: "Galería"
+    name: "gallery"
+    files:
+      - label: "Galería Items"
+        name: "items"
+        file: "public/content/gallery.json"
+        fields:
+          - label: "items"
+            name: "items"
+            widget: list
+            summary: "{{fields.titulo}}"
+            fields:
+              - { label: "Título",    name: "titulo",    widget: string }
+              - { label: "Categoría", name: "categoria", widget: select, options: ["muebles","mesas","escaleras","portones"] }
+              - { label: "Imagen",    name: "imagen",    widget: image }
+              - { label: "Thumbnail", name: "thumb",     widget: image }
+  - label: "Preguntas Frecuentes"
+    name: "faqs"
+    file: "public/content/faqs.json"
     fields:
-      - { label: "Título",      name: "titulo",    widget: "string" }
-      - { label: "Categoría",   name: "categoria", widget: "select", options: ["muebles","mesas","escaleras","portones"] }
-      - { label: "Imagen",      name: "imagen",    widget: "image" }
-      - { label: "Thumbnail",   name: "thumb",     widget: "image", required: false }
-
-  # 4.2) FAQs
-  - name: "faqs"
-    label: "Preguntas Frecuentes"
-    folder: "public/content/faqs"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Pregunta",   name: "pregunta", widget: "string" }
-      - { label: "Respuesta",  name: "respuesta", widget: "text" }
+      - { label: "items", name: "items", widget: list, fields:
+          - { label: "Pregunta",  name: "pregunta", widget: string }
+          - { label: "Respuesta", name: "respuesta", widget: text   }
+        }
