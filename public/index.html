@@ -3,8 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Soldarte - Especialistas en herrería y diseño metálico. Rejas, portones, muebles y estructuras fabricadas con pasión y precisión.">
+  <meta name="keywords" content="herrería, diseño metálico, rejas, portones, muebles de metal, soldadura, Rosario">
+  <meta name="author" content="Soldarte">
   <link rel="icon" href="assets/logo-soldarte.png" type="image/png">
-  <title>Soldarte | Herrería & Diseño</title>
+  <title>Soldarte | Herrería & Diseño en Rosario</title>
+
+  <!-- Preconexión para recursos externos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
   <!-- Fuentes Google -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
@@ -35,6 +43,7 @@
       --c-white:#ffffff;
       --c-faq-bg:rgba(255,255,255,0.04);
       --c-faq-active:rgba(194,107,53,0.12);
+      --transition: all 0.3s ease;
     }
     /* ——— Base ——— */
     *{box-sizing:border-box;margin:0;padding:0}
@@ -63,6 +72,7 @@
       backdrop-filter:blur(7px);
       box-shadow:0 2px 12px rgba(0,0,0,.11);
       z-index:100;
+      transition: var(--transition);
     }
     .nav-container{
       max-width:1200px;margin:0 auto;
@@ -74,8 +84,9 @@
       font-size:1.25rem;font-weight:700;cursor:pointer;
       opacity:0;transform:translateY(-25px) scale(.93);
       animation:logoIn .9s cubic-bezier(.43,.18,.24,.92) .3s forwards;
+      z-index: 101;
     }
-    .logo img{height:40px;transition:box-shadow .3s,filter .4s;}
+    .logo img{height:40px;transition:box-shadow .3s,filter .4s; width: auto;}
     .logo:hover img{box-shadow:0 6px 32px #c26b3555;filter:brightness(1.1) saturate(1.1);}
     .logo:hover,.logo:hover img{animation:logoBounce .6s;}
     @keyframes logoIn{to{opacity:1;transform:none;}}
@@ -86,8 +97,67 @@
       75%{transform:scale(1.06) rotate(-2deg);}
       100%{transform:scale(1) rotate(0deg);}
     }
-    nav ul{display:flex;gap:1.5rem;font-weight:500;}
-    nav a:hover{color:var(--c-primary);}
+    
+    /* Navegación para escritorio */
+    .desktop-nav {display:flex;gap:1.5rem;font-weight:500;}
+    .desktop-nav a{position:relative;padding:0.5rem 0;}
+    .desktop-nav a::after{
+      content:'';position:absolute;width:0;height:2px;bottom:0;left:0;
+      background:var(--c-primary);transition:width 0.3s ease;
+    }
+    .desktop-nav a:hover::after{width:100%;}
+    .desktop-nav a:hover{color:var(--c-primary);}
+    
+    /* Navegación móvil */
+    .mobile-nav-btn {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 30px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 101;
+    }
+    .mobile-nav-btn span {
+      width: 30px;
+      height: 3px;
+      background: var(--c-light);
+      border-radius: 2px;
+      transition: all 0.3s linear;
+      transform-origin: center;
+    }
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: var(--c-dark);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease-in-out;
+      z-index: 100;
+    }
+    .mobile-nav.active {
+      transform: translateX(0);
+    }
+    .mobile-nav a {
+      font-size: 1.5rem;
+      font-weight: 600;
+      padding: 0.5rem 0;
+      transition: color 0.3s;
+    }
+    .mobile-nav a:hover {
+      color: var(--c-primary);
+    }
+
     /* Enlace Panel: oculto hasta que haya sesión */
     #adminLink{display:none;}
 
@@ -101,6 +171,7 @@
       box-shadow:0 1px 7px #0002;
       transition:background .2s,color .2s,transform .18s;
       margin-left:1.2rem;
+      z-index: 101;
     }
     .theme-btn:hover{background:#a9562a;color:#ffe4ba;transform:scale(1.09) rotate(-9deg);}
     .theme-btn i{transition:transform .5s;}
@@ -134,6 +205,7 @@
       font-size:1.1rem;font-weight:600;cursor:pointer;
       transition:background .3s,transform .2s,box-shadow .2s;
       box-shadow:0 2px 16px rgba(194,107,53,.08);
+      display: inline-block;
     }
     .btn:hover{background:#a9562a;transform:scale(1.06) translateY(-2px);box-shadow:0 4px 24px rgba(194,107,53,.16);}
     body.light .hero p{color:#4d3827;text-shadow:none;}
@@ -207,14 +279,106 @@
     }
     .about-img{max-height:700px;object-fit:cover;border-radius:8px;width:100%;}
 
+    /* ——— Testimonios ——— */
+    .testimonials {
+      margin-top: 4rem;
+    }
+    .testimonial-container {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .testimonial {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      border-radius: 8px;
+      text-align: center;
+      margin: 0 auto;
+      display: none;
+    }
+    .testimonial.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .testimonial-text::before,
+    .testimonial-text::after {
+      content: '"';
+      font-size: 3rem;
+      color: var(--c-primary);
+      opacity: 0.3;
+      position: absolute;
+    }
+    .testimonial-text::before {
+      top: -1rem;
+      left: -1rem;
+    }
+    .testimonial-text::after {
+      bottom: -2rem;
+      right: -1rem;
+    }
+    .testimonial-author {
+      font-weight: 600;
+      color: var(--c-primary);
+    }
+    .testimonial-nav {
+      display: flex;
+      justify-content: center;
+      margin-top: 1.5rem;
+      gap: 0.5rem;
+    }
+    .testimonial-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .testimonial-dot.active {
+      background: var(--c-primary);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     /* ——— Contacto ——— */
     .contact-wrapper{display:grid;grid-template-columns:2fr 1fr;gap:2rem;margin-top:2rem;}
     .contact-wrapper form{display:flex;flex-direction:column;gap:1rem;max-width:500px;width:100%;}
     .contact-wrapper input,.contact-wrapper textarea{
       background:rgba(255,255,255,.1);border:none;border-radius:4px;
       padding:.8rem 1rem;color:var(--c-white);font-size:1rem;width:100%;
+      transition: border 0.3s;
+    }
+    .contact-wrapper input:focus,
+    .contact-wrapper textarea:focus {
+      outline: none;
+      border: 1px solid var(--c-primary);
     }
     .contact-wrapper textarea{resize:vertical;min-height:140px;}
+    .form-message {
+      padding: 0.5rem;
+      border-radius: 4px;
+      margin-top: 1rem;
+      display: none;
+    }
+    .form-message.success {
+      background: rgba(46, 204, 113, 0.2);
+      border: 1px solid #2ecc71;
+      color: #2ecc71;
+      display: block;
+    }
+    .form-message.error {
+      background: rgba(231, 76, 60, 0.2);
+      border: 1px solid #e74c3c;
+      color: #e74c3c;
+      display: block;
+    }
 
     /* ——— FAQ ——— */
     .faq-section{max-width:900px;margin:0 auto;padding:4rem 0 3rem;}
@@ -247,6 +411,36 @@
       box-shadow:0 4px 10px rgba(0,0,0,.3);z-index:300;transition:transform .3s;
     }
     .whatsapp-fab:hover{transform:scale(1.1);}
+    
+    /* Botón volver arriba */
+    .back-to-top {
+      position: fixed;
+      bottom: 90px;
+      right: 25px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--c-primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 299;
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    .back-to-top:hover {
+      background: #a9562a;
+      transform: translateY(-3px);
+    }
 
     /* ——— Light mode overrides ——— */
     body.light{
@@ -267,27 +461,84 @@
     body.light .cat-title{color:#8a4a22;}
     body.light .about-img{box-shadow:0 2px 18px #c26b3522;}
     body.light .swiper-slide a::before{background:rgba(0,0,0,.25);}
+    body.light .testimonial {
+      background: rgba(194, 107, 53, 0.08);
+    }
+    body.light .mobile-nav {
+      background: var(--c-white);
+    }
 
     /* ——— Mobile tweaks ——— */
-    @media(max-width:900px){.contact-wrapper{grid-template-columns:1fr;}}
+    @media(max-width:900px){
+      .contact-wrapper{grid-template-columns:1fr;}
+      .desktop-nav {display: none;}
+      .mobile-nav-btn {display: flex;}
+    }
     @media(max-width:600px){
-      .nav-container{flex-direction:column;gap:1rem;padding:1rem;}
+      .nav-container{flex-direction:row;gap:1rem;padding:1rem; justify-content: space-between;}
       .hero{min-height:75vh;padding-top:170px;}
       .about{grid-template-columns:1fr;}
       body,section,footer{padding-left:.6rem;padding-right:.6rem;}
       .hero h1{font-size:2rem;}
       .btn{font-size:1rem;padding:.8rem 1.2rem;}
       .faq-question{font-size:1rem;}
-      .theme-btn{margin-left:0;margin-top:1rem;}
+      .theme-btn{margin-left:0;margin-top:0;}
+      .testimonial-text::before {
+        left: 0;
+      }
+      .testimonial-text::after {
+        right: 0;
+      }
+    }
+
+    /* ——— Loader ——— */
+    .loader {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(22, 33, 43, 0.9);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .loader.active {
+      display: flex;
+    }
+    .loader-spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(194, 107, 53, 0.2);
+      border-radius: 50%;
+      border-top-color: var(--c-primary);
+      animation: spin 1s linear infinite;
+    }
+    .loader-text {
+      margin-top: 1rem;
+      color: var(--c-light);
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
   </style>
 </head>
 <body>
+  <!-- Loader -->
+  <div class="loader" id="loader">
+    <div class="loader-spinner"></div>
+    <p class="loader-text">Cargando contenido...</p>
+  </div>
+
   <!-- Header -->
   <header>
     <div class="nav-container">
       <a class="logo" href="#inicio"><img src="assets/logo-soldarte.png" alt="Soldarte Logo"> SOLDARTE</a>
-      <nav>
+      
+      <nav class="desktop-nav">
         <ul>
           <li><a href="#inicio">Inicio</a></li>
           <li><a href="#servicios">Servicios</a></li>
@@ -298,6 +549,23 @@
           <li><a href="/admin/" id="adminLink" title="Panel de administración">Panel</a></li>
         </ul>
       </nav>
+
+      <button class="mobile-nav-btn" id="mobileNavBtn" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="mobile-nav" id="mobileNav">
+        <a href="#inicio" class="mobile-nav-link">Inicio</a>
+        <a href="#servicios" class="mobile-nav-link">Servicios</a>
+        <a href="#galeria" class="mobile-nav-link">Galería</a>
+        <a href="#sobre" class="mobile-nav-link">Nosotros</a>
+        <a href="#contacto" class="mobile-nav-link">Contacto</a>
+        <a href="#faq" class="mobile-nav-link">FAQ</a>
+        <a href="/admin/" id="adminLinkMobile" class="mobile-nav-link">Panel</a>
+      </nav>
+
       <button id="themeBtn" class="theme-btn" title="Cambiar modo">
         <i class="fa-regular fa-moon"></i>
       </button>
@@ -306,12 +574,13 @@
 
   <!-- HERO -->
   <section id="inicio" class="hero fade-in">
-    <video autoplay muted loop playsinline poster="assets/hero-thumb.jpg">
+    <video autoplay muted loop playsinline poster="assets/hero-thumb.jpg" id="heroVideo">
       <source src="assets/video.mp4" type="video/mp4">
+      <source src="assets/video.webm" type="video/webm">
       <img src="assets/hero-thumb.jpg" alt="Chispas de soldadura">
     </video>
     <div class="hero-content">
-      <h1>“De la chispa al arte”</h1>
+      <h1>"De la chispa al arte"</h1>
       <p>Especialistas en herrería y diseño metálico a medida. Rejas, portones, muebles y estructuras fabricadas con pasión y precisión.</p>
       <a href="#contacto" class="btn">Solicitar presupuesto</a>
     </div>
@@ -355,11 +624,35 @@
   <section id="sobre" class="fade-in">
     <h2>Sobre Soldarte</h2>
     <div class="about">
-      <img src="assets/soldador.jpg" alt="Taller Soldarte" class="about-img">
+      <img src="assets/soldador.jpg" alt="Taller Soldarte" class="about-img" loading="lazy">
       <div>
         <p>Somos un taller familiar con más de <strong>10 años</strong> de experiencia en la transformación del metal.</p>
         <p>Combinamos técnicas tradicionales de herrería con diseño moderno para lograr piezas que perduren en el tiempo y respondan a la identidad de cada cliente.</p>
         <p>Trabajamos con materiales de primera calidad, garantizando durabilidad, seguridad y estética.</p>
+        
+        <!-- Testimonios -->
+        <div class="testimonials">
+          <h3 style="margin-top: 2rem; text-align: center;">Lo que dicen nuestros clientes</h3>
+          <div class="testimonial-container">
+            <div class="testimonial active">
+              <p class="testimonial-text">Excelente trabajo en el portón de mi casa. Cumplieron los plazos y la calidad superó mis expectativas. ¡Altamente recomendables!</p>
+              <p class="testimonial-author">- Carlos M., Rosario</p>
+            </div>
+            <div class="testimonial">
+              <p class="testimonial-text">Quedé encantado con la mesa que me fabricaron. Es exactamente lo que quería y el detalle en las terminaciones es impecable.</p>
+              <p class="testimonial-author">- Laura V., Funes</p>
+            </div>
+            <div class="testimonial">
+              <p class="testimonial-text">Contraté a Soldarte para la estructura de mi local comercial. Profesionales, puntuales y con precios justos. Volvería a contratarlos.</p>
+              <p class="testimonial-author">- Roberto T., Pérez</p>
+            </div>
+            <div class="testimonial-nav">
+              <div class="testimonial-dot active" data-index="0"></div>
+              <div class="testimonial-dot" data-index="1"></div>
+              <div class="testimonial-dot" data-index="2"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -373,14 +666,16 @@
       <form id="contactForm">
         <input type="text" name="nombre" placeholder="Nombre" required>
         <input type="tel" name="telefono" placeholder="Teléfono" required>
+        <input type="email" name="email" placeholder="Email (opcional)">
         <textarea name="mensaje" placeholder="Contanos tu proyecto..." required></textarea>
         <button class="btn" type="submit">Enviar consulta</button>
+        <div class="form-message" id="formMessage"></div>
       </form>
       <div>
         <p><i class="fas fa-location-dot"></i> Rosario, Santa Fe</p>
         <p><i class="fas fa-phone"></i> +54 9 341 755 8966</p>
         <p><i class="fas fa-envelope"></i> soldartedesign@gmail.com</p>
-        <p>Horarios: Lun–Vie 8–18 h / Sáb 8–13 h</p>
+        <p><i class="fas fa-clock"></i> Horarios: Lun–Vie 8–18 h / Sáb 8–13 h</p>
       </div>
     </div>
   </section>
@@ -396,20 +691,32 @@
   <!-- FOOTER -->
   <footer>
     <div class="socials">
-      <a href="https://wa.me/5493417558966" target="_blank"><i class="fab fa-whatsapp"></i></a>
-      <a href="https://www.instagram.com/soldarte2025" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://wa.me/5493417558966" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://www.instagram.com/soldarte2025" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
     </div>
     <p>&copy; 2025 Soldarte – Herrería & Diseño. Todos los derechos reservados.</p>
   </footer>
 
   <!-- WhatsApp FAB -->
-  <a href="https://wa.me/5493417558966" class="whatsapp-fab" target="_blank" title="Chatear por WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <a href="https://wa.me/5493417558966" class="whatsapp-fab" target="_blank" title="Chatear por WhatsApp" aria-label="Chatear por WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+  <!-- Botón volver arriba -->
+  <div class="back-to-top" id="backToTop" title="Volver arriba">
+    <i class="fas fa-arrow-up"></i>
+  </div>
 
   <!-- JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
   <script>
+    // Configuración de Lightbox
+    lightbox.option({
+      'resizeDuration': 200,
+      'wrapAround': true,
+      'albumLabel': 'Imagen %1 de %2'
+    });
+
     function initSwipersOnce() {
       document.querySelectorAll('.swiper').forEach(swiperEl => {
         if (swiperEl.dataset.swiperInitialized) return;
@@ -429,6 +736,9 @@
 
     async function cargarDesdeCMS(){
       try {
+        // Mostrar loader
+        document.getElementById('loader').classList.add('active');
+        
         const [gal, faqs] = await Promise.all([
           fetch('/content/gallery.json', { cache: 'no-store' }).then(r => r.ok ? r.json() : null),
           fetch('/content/faqs.json',    { cache: 'no-store' }).then(r => r.ok ? r.json() : null)
@@ -450,7 +760,7 @@
             const img = it.thumb || it.imagen;
             slide.innerHTML = `
               <a href="${it.imagen}" data-lightbox="${it.categoria}" data-title="${it.titulo}">
-                <img src="${img}" alt="${it.titulo}">
+                <img src="${img}" alt="${it.titulo}" loading="lazy">
               </a>`;
             wrap.appendChild(slide);
           });
@@ -471,6 +781,9 @@
       } catch(e) {
         console.warn('No pude cargar contenido del CMS, uso estático.', e);
       } finally {
+        // Ocultar loader
+        document.getElementById('loader').classList.remove('active');
+        
         document.querySelectorAll('.faq-question').forEach(q => {
           q.onclick = function(){
             const it = this.parentElement;
@@ -480,6 +793,35 @@
         });
         initSwipersOnce();
       }
+    }
+
+    // Testimonios rotator
+    function initTestimonials() {
+      const testimonials = document.querySelectorAll('.testimonial');
+      const dots = document.querySelectorAll('.testimonial-dot');
+      let currentIndex = 0;
+      
+      function showTestimonial(index) {
+        testimonials.forEach(testimonial => testimonial.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        testimonials[index].classList.add('active');
+        dots[index].classList.add('active');
+        currentIndex = index;
+      }
+      
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const index = parseInt(dot.getAttribute('data-index'));
+          showTestimonial(index);
+        });
+      });
+      
+      // Auto-rotate testimonials
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % testimonials.length;
+        showTestimonial(currentIndex);
+      }, 5000);
     }
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -503,16 +845,100 @@
         updateIcon();
       });
 
-      // Formulario WhatsApp
+      // Menú móvil
+      const mobileNavBtn = document.getElementById('mobileNavBtn');
+      const mobileNav = document.getElementById('mobileNav');
+      
+      mobileNavBtn.addEventListener('click', () => {
+        mobileNav.classList.toggle('active');
+        mobileNavBtn.classList.toggle('active');
+        
+        // Animación de hamburguesa a X
+        const spans = mobileNavBtn.querySelectorAll('span');
+        if (mobileNav.classList.contains('active')) {
+          spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+          spans[1].style.opacity = '0';
+          spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+        } else {
+          spans[0].style.transform = 'none';
+          spans[1].style.opacity = '1';
+          spans[2].style.transform = 'none';
+        }
+      });
+      
+      // Cerrar menú al hacer clic en un enlace
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileNav.classList.remove('active');
+          mobileNavBtn.classList.remove('active');
+          const spans = mobileNavBtn.querySelectorAll('span');
+          spans[0].style.transform = 'none';
+          spans[1].style.opacity = '1';
+          spans[2].style.transform = 'none';
+        });
+      });
+
+      // Formulario de contacto mejorado
       document.getElementById('contactForm')?.addEventListener('submit', e => {
         e.preventDefault();
-        const fd = new FormData(e.target),
-              nombre = fd.get('nombre').trim(),
-              tel    = fd.get('telefono').trim(),
-              msg    = fd.get('mensaje').trim(),
-              text   = encodeURIComponent(`Hola Soldarte! Soy ${nombre} (${tel}). ${msg}`);
+        const form = e.target;
+        const formData = new FormData(form);
+        const messageEl = document.getElementById('formMessage');
+        
+        // Validación básica
+        const nombre = formData.get('nombre').trim();
+        const telefono = formData.get('telefono').trim();
+        const mensaje = formData.get('mensaje').trim();
+        
+        if (!nombre || !telefono || !mensaje) {
+          messageEl.textContent = 'Por favor, complete todos los campos obligatorios.';
+          messageEl.className = 'form-message error';
+          return;
+        }
+        
+        // Validación de teléfono (solo números y algunos caracteres especiales)
+        const phoneRegex = /^[0-9+\-\s()]{10,}$/;
+        if (!phoneRegex.test(telefono)) {
+          messageEl.textContent = 'Por favor, ingrese un número de teléfono válido.';
+          messageEl.className = 'form-message error';
+          return;
+        }
+        
+        // Si pasa la validación, redirigir a WhatsApp
+        const text = encodeURIComponent(`Hola Soldarte! Soy ${nombre} (${telefono}). ${mensaje}`);
         window.open(`https://wa.me/5493417558966?text=${text}`, '_blank');
+        
+        // Mensaje de éxito
+        messageEl.textContent = '¡Gracias por su consulta! Será redirigido a WhatsApp.';
+        messageEl.className = 'form-message success';
+        
+        // Limpiar formulario después de 3 segundos
+        setTimeout(() => {
+          form.reset();
+          messageEl.className = 'form-message';
+          messageEl.textContent = '';
+        }, 3000);
       });
+
+      // Botón volver arriba
+      const backToTopBtn = document.getElementById('backToTop');
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+          backToTopBtn.classList.add('visible');
+        } else {
+          backToTopBtn.classList.remove('visible');
+        }
+      });
+      
+      backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+
+      // Iniciar testimonios
+      initTestimonials();
 
       // Carga dinámica CMS
       cargarDesdeCMS();
@@ -521,8 +947,10 @@
     // Netlify Identity: panel /admin
     function toggleAdminLink(user){
       const link = document.getElementById('adminLink');
-      if (!link) return;
+      const mobileLink = document.getElementById('adminLinkMobile');
+      if (!link || !mobileLink) return;
       link.style.display = user ? 'inline-block' : 'none';
+      mobileLink.style.display = user ? 'block' : 'none';
     }
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on('init',  user => toggleAdminLink(user));
@@ -532,7 +960,14 @@
       });
       window.netlifyIdentity.on('logout', () => toggleAdminLink(null));
     }
+
+    // Lazy loading para imágenes
+    if ('loading' in HTMLImageElement.prototype) {
+      const images = document.querySelectorAll('img[loading="lazy"]');
+      images.forEach(img => {
+        img.src = img.src;
+      });
+    }
   </script>
 </body>
 </html>
-
