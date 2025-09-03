@@ -6,13 +6,8 @@
   <meta name="description" content="Soldarte - Especialistas en herrería y diseño metálico. Rejas, portones, muebles y estructuras fabricadas con pasión y precisión.">
   <meta name="keywords" content="herrería, diseño metálico, rejas, portones, muebles de metal, soldadura, Rosario">
   <meta name="author" content="Soldarte">
-  <link rel="icon" href="assets/logo-soldarte.png" type="image/png">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚒️</text></svg>">
   <title>Soldarte | Herrería & Diseño en Rosario</title>
-
-  <!-- Preconexión para recursos externos -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
   <!-- Fuentes Google -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
@@ -25,15 +20,6 @@
 
   <!-- Lightbox2 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" />
-
-  <!-- Netlify Identity (login para /admin) -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-  <!-- Vercel Web Analytics -->
-  <script>
-    window.va = window.va || function () {(window.vaq = window.vaq || []).push(arguments);};
-  </script>
-  <script defer src="/_vercel/insights/script.js"></script>
 
   <style>
     :root{
@@ -99,7 +85,7 @@
     }
     
     /* Navegación para escritorio */
-    .desktop-nav {display:flex;gap:1.5rem;font-weight:500;}
+    .desktop-nav ul {display:flex;gap:1.5rem;font-weight:500;}
     .desktop-nav a{position:relative;padding:0.5rem 0;}
     .desktop-nav a::after{
       content:'';position:absolute;width:0;height:2px;bottom:0;left:0;
@@ -536,7 +522,7 @@
   <!-- Header -->
   <header>
     <div class="nav-container">
-      <a class="logo" href="#inicio"><img src="assets/logo-soldarte.png" alt="Soldarte Logo"> SOLDARTE</a>
+      <a class="logo" href="#inicio">⚒️ SOLDARTE</a>
       
       <nav class="desktop-nav">
         <ul>
@@ -574,11 +560,6 @@
 
   <!-- HERO -->
   <section id="inicio" class="hero fade-in">
-    <video autoplay muted loop playsinline poster="assets/hero-thumb.jpg" id="heroVideo">
-      <source src="assets/video.mp4" type="video/mp4">
-      <source src="assets/video.webm" type="video/webm">
-      <img src="assets/hero-thumb.jpg" alt="Chispas de soldadura">
-    </video>
     <div class="hero-content">
       <h1>"De la chispa al arte"</h1>
       <p>Especialistas en herrería y diseño metálico a medida. Rejas, portones, muebles y estructuras fabricadas con pasión y precisión.</p>
@@ -606,16 +587,50 @@
     <h2>Galería de Trabajos</h2>
 
     <h3 class="cat-title">Muebles</h3>
-    <div class="swiper muebles-swiper"><div class="swiper-wrapper"></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div></div>
+    <div class="swiper muebles-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <a href="https://images.unsplash.com/photo-1592078615290-033ee584e267?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-lightbox="muebles" data-title="Mueble de metal y madera">
+            <img src="https://images.unsplash.com/photo-1592078615290-033ee584e267?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Mueble de metal y madera" loading="lazy">
+          </a>
+        </div>
+        <div class="swiper-slide">
+          <a href="https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-lightbox="muebles" data-title="Estantería industrial">
+            <img src="https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Estantería industrial" loading="lazy">
+          </a>
+        </div>
+        <div class="swiper-slide">
+          <a href="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-lightbox="muebles" data-title="Mueble de exterior">
+            <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Mueble de exterior" loading="lazy">
+          </a>
+        </div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
 
     <h3 class="cat-title">Mesas</h3>
-    <div class="swiper mesas-swiper"><div class="swiper-wrapper"></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div></div>
-
-    <h3 class="cat-title">Escaleras</h3>
-    <div class="swiper escaleras-swiper"><div class="swiper-wrapper"></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div></div>
-
-    <h3 class="cat-title">Puertas y Portones</h3>
-    <div class="swiper portones-swiper"><div class="swiper-wrapper"></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div></div>
+    <div class="swiper mesas-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <a href="https://images.unsplash.com/photo-1533139502658-0198f920d8e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-lightbox="mesas" data-title="Mesa industrial">
+            <img src="https://images.unsplash.com/photo-1533139502658-0198f920d8e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Mesa industrial" loading="lazy">
+          </a>
+        </div>
+        <div class="swiper-slide">
+          <a href="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-lightbox="mesas" data-title="Mesa de centro">
+            <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Mesa de centro" loading="lazy">
+          </a>
+        </div>
+        <div class="swiper-slide">
+          <a href="https://images.unsplash.com/photo-1530006265831-efc6c6268e69?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-lightbox="mesas" data-title="Mesa de comedor">
+            <img src="https://images.unsplash.com/photo-1530006265831-efc6c6268e69?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Mesa de comedor" loading="lazy">
+          </a>
+        </div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
   </section>
 
   <div class="industrial-separator"></div>
@@ -624,7 +639,7 @@
   <section id="sobre" class="fade-in">
     <h2>Sobre Soldarte</h2>
     <div class="about">
-      <img src="assets/soldador.jpg" alt="Taller Soldarte" class="about-img" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Taller Soldarte" class="about-img" loading="lazy">
       <div>
         <p>Somos un taller familiar con más de <strong>10 años</strong> de experiencia en la transformación del metal.</p>
         <p>Combinamos técnicas tradicionales de herrería con diseño moderno para lograr piezas que perduren en el tiempo y respondan a la identidad de cada cliente.</p>
@@ -685,7 +700,20 @@
   <!-- PREGUNTAS FRECUENTES -->
   <section id="faq" class="faq-section fade-in">
     <h2>Preguntas Frecuentes</h2>
-    <div class="faq-list"></div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question">¿Cuánto tiempo toma la fabricación de un portón? <span class="faq-icon"><i class="fas fa-chevron-right"></i></span></div>
+        <div class="faq-answer"><p>El tiempo de fabricación depende del diseño y complejidad, pero generalmente toma entre 2 y 4 semanas desde la aprobación del presupuesto.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">¿Realizan instalación? <span class="faq-icon"><i class="fas fa-chevron-right"></i></span></div>
+        <div class="faq-answer"><p>Sí, ofrecemos servicio de instalación profesional en Rosario y localidades cercanas. Para ubicaciones más alejadas, consultar costos adicionales.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">¿Qué tipos de metal trabajan? <span class="faq-icon"><i class="fas fa-chevron-right"></i></span></div>
+        <div class="faq-answer"><p>Trabajamos con hierro, acero inoxidable, aluminio y bronce. Seleccionamos el material más adecuado según el proyecto y el presupuesto.</p></div>
+      </div>
+    </div>
   </section>
 
   <!-- FOOTER -->
@@ -717,10 +745,12 @@
       'albumLabel': 'Imagen %1 de %2'
     });
 
-    function initSwipersOnce() {
+    function initSwipers() {
+      const swiperInstances = [];
       document.querySelectorAll('.swiper').forEach(swiperEl => {
-        if (swiperEl.dataset.swiperInitialized) return;
-        new Swiper(swiperEl, {
+        if (swiperEl.swiper) return;
+        
+        const swiper = new Swiper(swiperEl, {
           loop: true,
           navigation: {
             nextEl: swiperEl.querySelector('.swiper-button-next'),
@@ -728,71 +758,16 @@
           },
           slidesPerView: 1,
           spaceBetween: 20,
-          breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
+          breakpoints: { 
+            640: { slidesPerView: 1 },
+            768: { slidesPerView: 2 }, 
+            1024: { slidesPerView: 3 } 
+          }
         });
-        swiperEl.dataset.swiperInitialized = 'true';
+        
+        swiperInstances.push(swiper);
       });
-    }
-
-    async function cargarDesdeCMS(){
-      try {
-        // Mostrar loader
-        document.getElementById('loader').classList.add('active');
-        
-        const [gal, faqs] = await Promise.all([
-          fetch('/content/gallery.json', { cache: 'no-store' }).then(r => r.ok ? r.json() : null),
-          fetch('/content/faqs.json',    { cache: 'no-store' }).then(r => r.ok ? r.json() : null)
-        ]);
-
-        if (gal?.items) {
-          const wraps = {
-            muebles:    document.querySelector('.muebles-swiper .swiper-wrapper'),
-            mesas:      document.querySelector('.mesas-swiper .swiper-wrapper'),
-            escaleras:  document.querySelector('.escaleras-swiper .swiper-wrapper'),
-            portones:   document.querySelector('.portones-swiper .swiper-wrapper')
-          };
-          Object.values(wraps).forEach(w => w && (w.innerHTML = ''));
-          gal.items.forEach(it => {
-            const wrap = wraps[it.categoria];
-            if (!wrap) return;
-            const slide = document.createElement('div');
-            slide.className = 'swiper-slide';
-            const img = it.thumb || it.imagen;
-            slide.innerHTML = `
-              <a href="${it.imagen}" data-lightbox="${it.categoria}" data-title="${it.titulo}">
-                <img src="${img}" alt="${it.titulo}" loading="lazy">
-              </a>`;
-            wrap.appendChild(slide);
-          });
-        }
-
-        if (faqs?.items) {
-          const lista = document.querySelector('.faq-list');
-          lista.innerHTML = '';
-          faqs.items.forEach(({ pregunta, respuesta }) => {
-            const item = document.createElement('div');
-            item.className = 'faq-item';
-            item.innerHTML = `
-              <div class="faq-question">${pregunta} <span class="faq-icon"><i class="fas fa-chevron-right"></i></span></div>
-              <div class="faq-answer"><p>${respuesta}</p></div>`;
-            lista.appendChild(item);
-          });
-        }
-      } catch(e) {
-        console.warn('No pude cargar contenido del CMS, uso estático.', e);
-      } finally {
-        // Ocultar loader
-        document.getElementById('loader').classList.remove('active');
-        
-        document.querySelectorAll('.faq-question').forEach(q => {
-          q.onclick = function(){
-            const it = this.parentElement;
-            document.querySelectorAll('.faq-item').forEach(i => i !== it && i.classList.remove('active'));
-            it.classList.toggle('active');
-          };
-        });
-        initSwipersOnce();
-      }
+      return swiperInstances;
     }
 
     // Testimonios rotator
@@ -829,16 +804,26 @@
       document.querySelectorAll('.fade-in').forEach((el,i) => {
         el.style.opacity = 0;
         el.style.transform = 'translateY(24px)';
-        setTimeout(() => { el.style.opacity = 1; el.style.transform = 'none'; }, 250 + i*100);
+        setTimeout(() => { 
+          el.style.opacity = 1; 
+          el.style.transform = 'none'; 
+        }, 250 + i*100);
       });
 
       // Tema claro/oscuro
-      const themeBtn = document.getElementById('themeBtn'), body = document.body;
-      const updateIcon = () => themeBtn.innerHTML = body.classList.contains('light')
-        ? '<i class="fa-regular fa-sun"></i>'
-        : '<i class="fa-regular fa-moon"></i>';
-      if (localStorage.getItem('soldarte-theme') === 'light') body.classList.add('light');
+      const themeBtn = document.getElementById('themeBtn');
+      const body = document.body;
+      const updateIcon = () => {
+        themeBtn.innerHTML = body.classList.contains('light')
+          ? '<i class="fa-regular fa-sun"></i>'
+          : '<i class="fa-regular fa-moon"></i>';
+      };
+      
+      if (localStorage.getItem('soldarte-theme') === 'light') {
+        body.classList.add('light');
+      }
       updateIcon();
+      
       themeBtn.addEventListener('click', () => {
         body.classList.toggle('light');
         localStorage.setItem('soldarte-theme', body.classList.contains('light') ? 'light' : 'dark');
@@ -849,76 +834,81 @@
       const mobileNavBtn = document.getElementById('mobileNavBtn');
       const mobileNav = document.getElementById('mobileNav');
       
-      mobileNavBtn.addEventListener('click', () => {
-        mobileNav.classList.toggle('active');
-        mobileNavBtn.classList.toggle('active');
-        
-        // Animación de hamburguesa a X
-        const spans = mobileNavBtn.querySelectorAll('span');
-        if (mobileNav.classList.contains('active')) {
-          spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-          spans[1].style.opacity = '0';
-          spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
-        } else {
-          spans[0].style.transform = 'none';
-          spans[1].style.opacity = '1';
-          spans[2].style.transform = 'none';
-        }
-      });
-      
-      // Cerrar menú al hacer clic en un enlace
-      document.querySelectorAll('.mobile-nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-          mobileNav.classList.remove('active');
-          mobileNavBtn.classList.remove('active');
+      if (mobileNavBtn && mobileNav) {
+        mobileNavBtn.addEventListener('click', () => {
+          mobileNav.classList.toggle('active');
+          mobileNavBtn.classList.toggle('active');
+          
+          // Animación de hamburguesa a X
           const spans = mobileNavBtn.querySelectorAll('span');
-          spans[0].style.transform = 'none';
-          spans[1].style.opacity = '1';
-          spans[2].style.transform = 'none';
+          if (mobileNav.classList.contains('active')) {
+            spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+            spans[1].style.opacity = '0';
+            spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+          } else {
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
+          }
         });
-      });
+        
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+          link.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            mobileNavBtn.classList.remove('active');
+            const spans = mobileNavBtn.querySelectorAll('span');
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
+          });
+        });
+      }
 
       // Formulario de contacto mejorado
-      document.getElementById('contactForm')?.addEventListener('submit', e => {
-        e.preventDefault();
-        const form = e.target;
-        const formData = new FormData(form);
-        const messageEl = document.getElementById('formMessage');
-        
-        // Validación básica
-        const nombre = formData.get('nombre').trim();
-        const telefono = formData.get('telefono').trim();
-        const mensaje = formData.get('mensaje').trim();
-        
-        if (!nombre || !telefono || !mensaje) {
-          messageEl.textContent = 'Por favor, complete todos los campos obligatorios.';
-          messageEl.className = 'form-message error';
-          return;
-        }
-        
-        // Validación de teléfono (solo números y algunos caracteres especiales)
-        const phoneRegex = /^[0-9+\-\s()]{10,}$/;
-        if (!phoneRegex.test(telefono)) {
-          messageEl.textContent = 'Por favor, ingrese un número de teléfono válido.';
-          messageEl.className = 'form-message error';
-          return;
-        }
-        
-        // Si pasa la validación, redirigir a WhatsApp
-        const text = encodeURIComponent(`Hola Soldarte! Soy ${nombre} (${telefono}). ${mensaje}`);
-        window.open(`https://wa.me/5493417558966?text=${text}`, '_blank');
-        
-        // Mensaje de éxito
-        messageEl.textContent = '¡Gracias por su consulta! Será redirigido a WhatsApp.';
-        messageEl.className = 'form-message success';
-        
-        // Limpiar formulario después de 3 segundos
-        setTimeout(() => {
-          form.reset();
-          messageEl.className = 'form-message';
-          messageEl.textContent = '';
-        }, 3000);
-      });
+      const contactForm = document.getElementById('contactForm');
+      if (contactForm) {
+        contactForm.addEventListener('submit', e => {
+          e.preventDefault();
+          const form = e.target;
+          const formData = new FormData(form);
+          const messageEl = document.getElementById('formMessage');
+          
+          // Validación básica
+          const nombre = formData.get('nombre').trim();
+          const telefono = formData.get('telefono').trim();
+          const mensaje = formData.get('mensaje').trim();
+          
+          if (!nombre || !telefono || !mensaje) {
+            messageEl.textContent = 'Por favor, complete todos los campos obligatorios.';
+            messageEl.className = 'form-message error';
+            return;
+          }
+          
+          // Validación de teléfono (solo números y algunos caracteres especiales)
+          const phoneRegex = /^[0-9+\-\s()]{10,}$/;
+          if (!phoneRegex.test(telefono)) {
+            messageEl.textContent = 'Por favor, ingrese un número de teléfono válido.';
+            messageEl.className = 'form-message error';
+            return;
+          }
+          
+          // Si pasa la validación, redirigir a WhatsApp
+          const text = encodeURIComponent(`Hola Soldarte! Soy ${nombre} (${telefono}). ${mensaje}`);
+          window.open(`https://wa.me/5493417558966?text=${text}`, '_blank');
+          
+          // Mensaje de éxito
+          messageEl.textContent = '¡Gracias por su consulta! Será redirigido a WhatsApp.';
+          messageEl.className = 'form-message success';
+          
+          // Limpiar formulario después de 3 segundos
+          setTimeout(() => {
+            form.reset();
+            messageEl.className = 'form-message';
+            messageEl.textContent = '';
+          }, 3000);
+        });
+      }
 
       // Botón volver arriba
       const backToTopBtn = document.getElementById('backToTop');
@@ -930,36 +920,32 @@
         }
       });
       
-      backToTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
+      if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', () => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
         });
-      });
+      }
 
       // Iniciar testimonios
       initTestimonials();
 
-      // Carga dinámica CMS
-      cargarDesdeCMS();
-    });
+      // Inicializar Swipers
+      initSwipers();
 
-    // Netlify Identity: panel /admin
-    function toggleAdminLink(user){
-      const link = document.getElementById('adminLink');
-      const mobileLink = document.getElementById('adminLinkMobile');
-      if (!link || !mobileLink) return;
-      link.style.display = user ? 'inline-block' : 'none';
-      mobileLink.style.display = user ? 'block' : 'none';
-    }
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on('init',  user => toggleAdminLink(user));
-      window.netlifyIdentity.on('login', user => {
-        toggleAdminLink(user);
-        location.href = '/admin/';
+      // FAQ functionality
+      document.querySelectorAll('.faq-question').forEach(q => {
+        q.addEventListener('click', function(){
+          const it = this.parentElement;
+          document.querySelectorAll('.faq-item').forEach(i => {
+            if (i !== it) i.classList.remove('active');
+          });
+          it.classList.toggle('active');
+        });
       });
-      window.netlifyIdentity.on('logout', () => toggleAdminLink(null));
-    }
+    });
 
     // Lazy loading para imágenes
     if ('loading' in HTMLImageElement.prototype) {
