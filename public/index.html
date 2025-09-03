@@ -3,11 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Soldarte - Especialistas en herrería y diseño metálico. Rejas, portones, muebles y estructuras fabricadas con pasión y precisión.">
-  <meta name="keywords" content="herrería, diseño metálico, rejas, portones, muebles de metal, soldadura, Rosario">
-  <meta name="author" content="Soldarte">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚒️</text></svg>">
-  <title>Soldarte | Herrería & Diseño en Rosario</title>
+  <link rel="icon" href="assets/logo-soldarte.png" type="image/png">
+  <title>Soldarte | Herrería & Diseño</title>
 
   <!-- Fuentes Google -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
@@ -21,6 +18,15 @@
   <!-- Lightbox2 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" />
 
+  <!-- Netlify Identity (login para /admin) -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <!-- Vercel Web Analytics -->
+  <script>
+    window.va = window.va || function () {(window.vaq = window.vaq || []).push(arguments);};
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+
   <style>
     :root{
       --c-primary:#c26b35;
@@ -29,7 +35,6 @@
       --c-white:#ffffff;
       --c-faq-bg:rgba(255,255,255,0.04);
       --c-faq-active:rgba(194,107,53,0.12);
-      --transition: all 0.3s ease;
     }
     /* ——— Base ——— */
     *{box-sizing:border-box;margin:0;padding:0}
@@ -58,7 +63,6 @@
       backdrop-filter:blur(7px);
       box-shadow:0 2px 12px rgba(0,0,0,.11);
       z-index:100;
-      transition: var(--transition);
     }
     .nav-container{
       max-width:1200px;margin:0 auto;
@@ -70,9 +74,8 @@
       font-size:1.25rem;font-weight:700;cursor:pointer;
       opacity:0;transform:translateY(-25px) scale(.93);
       animation:logoIn .9s cubic-bezier(.43,.18,.24,.92) .3s forwards;
-      z-index: 101;
     }
-    .logo img{height:40px;transition:box-shadow .3s,filter .4s; width: auto;}
+    .logo img{height:40px;transition:box-shadow .3s,filter .4s;}
     .logo:hover img{box-shadow:0 6px 32px #c26b3555;filter:brightness(1.1) saturate(1.1);}
     .logo:hover,.logo:hover img{animation:logoBounce .6s;}
     @keyframes logoIn{to{opacity:1;transform:none;}}
@@ -83,67 +86,8 @@
       75%{transform:scale(1.06) rotate(-2deg);}
       100%{transform:scale(1) rotate(0deg);}
     }
-    
-    /* Navegación para escritorio */
-    .desktop-nav ul {display:flex;gap:1.5rem;font-weight:500;}
-    .desktop-nav a{position:relative;padding:0.5rem 0;}
-    .desktop-nav a::after{
-      content:'';position:absolute;width:0;height:2px;bottom:0;left:0;
-      background:var(--c-primary);transition:width 0.3s ease;
-    }
-    .desktop-nav a:hover::after{width:100%;}
-    .desktop-nav a:hover{color:var(--c-primary);}
-    
-    /* Navegación móvil */
-    .mobile-nav-btn {
-      display: none;
-      flex-direction: column;
-      justify-content: space-around;
-      width: 30px;
-      height: 30px;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      z-index: 101;
-    }
-    .mobile-nav-btn span {
-      width: 30px;
-      height: 3px;
-      background: var(--c-light);
-      border-radius: 2px;
-      transition: all 0.3s linear;
-      transform-origin: center;
-    }
-    .mobile-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      background: var(--c-dark);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 2rem;
-      transform: translateX(-100%);
-      transition: transform 0.3s ease-in-out;
-      z-index: 100;
-    }
-    .mobile-nav.active {
-      transform: translateX(0);
-    }
-    .mobile-nav a {
-      font-size: 1.5rem;
-      font-weight: 600;
-      padding: 0.5rem 0;
-      transition: color 0.3s;
-    }
-    .mobile-nav a:hover {
-      color: var(--c-primary);
-    }
-
+    nav ul{display:flex;gap:1.5rem;font-weight:500;}
+    nav a:hover{color:var(--c-primary);}
     /* Enlace Panel: oculto hasta que haya sesión */
     #adminLink{display:none;}
 
@@ -157,7 +101,6 @@
       box-shadow:0 1px 7px #0002;
       transition:background .2s,color .2s,transform .18s;
       margin-left:1.2rem;
-      z-index: 101;
     }
     .theme-btn:hover{background:#a9562a;color:#ffe4ba;transform:scale(1.09) rotate(-9deg);}
     .theme-btn i{transition:transform .5s;}
@@ -191,7 +134,6 @@
       font-size:1.1rem;font-weight:600;cursor:pointer;
       transition:background .3s,transform .2s,box-shadow .2s;
       box-shadow:0 2px 16px rgba(194,107,53,.08);
-      display: inline-block;
     }
     .btn:hover{background:#a9562a;transform:scale(1.06) translateY(-2px);box-shadow:0 4px 24px rgba(194,107,53,.16);}
     body.light .hero p{color:#4d3827;text-shadow:none;}
@@ -265,106 +207,14 @@
     }
     .about-img{max-height:700px;object-fit:cover;border-radius:8px;width:100%;}
 
-    /* ——— Testimonios ——— */
-    .testimonials {
-      margin-top: 4rem;
-    }
-    .testimonial-container {
-      max-width: 800px;
-      margin: 0 auto;
-      position: relative;
-    }
-    .testimonial {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 2rem;
-      border-radius: 8px;
-      text-align: center;
-      margin: 0 auto;
-      display: none;
-    }
-    .testimonial.active {
-      display: block;
-      animation: fadeIn 0.5s ease;
-    }
-    .testimonial-text {
-      font-style: italic;
-      margin-bottom: 1rem;
-      position: relative;
-    }
-    .testimonial-text::before,
-    .testimonial-text::after {
-      content: '"';
-      font-size: 3rem;
-      color: var(--c-primary);
-      opacity: 0.3;
-      position: absolute;
-    }
-    .testimonial-text::before {
-      top: -1rem;
-      left: -1rem;
-    }
-    .testimonial-text::after {
-      bottom: -2rem;
-      right: -1rem;
-    }
-    .testimonial-author {
-      font-weight: 600;
-      color: var(--c-primary);
-    }
-    .testimonial-nav {
-      display: flex;
-      justify-content: center;
-      margin-top: 1.5rem;
-      gap: 0.5rem;
-    }
-    .testimonial-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .testimonial-dot.active {
-      background: var(--c-primary);
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     /* ——— Contacto ——— */
     .contact-wrapper{display:grid;grid-template-columns:2fr 1fr;gap:2rem;margin-top:2rem;}
     .contact-wrapper form{display:flex;flex-direction:column;gap:1rem;max-width:500px;width:100%;}
     .contact-wrapper input,.contact-wrapper textarea{
       background:rgba(255,255,255,.1);border:none;border-radius:4px;
       padding:.8rem 1rem;color:var(--c-white);font-size:1rem;width:100%;
-      transition: border 0.3s;
-    }
-    .contact-wrapper input:focus,
-    .contact-wrapper textarea:focus {
-      outline: none;
-      border: 1px solid var(--c-primary);
     }
     .contact-wrapper textarea{resize:vertical;min-height:140px;}
-    .form-message {
-      padding: 0.5rem;
-      border-radius: 4px;
-      margin-top: 1rem;
-      display: none;
-    }
-    .form-message.success {
-      background: rgba(46, 204, 113, 0.2);
-      border: 1px solid #2ecc71;
-      color: #2ecc71;
-      display: block;
-    }
-    .form-message.error {
-      background: rgba(231, 76, 60, 0.2);
-      border: 1px solid #e74c3c;
-      color: #e74c3c;
-      display: block;
-    }
 
     /* ——— FAQ ——— */
     .faq-section{max-width:900px;margin:0 auto;padding:4rem 0 3rem;}
@@ -397,36 +247,6 @@
       box-shadow:0 4px 10px rgba(0,0,0,.3);z-index:300;transition:transform .3s;
     }
     .whatsapp-fab:hover{transform:scale(1.1);}
-    
-    /* Botón volver arriba */
-    .back-to-top {
-      position: fixed;
-      bottom: 90px;
-      right: 25px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: var(--c-primary);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      cursor: pointer;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-      z-index: 299;
-    }
-    .back-to-top.visible {
-      opacity: 1;
-      visibility: visible;
-    }
-    .back-to-top:hover {
-      background: #a9562a;
-      transform: translateY(-3px);
-    }
 
     /* ——— Light mode overrides ——— */
     body.light{
@@ -447,84 +267,27 @@
     body.light .cat-title{color:#8a4a22;}
     body.light .about-img{box-shadow:0 2px 18px #c26b3522;}
     body.light .swiper-slide a::before{background:rgba(0,0,0,.25);}
-    body.light .testimonial {
-      background: rgba(194, 107, 53, 0.08);
-    }
-    body.light .mobile-nav {
-      background: var(--c-white);
-    }
 
     /* ——— Mobile tweaks ——— */
-    @media(max-width:900px){
-      .contact-wrapper{grid-template-columns:1fr;}
-      .desktop-nav {display: none;}
-      .mobile-nav-btn {display: flex;}
-    }
+    @media(max-width:900px){.contact-wrapper{grid-template-columns:1fr;}}
     @media(max-width:600px){
-      .nav-container{flex-direction:row;gap:1rem;padding:1rem; justify-content: space-between;}
+      .nav-container{flex-direction:column;gap:1rem;padding:1rem;}
       .hero{min-height:75vh;padding-top:170px;}
       .about{grid-template-columns:1fr;}
       body,section,footer{padding-left:.6rem;padding-right:.6rem;}
       .hero h1{font-size:2rem;}
       .btn{font-size:1rem;padding:.8rem 1.2rem;}
       .faq-question{font-size:1rem;}
-      .theme-btn{margin-left:0;margin-top:0;}
-      .testimonial-text::before {
-        left: 0;
-      }
-      .testimonial-text::after {
-        right: 0;
-      }
-    }
-
-    /* ——— Loader ——— */
-    .loader {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(22, 33, 43, 0.9);
-      z-index: 9999;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-    .loader.active {
-      display: flex;
-    }
-    .loader-spinner {
-      width: 50px;
-      height: 50px;
-      border: 5px solid rgba(194, 107, 53, 0.2);
-      border-radius: 50%;
-      border-top-color: var(--c-primary);
-      animation: spin 1s linear infinite;
-    }
-    .loader-text {
-      margin-top: 1rem;
-      color: var(--c-light);
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      .theme-btn{margin-left:0;margin-top:1rem;}
     }
   </style>
 </head>
 <body>
-  <!-- Loader -->
-  <div class="loader" id="loader">
-    <div class="loader-spinner"></div>
-    <p class="loader-text">Cargando contenido...</p>
-  </div>
-
   <!-- Header -->
   <header>
     <div class="nav-container">
-      <a class="logo" href="#inicio">⚒️ SOLDARTE</a>
-      
-      <nav class="desktop-nav">
+      <a class="logo" href="#inicio"><img src="assets/logo-soldarte.png" alt="Soldarte Logo"> SOLDARTE</a>
+      <nav>
         <ul>
           <li><a href="#inicio">Inicio</a></li>
           <li><a href="#servicios">Servicios</a></li>
@@ -535,23 +298,6 @@
           <li><a href="/admin/" id="adminLink" title="Panel de administración">Panel</a></li>
         </ul>
       </nav>
-
-      <button class="mobile-nav-btn" id="mobileNavBtn" aria-label="Abrir menú">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <nav class="mobile-nav" id="mobileNav">
-        <a href="#inicio" class="mobile-nav-link">Inicio</a>
-        <a href="#servicios" class="mobile-nav-link">Servicios</a>
-        <a href="#galeria" class="mobile-nav-link">Galería</a>
-        <a href="#sobre" class="mobile-nav-link">Nosotros</a>
-        <a href="#contacto" class="mobile-nav-link">Contacto</a>
-        <a href="#faq" class="mobile-nav-link">FAQ</a>
-        <a href="/admin/" id="adminLinkMobile" class="mobile-nav-link">Panel</a>
-      </nav>
-
       <button id="themeBtn" class="theme-btn" title="Cambiar modo">
         <i class="fa-regular fa-moon"></i>
       </button>
@@ -560,8 +306,12 @@
 
   <!-- HERO -->
   <section id="inicio" class="hero fade-in">
+    <video autoplay muted loop playsinline poster="assets/hero-thumb.jpg">
+      <source src="assets/video.mp4" type="video/mp4">
+      <img src="assets/hero-thumb.jpg" alt="Chispas de soldadura">
+    </video>
     <div class="hero-content">
-      <h1>"De la chispa al arte"</h1>
+      <h1>“De la chispa al arte”</h1>
       <p>Especialistas en herrería y diseño metálico a medida. Rejas, portones, muebles y estructuras fabricadas con pasión y precisión.</p>
       <a href="#contacto" class="btn">Solicitar presupuesto</a>
     </div>
@@ -587,50 +337,16 @@
     <h2>Galería de Trabajos</h2>
 
     <h3 class="cat-title">Muebles</h3>
-    <div class="swiper muebles-swiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <a href="https://images.unsplash.com/photo-1592078615290-033ee584e267?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-lightbox="muebles" data-title="Mueble de metal y madera">
-            <img src="https://images.unsplash.com/photo-1592078615290-033ee584e267?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Mueble de metal y madera" loading="lazy">
-          </a>
-        </div>
-        <div class="swiper-slide">
-          <a href="https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-lightbox="muebles" data-title="Estantería industrial">
-            <img src="https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Estantería industrial" loading="lazy">
-          </a>
-        </div>
-        <div class="swiper-slide">
-          <a href="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-lightbox="muebles" data-title="Mueble de exterior">
-            <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Mueble de exterior" loading="lazy">
-          </a>
-        </div>
-      </div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-    </div>
+    <div class="swiper muebles-swiper"><div class="swiper-wrapper"></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div></div>
 
     <h3 class="cat-title">Mesas</h3>
-    <div class="swiper mesas-swiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <a href="https://images.unsplash.com/photo-1533139502658-0198f920d8e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-lightbox="mesas" data-title="Mesa industrial">
-            <img src="https://images.unsplash.com/photo-1533139502658-0198f920d8e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Mesa industrial" loading="lazy">
-          </a>
-        </div>
-        <div class="swiper-slide">
-          <a href="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-lightbox="mesas" data-title="Mesa de centro">
-            <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Mesa de centro" loading="lazy">
-          </a>
-        </div>
-        <div class="swiper-slide">
-          <a href="https://images.unsplash.com/photo-1530006265831-efc6c6268e69?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-lightbox="mesas" data-title="Mesa de comedor">
-            <img src="https://images.unsplash.com/photo-1530006265831-efc6c6268e69?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Mesa de comedor" loading="lazy">
-          </a>
-        </div>
-      </div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-    </div>
+    <div class="swiper mesas-swiper"><div class="swiper-wrapper"></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div></div>
+
+    <h3 class="cat-title">Escaleras</h3>
+    <div class="swiper escaleras-swiper"><div class="swiper-wrapper"></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div></div>
+
+    <h3 class="cat-title">Puertas y Portones</h3>
+    <div class="swiper portones-swiper"><div class="swiper-wrapper"></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div></div>
   </section>
 
   <div class="industrial-separator"></div>
@@ -639,35 +355,11 @@
   <section id="sobre" class="fade-in">
     <h2>Sobre Soldarte</h2>
     <div class="about">
-      <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Taller Soldarte" class="about-img" loading="lazy">
+      <img src="assets/soldador.jpg" alt="Taller Soldarte" class="about-img">
       <div>
         <p>Somos un taller familiar con más de <strong>10 años</strong> de experiencia en la transformación del metal.</p>
         <p>Combinamos técnicas tradicionales de herrería con diseño moderno para lograr piezas que perduren en el tiempo y respondan a la identidad de cada cliente.</p>
         <p>Trabajamos con materiales de primera calidad, garantizando durabilidad, seguridad y estética.</p>
-        
-        <!-- Testimonios -->
-        <div class="testimonials">
-          <h3 style="margin-top: 2rem; text-align: center;">Lo que dicen nuestros clientes</h3>
-          <div class="testimonial-container">
-            <div class="testimonial active">
-              <p class="testimonial-text">Excelente trabajo en el portón de mi casa. Cumplieron los plazos y la calidad superó mis expectativas. ¡Altamente recomendables!</p>
-              <p class="testimonial-author">- Carlos M., Rosario</p>
-            </div>
-            <div class="testimonial">
-              <p class="testimonial-text">Quedé encantado con la mesa que me fabricaron. Es exactamente lo que quería y el detalle en las terminaciones es impecable.</p>
-              <p class="testimonial-author">- Laura V., Funes</p>
-            </div>
-            <div class="testimonial">
-              <p class="testimonial-text">Contraté a Soldarte para la estructura de mi local comercial. Profesionales, puntuales y con precios justos. Volvería a contratarlos.</p>
-              <p class="testimonial-author">- Roberto T., Pérez</p>
-            </div>
-            <div class="testimonial-nav">
-              <div class="testimonial-dot active" data-index="0"></div>
-              <div class="testimonial-dot" data-index="1"></div>
-              <div class="testimonial-dot" data-index="2"></div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -681,16 +373,14 @@
       <form id="contactForm">
         <input type="text" name="nombre" placeholder="Nombre" required>
         <input type="tel" name="telefono" placeholder="Teléfono" required>
-        <input type="email" name="email" placeholder="Email (opcional)">
         <textarea name="mensaje" placeholder="Contanos tu proyecto..." required></textarea>
         <button class="btn" type="submit">Enviar consulta</button>
-        <div class="form-message" id="formMessage"></div>
       </form>
       <div>
         <p><i class="fas fa-location-dot"></i> Rosario, Santa Fe</p>
         <p><i class="fas fa-phone"></i> +54 9 341 755 8966</p>
         <p><i class="fas fa-envelope"></i> soldartedesign@gmail.com</p>
-        <p><i class="fas fa-clock"></i> Horarios: Lun–Vie 8–18 h / Sáb 8–13 h</p>
+        <p>Horarios: Lun–Vie 8–18 h / Sáb 8–13 h</p>
       </div>
     </div>
   </section>
@@ -700,57 +390,30 @@
   <!-- PREGUNTAS FRECUENTES -->
   <section id="faq" class="faq-section fade-in">
     <h2>Preguntas Frecuentes</h2>
-    <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-question">¿Cuánto tiempo toma la fabricación de un portón? <span class="faq-icon"><i class="fas fa-chevron-right"></i></span></div>
-        <div class="faq-answer"><p>El tiempo de fabricación depende del diseño y complejidad, pero generalmente toma entre 2 y 4 semanas desde la aprobación del presupuesto.</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">¿Realizan instalación? <span class="faq-icon"><i class="fas fa-chevron-right"></i></span></div>
-        <div class="faq-answer"><p>Sí, ofrecemos servicio de instalación profesional en Rosario y localidades cercanas. Para ubicaciones más alejadas, consultar costos adicionales.</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">¿Qué tipos de metal trabajan? <span class="faq-icon"><i class="fas fa-chevron-right"></i></span></div>
-        <div class="faq-answer"><p>Trabajamos con hierro, acero inoxidable, aluminio y bronce. Seleccionamos el material más adecuado según el proyecto y el presupuesto.</p></div>
-      </div>
-    </div>
+    <div class="faq-list"></div>
   </section>
 
   <!-- FOOTER -->
   <footer>
     <div class="socials">
-      <a href="https://wa.me/5493417558966" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-      <a href="https://www.instagram.com/soldarte2025" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://wa.me/5493417558966" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://www.instagram.com/soldarte2025" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
     </div>
     <p>&copy; 2025 Soldarte – Herrería & Diseño. Todos los derechos reservados.</p>
   </footer>
 
   <!-- WhatsApp FAB -->
-  <a href="https://wa.me/5493417558966" class="whatsapp-fab" target="_blank" title="Chatear por WhatsApp" aria-label="Chatear por WhatsApp"><i class="fab fa-whatsapp"></i></a>
-
-  <!-- Botón volver arriba -->
-  <div class="back-to-top" id="backToTop" title="Volver arriba">
-    <i class="fas fa-arrow-up"></i>
-  </div>
+  <a href="https://wa.me/5493417558966" class="whatsapp-fab" target="_blank" title="Chatear por WhatsApp"><i class="fab fa-whatsapp"></i></a>
 
   <!-- JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
   <script>
-    // Configuración de Lightbox
-    lightbox.option({
-      'resizeDuration': 200,
-      'wrapAround': true,
-      'albumLabel': 'Imagen %1 de %2'
-    });
-
-    function initSwipers() {
-      const swiperInstances = [];
+    function initSwipersOnce() {
       document.querySelectorAll('.swiper').forEach(swiperEl => {
-        if (swiperEl.swiper) return;
-        
-        const swiper = new Swiper(swiperEl, {
+        if (swiperEl.dataset.swiperInitialized) return;
+        new Swiper(swiperEl, {
           loop: true,
           navigation: {
             nextEl: swiperEl.querySelector('.swiper-button-next'),
@@ -758,45 +421,65 @@
           },
           slidesPerView: 1,
           spaceBetween: 20,
-          breakpoints: { 
-            640: { slidesPerView: 1 },
-            768: { slidesPerView: 2 }, 
-            1024: { slidesPerView: 3 } 
-          }
+          breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
         });
-        
-        swiperInstances.push(swiper);
+        swiperEl.dataset.swiperInitialized = 'true';
       });
-      return swiperInstances;
     }
 
-    // Testimonios rotator
-    function initTestimonials() {
-      const testimonials = document.querySelectorAll('.testimonial');
-      const dots = document.querySelectorAll('.testimonial-dot');
-      let currentIndex = 0;
-      
-      function showTestimonial(index) {
-        testimonials.forEach(testimonial => testimonial.classList.remove('active'));
-        dots.forEach(dot => dot.classList.remove('active'));
-        
-        testimonials[index].classList.add('active');
-        dots[index].classList.add('active');
-        currentIndex = index;
-      }
-      
-      dots.forEach(dot => {
-        dot.addEventListener('click', () => {
-          const index = parseInt(dot.getAttribute('data-index'));
-          showTestimonial(index);
+    async function cargarDesdeCMS(){
+      try {
+        const [gal, faqs] = await Promise.all([
+          fetch('/content/gallery.json', { cache: 'no-store' }).then(r => r.ok ? r.json() : null),
+          fetch('/content/faqs.json',    { cache: 'no-store' }).then(r => r.ok ? r.json() : null)
+        ]);
+
+        if (gal?.items) {
+          const wraps = {
+            muebles:    document.querySelector('.muebles-swiper .swiper-wrapper'),
+            mesas:      document.querySelector('.mesas-swiper .swiper-wrapper'),
+            escaleras:  document.querySelector('.escaleras-swiper .swiper-wrapper'),
+            portones:   document.querySelector('.portones-swiper .swiper-wrapper')
+          };
+          Object.values(wraps).forEach(w => w && (w.innerHTML = ''));
+          gal.items.forEach(it => {
+            const wrap = wraps[it.categoria];
+            if (!wrap) return;
+            const slide = document.createElement('div');
+            slide.className = 'swiper-slide';
+            const img = it.thumb || it.imagen;
+            slide.innerHTML = `
+              <a href="${it.imagen}" data-lightbox="${it.categoria}" data-title="${it.titulo}">
+                <img src="${img}" alt="${it.titulo}">
+              </a>`;
+            wrap.appendChild(slide);
+          });
+        }
+
+        if (faqs?.items) {
+          const lista = document.querySelector('.faq-list');
+          lista.innerHTML = '';
+          faqs.items.forEach(({ pregunta, respuesta }) => {
+            const item = document.createElement('div');
+            item.className = 'faq-item';
+            item.innerHTML = `
+              <div class="faq-question">${pregunta} <span class="faq-icon"><i class="fas fa-chevron-right"></i></span></div>
+              <div class="faq-answer"><p>${respuesta}</p></div>`;
+            lista.appendChild(item);
+          });
+        }
+      } catch(e) {
+        console.warn('No pude cargar contenido del CMS, uso estático.', e);
+      } finally {
+        document.querySelectorAll('.faq-question').forEach(q => {
+          q.onclick = function(){
+            const it = this.parentElement;
+            document.querySelectorAll('.faq-item').forEach(i => i !== it && i.classList.remove('active'));
+            it.classList.toggle('active');
+          };
         });
-      });
-      
-      // Auto-rotate testimonials
-      setInterval(() => {
-        currentIndex = (currentIndex + 1) % testimonials.length;
-        showTestimonial(currentIndex);
-      }, 5000);
+        initSwipersOnce();
+      }
     }
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -804,156 +487,52 @@
       document.querySelectorAll('.fade-in').forEach((el,i) => {
         el.style.opacity = 0;
         el.style.transform = 'translateY(24px)';
-        setTimeout(() => { 
-          el.style.opacity = 1; 
-          el.style.transform = 'none'; 
-        }, 250 + i*100);
+        setTimeout(() => { el.style.opacity = 1; el.style.transform = 'none'; }, 250 + i*100);
       });
 
       // Tema claro/oscuro
-      const themeBtn = document.getElementById('themeBtn');
-      const body = document.body;
-      const updateIcon = () => {
-        themeBtn.innerHTML = body.classList.contains('light')
-          ? '<i class="fa-regular fa-sun"></i>'
-          : '<i class="fa-regular fa-moon"></i>';
-      };
-      
-      if (localStorage.getItem('soldarte-theme') === 'light') {
-        body.classList.add('light');
-      }
+      const themeBtn = document.getElementById('themeBtn'), body = document.body;
+      const updateIcon = () => themeBtn.innerHTML = body.classList.contains('light')
+        ? '<i class="fa-regular fa-sun"></i>'
+        : '<i class="fa-regular fa-moon"></i>';
+      if (localStorage.getItem('soldarte-theme') === 'light') body.classList.add('light');
       updateIcon();
-      
       themeBtn.addEventListener('click', () => {
         body.classList.toggle('light');
         localStorage.setItem('soldarte-theme', body.classList.contains('light') ? 'light' : 'dark');
         updateIcon();
       });
 
-      // Menú móvil
-      const mobileNavBtn = document.getElementById('mobileNavBtn');
-      const mobileNav = document.getElementById('mobileNav');
-      
-      if (mobileNavBtn && mobileNav) {
-        mobileNavBtn.addEventListener('click', () => {
-          mobileNav.classList.toggle('active');
-          mobileNavBtn.classList.toggle('active');
-          
-          // Animación de hamburguesa a X
-          const spans = mobileNavBtn.querySelectorAll('span');
-          if (mobileNav.classList.contains('active')) {
-            spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-            spans[1].style.opacity = '0';
-            spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
-          } else {
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
-          }
-        });
-        
-        // Cerrar menú al hacer clic en un enlace
-        document.querySelectorAll('.mobile-nav-link').forEach(link => {
-          link.addEventListener('click', () => {
-            mobileNav.classList.remove('active');
-            mobileNavBtn.classList.remove('active');
-            const spans = mobileNavBtn.querySelectorAll('span');
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
-          });
-        });
-      }
-
-      // Formulario de contacto mejorado
-      const contactForm = document.getElementById('contactForm');
-      if (contactForm) {
-        contactForm.addEventListener('submit', e => {
-          e.preventDefault();
-          const form = e.target;
-          const formData = new FormData(form);
-          const messageEl = document.getElementById('formMessage');
-          
-          // Validación básica
-          const nombre = formData.get('nombre').trim();
-          const telefono = formData.get('telefono').trim();
-          const mensaje = formData.get('mensaje').trim();
-          
-          if (!nombre || !telefono || !mensaje) {
-            messageEl.textContent = 'Por favor, complete todos los campos obligatorios.';
-            messageEl.className = 'form-message error';
-            return;
-          }
-          
-          // Validación de teléfono (solo números y algunos caracteres especiales)
-          const phoneRegex = /^[0-9+\-\s()]{10,}$/;
-          if (!phoneRegex.test(telefono)) {
-            messageEl.textContent = 'Por favor, ingrese un número de teléfono válido.';
-            messageEl.className = 'form-message error';
-            return;
-          }
-          
-          // Si pasa la validación, redirigir a WhatsApp
-          const text = encodeURIComponent(`Hola Soldarte! Soy ${nombre} (${telefono}). ${mensaje}`);
-          window.open(`https://wa.me/5493417558966?text=${text}`, '_blank');
-          
-          // Mensaje de éxito
-          messageEl.textContent = '¡Gracias por su consulta! Será redirigido a WhatsApp.';
-          messageEl.className = 'form-message success';
-          
-          // Limpiar formulario después de 3 segundos
-          setTimeout(() => {
-            form.reset();
-            messageEl.className = 'form-message';
-            messageEl.textContent = '';
-          }, 3000);
-        });
-      }
-
-      // Botón volver arriba
-      const backToTopBtn = document.getElementById('backToTop');
-      window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-          backToTopBtn.classList.add('visible');
-        } else {
-          backToTopBtn.classList.remove('visible');
-        }
+      // Formulario WhatsApp
+      document.getElementById('contactForm')?.addEventListener('submit', e => {
+        e.preventDefault();
+        const fd = new FormData(e.target),
+              nombre = fd.get('nombre').trim(),
+              tel    = fd.get('telefono').trim(),
+              msg    = fd.get('mensaje').trim(),
+              text   = encodeURIComponent(`Hola Soldarte! Soy ${nombre} (${tel}). ${msg}`);
+        window.open(`https://wa.me/5493417558966?text=${text}`, '_blank');
       });
-      
-      if (backToTopBtn) {
-        backToTopBtn.addEventListener('click', () => {
-          window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-          });
-        });
-      }
 
-      // Iniciar testimonios
-      initTestimonials();
-
-      // Inicializar Swipers
-      initSwipers();
-
-      // FAQ functionality
-      document.querySelectorAll('.faq-question').forEach(q => {
-        q.addEventListener('click', function(){
-          const it = this.parentElement;
-          document.querySelectorAll('.faq-item').forEach(i => {
-            if (i !== it) i.classList.remove('active');
-          });
-          it.classList.toggle('active');
-        });
-      });
+      // Carga dinámica CMS
+      cargarDesdeCMS();
     });
 
-    // Lazy loading para imágenes
-    if ('loading' in HTMLImageElement.prototype) {
-      const images = document.querySelectorAll('img[loading="lazy"]');
-      images.forEach(img => {
-        img.src = img.src;
+    // Netlify Identity: panel /admin
+    function toggleAdminLink(user){
+      const link = document.getElementById('adminLink');
+      if (!link) return;
+      link.style.display = user ? 'inline-block' : 'none';
+    }
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init',  user => toggleAdminLink(user));
+      window.netlifyIdentity.on('login', user => {
+        toggleAdminLink(user);
+        location.href = '/admin/';
       });
+      window.netlifyIdentity.on('logout', () => toggleAdminLink(null));
     }
   </script>
 </body>
 </html>
+
